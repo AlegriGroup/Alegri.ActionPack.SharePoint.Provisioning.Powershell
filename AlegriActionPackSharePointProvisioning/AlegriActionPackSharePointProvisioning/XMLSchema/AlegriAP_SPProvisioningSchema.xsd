@@ -84,8 +84,8 @@
     <xs:attribute name="ListNameFromField" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>
-          The list containing the column
-          Die Liste die die Spalte enthält
+          The list where the column is contained
+          Die Liste wo die Spalte enthält
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>

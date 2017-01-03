@@ -31,14 +31,14 @@
     </alg:Actions>
 
     <alg:Actions Ignore="false">
-      <alg:Action ActionDescription="Starte ClearLookup After Provisioning" ActionID="9000" Ignore="true">
+      <alg:Action ActionDescription="Starte ClearLookup After Provisioning" ActionID="9000" Ignore="false">
         <alg:AutomationAction>
           <alg:ActionObject>
             <alg:AP_SPProvisioning_ClearLookupSiteColumnAfterProvisioning pathToProvisioningXML="C:\GitRepos\Powershell_Action_Pack_SharePoint_Provisioning\AlegriActionPackSharePointProvisioning\AlegriActionPackSharePointProvisioning\XMLFiles\ExampleProvisioningClearLookupSiteColumn.xml"/>
           </alg:ActionObject>
         </alg:AutomationAction>
       </alg:Action>
-      <alg:Action ActionDescription="Starte ClearLookup on Content Type" ActionID="9010" Ignore="true">
+      <alg:Action ActionDescription="Starte ClearLookup on Content Type" ActionID="9010" Ignore="false">
         <alg:AutomationAction>
           <alg:ActionObject>
             <alg:AP_SPProvisioning_ClearLookupSiteColumnOnContentType ContentTypeName="TestContentType" FieldName="MyDokumente" ListName="Formatbibliothek"/>
@@ -52,7 +52,7 @@
           </alg:ActionObject>
         </alg:AutomationAction>
       </alg:Action>
-      <alg:Action ActionDescription="Starte ClearLookup Site Column" ActionID="9030" Ignore="true">
+      <alg:Action ActionDescription="Starte ClearLookup Site Column" ActionID="9030" Ignore="false">
         <alg:AutomationAction>
           <alg:ActionObject>
             <alg:AP_SPProvisioning_ClearLookupSiteColumn FieldName="MyDokumente" ListName="Formatbibliothek"/>
@@ -62,7 +62,7 @@
     </alg:Actions>
     
     <!--Example from SharePoint Environment-->
-    <alg:Actions Ignore="true">
+    <alg:Actions Ignore="false">
       <alg:Action ActionDescription="Test Environment Disconnect" Ignore="false" ActionID="2000">
         <alg:AutomationAction>
           <alg:ActionObject>

@@ -27,6 +27,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="Documentation\" />
     <Folder Include="PSScripts\" />
     <Folder Include="XMLFiles\" />
     <Folder Include="XMLSchema\" />
@@ -35,6 +36,10 @@
     <Compile Include="AlegriActionPackSharePointProvisioning.psd1" />
     <Compile Include="AlegriActionPackSharePointProvisioning.psm1" />
     <Compile Include="AlegriActionPackSharePointProvisioning.tests.ps1" />
+    <Compile Include="Documentation\BeispielClearLookupSiteColumn.png" />
+    <Compile Include="Documentation\BeispielClearLookupSiteColumnAfterProvisioning.png" />
+    <Compile Include="Documentation\BeispielClearLookupSiteColumnOnContentType.png" />
+    <Compile Include="Documentation\BeispielClearLookupSiteColumnOnList.png" />
     <Compile Include="PSScripts\AP_SPProvisioning.ps1" />
     <Compile Include="PSScripts\DependentFunction.ps1" />
     <Compile Include="PSScripts\LookupSiteColumnFunctions.ps1" />
