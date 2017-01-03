@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pnp:Provisioning xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+  <pnp:Preferences Author="BW" Version="1.0" Generator="">
+  </pnp:Preferences>
+  <pnp:Templates>
+    <pnp:ProvisioningTemplate ID="VFPos" Version="1">
+
+      <!-- ################################## -->
+      <!-- Content Types                      -->
+      <!-- ################################## -->
+      <pnp:ContentTypes>
+        <!-- ================================ -->
+        <!-- Ct_01 Auswahl                    -->
+        <!-- ================================ -->
+        <pnp:ContentType ID="0x0100B53BB1F1E1C946E7B17765432179BBEE"
+               Name="Auswahl"
+               Group="_VKF smart"
+               Description="Auswahl">
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="{B7E63899-2FB7-488E-A4CF-268854D676DB}" Name="Details"    Required="false" />
+            <pnp:FieldRef ID="{C8E7C4E1-F2F0-4178-9B63-AC8C24B72C44}" Name="Bild"       Required="false" />
+            <pnp:FieldRef ID="{23203E97-3BFE-40CB-AFB4-07AA2B86BF45}" Name="Stylevalue" Required="false" />
+          </pnp:FieldRefs>
+        </pnp:ContentType>
+
+        <!-- ================================== -->
+        <!-- Ct_02 Bildmaterial                 -->
+        <!-- ================================== -->
+        <pnp:ContentType ID="0x0101020083D25A08CA5C4400A1DC420001946E09"
+               Name="Bildmaterial"
+               Group="_VKF smart"
+               Description="Bildmaterial"
+               >
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="{D6E3DA6B-8EFC-4A2B-98D1-473C393F976D}" Name="Verwendungszweck" Required="false" />
+            <pnp:FieldRef ID="{c29e077d-f466-4d8e-8bbe-72b66c5f205c}" Name="URL" Required="false" />
+          </pnp:FieldRefs>
+        </pnp:ContentType>
+
+        <!-- ================================== -->
+        <!-- Ct_03 Verwendungszweck                 -->
+        <!-- ================================== -->
+        <pnp:ContentType ID="0x0100DEC7BAA32712478A836A3E7CA1EFDD94"
+               Name="Verwendungszweck"
+               Group="_VKF smart"
+               Description="Verwendungszweck">
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="{B7E63899-2FB7-488E-A4CF-268854D676DB}" Name="Details" Required="false" />
+          </pnp:FieldRefs>
+        </pnp:ContentType>
+
+        <!--================================-->
+        <!--Ct_04 Maßnahme Niederlassungen-->
+        <!--================================-->
+        <pnp:ContentType ID="0x01004CF52DD5C59445ECAD4FA7D869FDAB04"
+               Name="MassnahmeNiederlassungen"
+               Group="_VKF smart"
+               Description="Maßnahme Niederlassungen">
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="{8A2CD6CE-0039-4B47-A90D-BA7DC4B782AA}" Name="Massnahmeart"           Required="true" />
+            <pnp:FieldRef ID="{5DF1413C-1221-4C54-A58D-505F1BABAE29}" Name="SegmentNiederlassung"   Required="true" />
+            <pnp:FieldRef ID="{EA0CCC0C-8814-431E-A294-1859F72177A3}" Name="Baureihe"               Required="true" />
+            <pnp:FieldRef ID="{6028E116-91E2-40E2-B459-BF24BCF6F56E}" Name="Fahrzeugart"            Required="true" />
+            <pnp:FieldRef ID="{CDF37724-C11E-461F-BA0E-9CE77CDB1E4B}" Name="Sondermodell"           Required="true" />
+            <pnp:FieldRef ID="{522B2A46-77CA-4F89-98F7-AEBE14F729EC}" Name="KonditionKachel"        Required="true" />
+            <pnp:FieldRef ID="{E5A73DBA-E11B-4E93-8660-3F106592663D}" Name="Berechnung"             Required="false" />
+            <pnp:FieldRef ID="{BFCEBA9A-31F6-4ED8-8D65-4115A518BB08}" Name="MBD"                    Required="false" />
+            <pnp:FieldRef ID="{A332BA37-3D56-4293-803A-CB6B2A78BDE1}" Name="MBBank"                 Required="false" />
+            <pnp:FieldRef ID="{1F4A9957-EA66-489E-8D2A-3162DBAD5089}" Name="smartCenter"            Required="false" />
+            <pnp:FieldRef ID="{0D04EA7B-BE00-4539-8A01-6B94D5A40905}" Name="Hinweise"               Required="false" />
+            <pnp:FieldRef ID="{E51F7AB2-75CD-4DAF-9C63-F6B58D66AEB9}" Name="Fristen"                Required="true" />
+            <pnp:FieldRef ID="{C2ABF128-3F59-499F-AE03-BE789A057C37}" Name="OriginalID"         Required="false"/>
+            <pnp:FieldRef ID="{CBAB8C62-76E6-4E43-9053-CAB5A975A3DA}" Name="KombiOriginalID"    Required="false"/>
+          </pnp:FieldRefs>
+        </pnp:ContentType>
+
+        <!-- ================================ -->
+        <!-- Ct_05 Maßnahme Händler           -->
+        <!-- ================================ -->
+        <pnp:ContentType ID="0x0100560F5748D18E41D28EA59745FEA7E0A6"
+               Name="MassnahmeHaendler"
+               Group="_VKF smart"
+               Description="Maßnahme Händler">
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="{8A2CD6CE-0039-4B47-A90D-BA7DC4B782AA}" Name="Massnahmeart"           Required="true" />
+            <pnp:FieldRef ID="{CB2BB50C-85A2-4D3F-B5D8-57E404BBDDC9}" Name="SegmentHaendler"        Required="true" />
+            <pnp:FieldRef ID="{EA0CCC0C-8814-431E-A294-1859F72177A3}" Name="Baureihe"               Required="true" />
+            <pnp:FieldRef ID="{6028E116-91E2-40E2-B459-BF24BCF6F56E}" Name="Fahrzeugart"            Required="true" />
+            <pnp:FieldRef ID="{CDF37724-C11E-461F-BA0E-9CE77CDB1E4B}" Name="Sondermodell"           Required="true" />
+            <pnp:FieldRef ID="{522B2A46-77CA-4F89-98F7-AEBE14F729EC}" Name="KonditionKachel"        Required="true" />
+            <pnp:FieldRef ID="{E5A73DBA-E11B-4E93-8660-3F106592663D}" Name="Berechnung"             Required="false" />
+            <pnp:FieldRef ID="{BFCEBA9A-31F6-4ED8-8D65-4115A518BB08}" Name="MBD"                    Required="false" />
+            <pnp:FieldRef ID="{A332BA37-3D56-4293-803A-CB6B2A78BDE1}" Name="MBBank"                 Required="false" />
+            <pnp:FieldRef ID="{1F4A9957-EA66-489E-8D2A-3162DBAD5089}" Name="smartCenter"            Required="false" />
+            <pnp:FieldRef ID="{0D04EA7B-BE00-4539-8A01-6B94D5A40905}" Name="Hinweise"               Required="false" />
+            <pnp:FieldRef ID="{E51F7AB2-75CD-4DAF-9C63-F6B58D66AEB9}" Name="Fristen"                Required="true" />
+            <pnp:FieldRef ID="{C2ABF128-3F59-499F-AE03-BE789A057C37}" Name="OriginalID"         Required="false" />
+            <pnp:FieldRef ID="{CBAB8C62-76E6-4E43-9053-CAB5A975A3DA}" Name="KombiOriginalID"    Required="false" />
+          </pnp:FieldRefs>
+        </pnp:ContentType>
+
+        <!-- ============================================================== -->
+        <!-- Ct_06 DokumentNiederlassung (Abwicklungshinweis) Niederlassung -->
+        <!-- ============================================================== -->
+        <pnp:ContentType ID="0x010100B7AE110BFFE541A6BAA494BF4E11180A"
+               Name="DokumentNiederlassung"
+               Group="_VKF smart"
+               Description="Dokument Niederlassung">
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="{5DF1413C-1221-4C54-A58D-505F1BABAE29}" Name="SegmentNiederlassung" Required="false" />
+            <pnp:FieldRef ID="{2A9E9605-8C28-4EA1-819B-AF56D7B2BC90}" Name="DokumentTyp" Required="false" />
+          </pnp:FieldRefs>
+        </pnp:ContentType>
+
+        <!-- ==============================================================  -->
+        <!-- Ct_07 DokumentHaendler (Abwicklungshinweis) Händler             -->
+        <!-- ==============================================================  -->
+        <pnp:ContentType ID="0x010100723271933982483595847011681C6A0D"
+               Name="DokumentHaendler"
+               Group="_VKF smart"
+               Description="Dokument Händler">
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="{CB2BB50C-85A2-4D3F-B5D8-57E404BBDDC9}" Name="SegmentHaendler" Required="false" />
+            <pnp:FieldRef ID="{2A9E9605-8C28-4EA1-819B-AF56D7B2BC90}" Name="DokumentTyp" Required="false" />
+          </pnp:FieldRefs>
+        </pnp:ContentType>
+
+      </pnp:ContentTypes>
+    </pnp:ProvisioningTemplate>
+  </pnp:Templates>
+</pnp:Provisioning>

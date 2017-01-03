@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pnp:Provisioning xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+  <pnp:Preferences Author="BW" Version="1.0" Generator="">
+  </pnp:Preferences>
+  <pnp:Templates>
+    <pnp:ProvisioningTemplate ID="VFPos" Version="1">
+
+      <!-- ################################## -->
+      <!-- Fields                             -->
+      <!-- ################################## -->
+      <pnp:SiteFields>
+        <!-- ================================ -->
+        <!-- Auswahl                          -->
+        <!-- ================================ -->
+        <!-- Fld_01 -->
+        <Field ID="{B7E63899-2FB7-488E-A4CF-268854D676DB}"
+              Name="Details" Type="Note"
+              DisplayName="Details" Group="_VKF smart" UnlimitedLengthInDocumentLibrary="TRUE"
+              Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE"
+              NumLines="6" RichText="FALSE" Sortable="FALSE" />
+        <!-- Fld_02 -->
+        <Field ID="{C8E7C4E1-F2F0-4178-9B63-AC8C24B72C44}"
+              Name="Bild" Type="URL"
+              DisplayName="Bild" Group="_VKF smart" MaxLength="255"
+              Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Image" />
+        <!-- Fld_02a -->
+        <Field ID="{23203E97-3BFE-40CB-AFB4-07AA2B86BF45}" 
+               Type="Text" Name="Stylevalue" DisplayName="Stylevalue" Group="_VKF smart"
+               MaxLength="255" AllowDeletion="TRUE"  Required="FALSE"/>
+
+        <!-- ========================================= -->
+        <!-- Dokumente (ehemals Abwicklungshinweise)   -->
+        <!-- ========================================= -->
+        <!-- Fld_02c -->
+        <Field ID="{2A9E9605-8C28-4EA1-819B-AF56D7B2BC90}"
+              Name="DokumentTyp" Type="Choice"
+              DisplayName="Dokument-Typ" Group="_VKF smart" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE">
+              <Default>Abwicklungshinweis</Default>
+              <CHOICES>
+                <CHOICE>Abwicklungshinweis</CHOICE>
+                <CHOICE>Formblätter</CHOICE>
+              </CHOICES>
+        </Field>
+
+        <!-- ================================ -->
+        <!-- Bildmaterial                     -->
+        <!-- ================================ -->
+        <!-- Fld_03 -->
+        <Field ID="{D6E3DA6B-8EFC-4A2B-98D1-473C393F976D}"
+              Name="Verwendungszweck"
+              Type="Lookup"
+              DisplayName="Verwendungszweck"
+              Group="_VKF smart"
+              Required="TRUE"
+              EnforceUniqueValues="TRUE"
+              Indexed="TRUE"
+              List="Lists/Verwendungszwecke"
+              ShowField="Title" Mult="FALSE" RelationshipDeleteBehavior="None" />
+
+        <!-- ================================ -->
+        <!-- Massnahmelisten                  -->
+        <!-- ================================ -->
+        <!-- Fld_04 -->
+        <Field ID="{EA0CCC0C-8814-431E-A294-1859F72177A3}"
+              Name="Baureihe" Type="LookupMulti"
+              DisplayName="Baureihe" Group="_VKF smart" Required="TRUE" EnforceUniqueValues="FALSE" List="Lists/Baureihen"
+              ShowField="Title" Mult="TRUE" RelationshipDeleteBehavior="None" />
+        <!-- Fld_05 -->
+        <Field ID="{6028E116-91E2-40E2-B459-BF24BCF6F56E}"
+              Name="Fahrzeugart" Type="LookupMulti"
+              DisplayName="Fahrzeugart" Group="_VKF smart" Required="TRUE" EnforceUniqueValues="FALSE" List="Lists/Fahrzeugarten"
+              ShowField="Title" Mult="TRUE" RelationshipDeleteBehavior="None" />
+        <!-- Fld_06 -->
+        <Field ID="{522B2A46-77CA-4F89-98F7-AEBE14F729EC}"
+              Name="KonditionKachel" Type="Note"
+              DisplayName="Kondition Kachel" Group="_VKF smart" UnlimitedLengthInDocumentLibrary="TRUE"
+              Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE"
+              NumLines="6" RichText="TRUE" Sortable="FALSE" />
+        <!-- Fld_07 -->
+        <Field ID="{0D04EA7B-BE00-4539-8A01-6B94D5A40905}"
+              Name="Hinweise" Type="Note"
+              DisplayName="Hinweise" Group="_VKF smart"  UnlimitedLengthInDocumentLibrary="TRUE"
+              Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE"
+              NumLines="6" RichText="TRUE" Sortable="FALSE" />
+        <!-- Fld_07a -->
+        <Field ID="{BFCEBA9A-31F6-4ED8-8D65-4115A518BB08}"
+              Name="MBD" Type="Note"
+              DisplayName="MBD" Group="_VKF smart"  UnlimitedLengthInDocumentLibrary="TRUE"
+              Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE"
+              NumLines="6" RichText="TRUE" Sortable="FALSE" />
+        <!-- Fld_07b -->
+        <Field ID="{A332BA37-3D56-4293-803A-CB6B2A78BDE1}"
+              Name="MBBank" Type="Note"
+              DisplayName="MB Bank" Group="_VKF smart"  UnlimitedLengthInDocumentLibrary="TRUE"
+              Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE"
+              NumLines="6" RichText="TRUE" Sortable="FALSE" />
+        <!-- Fld_07c -->
+        <Field ID="{1F4A9957-EA66-489E-8D2A-3162DBAD5089}"
+              Name="smartCenter" Type="Note"
+              DisplayName="smart Center" Group="_VKF smart"  UnlimitedLengthInDocumentLibrary="TRUE"
+              Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE"
+              NumLines="6" RichText="TRUE" Sortable="FALSE" />
+        <!-- Fld_07d -->
+        <Field ID="{E5A73DBA-E11B-4E93-8660-3F106592663D}"
+              Name="Berechnung" Type="Number"
+              DisplayName="Berechnung" Group="_VKF smart" Percentage="FALSE" />
+        <!-- Fld_08 -->
+        <Field ID="{8A2CD6CE-0039-4B47-A90D-BA7DC4B782AA}"
+              Name="Massnahmeart" Type="Lookup"
+              DisplayName="Massnahmeart" Group="_VKF smart" Required="TRUE" EnforceUniqueValues="FALSE" List="Lists/Massnahmearten"
+              ShowField="Title" RelationshipDeleteBehavior="None" />
+        <!-- Fld_09 -->
+        <Field ID="{CB2BB50C-85A2-4D3F-B5D8-57E404BBDDC9}"
+              Name="SegmentHaendler" Type="LookupMulti"
+              DisplayName="Kundensegment Händler" Group="_VKF smart" Required="TRUE" EnforceUniqueValues="FALSE" List="Lists/KundensegmenteHaendler"
+              ShowField="Title" Mult="TRUE" RelationshipDeleteBehavior="None" />
+        <!-- Fld_10 -->
+        <Field ID="{5DF1413C-1221-4C54-A58D-505F1BABAE29}"
+              Name="SegmentNiederlassung" Type="LookupMulti"
+              DisplayName="Kundensegment Niederlassung" Group="_VKF smart" Required="TRUE" EnforceUniqueValues="FALSE" List="Lists/KundensegmenteNiederlassungen"
+              ShowField="Title" Mult="TRUE" RelationshipDeleteBehavior="None" />
+        <!-- Fld_11 -->
+        <Field ID="{CDF37724-C11E-461F-BA0E-9CE77CDB1E4B}"
+              Name="Sondermodell" Type="LookupMulti"
+              DisplayName="Sondermodell" Group="_VKF smart" Required="TRUE" EnforceUniqueValues="FALSE" List="Lists/Sondermodelle"
+              ShowField="Title" Mult="TRUE" RelationshipDeleteBehavior="None" />
+        <!-- Fld_12 -->
+        <Field ID="{E51F7AB2-75CD-4DAF-9C63-F6B58D66AEB9}"
+              Name="Fristen" Type="Note"
+              DisplayName="Fristen" Group="_VKF smart"  UnlimitedLengthInDocumentLibrary="TRUE"
+              Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE"
+              NumLines="6" RichText="TRUE" Sortable="FALSE" />
+        
+        <Field ID="{C2ABF128-3F59-499F-AE03-BE789A057C37}"  Type="Text" Name="OriginalID" DisplayName="Original Massnahme Id"         
+               Group="_VKF smart" Required="FALSE" MaxLength="255" AllowDeletion="TRUE"  />
+        <Field ID="{CBAB8C62-76E6-4E43-9053-CAB5A975A3DA}"  Type="Text" Name="KombiOriginalID" DisplayName="Kombination Massnahme Id"         
+               Group="_VKF smart" Required="FALSE" MaxLength="255" AllowDeletion="TRUE"  />
+      </pnp:SiteFields>
+     
+    </pnp:ProvisioningTemplate>
+  </pnp:Templates>
+</pnp:Provisioning>

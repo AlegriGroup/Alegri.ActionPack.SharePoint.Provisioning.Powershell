@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:alg="http://schemas.powershell.ActionFlow.alegri.eu"
+           attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           targetNamespace="http://schemas.powershell.ActionFlow.alegri.eu"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="ActionObject">
+    <xs:annotation>
+      <xs:documentation>
+        This describes an ActionObject
+        Hiermit wird ein Action Object beschrieben
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <!--From here you can define your action elements -->
+        <!--Ab hier können Sie ihre Aktionselemente hinterlegen-->
+        <xs:element name="AP_SPProvisioning_ClearLookupSiteColumnAfterProvisioning" type="alg:ClearLookupSiteColumnAfterProvisioning" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_ClearLookupSiteColumnOnContentType" type="alg:ClearLookupSiteColumnOnContentType" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_ClearLookupSiteColumnOnList" type="alg:ClearLookupSiteColumnOnList" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_ClearLookupSiteColumn" type="alg:ClearLookupSiteColumn" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="ClearLookupSiteColumnAfterProvisioning">
+    <xs:annotation>
+      <xs:documentation>
+        This action repairs the Lookup SiteColumn Schema after the Provisioning
+        Diese Aktion repariert das Schema von Lookup Site Column nach der Provisionierung.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="pathToProvisioningXML" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The path to the ProvisioningXML where the SiteColumn are contained.
+          Der Pfad zur ProvisioningXML wo die SiteColumn enthalten sind.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ClearLookupSiteColumnOnContentType">
+    <xs:annotation>
+      <xs:documentation>
+        Clean the reference of the LookUpSiteColumn within the ContentType
+        Bereinige die Referenz der LookUpSiteColumn innerhalb des ContentTypes
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="ContentTypeName" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The ContentType where the column is contained
+          Der ContentType wo die Spalte enthalten ist
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="FieldName" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The lookup column to be customized
+          Die Lookup Spalte die angepasst werden soll
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="ListName" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The List Name for the schema
+          Die List Name für das Schema
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ClearLookupSiteColumnOnList">
+    <xs:annotation>
+      <xs:documentation>
+        Clean the reference of the LookUpSiteColumn within the list
+        Bereinige die Referenz der LookUpSiteColumn innerhalb der Liste
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="ListNameFromField" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The list containing the column
+          Die Liste die die Spalte enthält
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="FieldName" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The lookup column to be customized
+          Die Lookup Spalte die angepasst werden soll
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="ListName" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The List Name for the schema
+          Die List Name für das Schema
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ClearLookupSiteColumn">
+    <xs:annotation>
+      <xs:documentation>
+        Adapt the Schema XML from SiteColumn
+        Anpassung der Schema XML der SiteColumn
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="FieldName" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The lookup column to be customized
+          Die Lookup Spalte die angepasst werden soll
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="ListName" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The List Name for the schema
+          Die List Name für das Schema
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  
+</xs:schema>

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pnp:Provisioning xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+  <pnp:Preferences Author="Campergue Patrick" Version="1.0" Generator="">
+  </pnp:Preferences>
+  <pnp:Templates>
+    <pnp:ProvisioningTemplate ID="ExampleProvisioning" Version="1">
+      <pnp:SiteFields>
+               <Field  Type="Lookup" 
+                DisplayName="MyDokumente" 
+                Description="Test Column for Lookup" 
+                Required="TRUE" 
+                Indexed="TRUE" 
+                EnforceUniqueValues="TRUE" 
+                List="{{listid:Dokumente}}" 
+                WebId="6378b72c-0ded-430a-ad1c-5c12100c7ebf" 
+                ShowField="Title" 
+                UnlimitedLengthInDocumentLibrary="FALSE" 
+                Group="_AP_TestColumn" 
+                ID="{b6fa4641-2ea7-4f06-a5a2-31e31e456069}"
+                StaticName="MyDokumente" 
+                Name="MyDokumente" />
+      </pnp:SiteFields>
+      <pnp:ContentTypes>
+        <pnp:ContentType ID="0x0101001AE327E864BFFB45893110FD68290659" Name="TestContentType" Description="Test Content Type" Group="_AP_TestContentType" NewFormUrl="" EditFormUrl="" DisplayFormUrl="">
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="c042a256-787d-4a6f-8a8a-cf6ab767f12d" Name="ContentType" />
+            <pnp:FieldRef ID="5f47e085-2150-41dc-b661-442f3027f552" Name="SelectFilename" />
+            <pnp:FieldRef ID="8553196d-ec8d-4564-9861-3dbe931050c8" Name="FileLeafRef" Required="true" />
+            <pnp:FieldRef ID="8c06beca-0777-48f7-91c7-6da68bc07b69" Name="Created" Hidden="true" />
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" />
+            <pnp:FieldRef ID="28cf69c5-fa48-462a-b5cd-27b6f9d2bd5f" Name="Modified" Hidden="true" />
+            <pnp:FieldRef ID="822c78e3-1ea9-4943-b449-57863ad33ca9" Name="Modified_x0020_By" />
+            <pnp:FieldRef ID="4dd7e525-8d6b-4cb4-9d3e-44ee25f973eb" Name="Created_x0020_By" />
+            <pnp:FieldRef ID="b6fa4641-2ea7-4f06-a5a2-31e31e456069" Name="MyDokumente" Required="true" />
+            <pnp:FieldRef ID="533fd8e0-bd87-4eec-a070-11989d8d62d6" Name="MyDokumente_x003A_Titel" />
+          </pnp:FieldRefs>
+        </pnp:ContentType>
+      </pnp:ContentTypes>
+      <pnp:Lists>
+        <pnp:ListInstance Title="Test Bibliothek mit Content Type" Description="" DocumentTemplate="{site}/Test Bibliothek mit Content Type/Forms/template.dotx" TemplateType="101" Url="Test Bibliothek mit Content Type" EnableVersioning="true" MinorVersionLimit="0" MaxVersionLimit="500" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-e717-4e80-aa17-d0c71b360101" ContentTypesEnabled="true" EnableAttachments="false">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x0101001AE327E864BFFB45893110FD68290659" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0101" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{EE9CA425-FAFA-4DFB-AEB5-82091B27B924}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="Alle Dokumente" Url="/sites/AP_Testsite/Test Bibliothek mit Content Type/Forms/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/dlicon.png?rev=44">
+              <Query>
+                <OrderBy>
+                  <FieldRef Name="FileLeafRef" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="DocIcon" />
+                <FieldRef Name="LinkFilename" />
+                <FieldRef Name="Modified" />
+                <FieldRef Name="Editor" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+          </pnp:Views>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="b6fa4641-2ea7-4f06-a5a2-31e31e456069" Name="MyDokumente" DisplayName="MyDokumente" />
+            <pnp:FieldRef ID="533fd8e0-bd87-4eec-a070-11989d8d62d6" Name="MyDokumente_x003A_Titel" DisplayName="MyDokumente:Titel" />
+          </pnp:FieldRefs>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Test Bibliothek ohne Content Type" Description="" DocumentTemplate="{site}/Test Bibliothek ohne Content Type/Forms/template.dotx" TemplateType="101" Url="Test Bibliothek ohne Content Type" EnableVersioning="true" MinorVersionLimit="0" MaxVersionLimit="500" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-e717-4e80-aa17-d0c71b360101" EnableAttachments="false">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x0101" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{1841ACA4-5C64-43ED-BC09-A8A24B755DA0}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="Alle Dokumente" Url="/sites/AP_Testsite/Test Bibliothek ohne Content Type/Forms/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/dlicon.png?rev=44">
+              <Query>
+                <OrderBy>
+                  <FieldRef Name="FileLeafRef" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="DocIcon" />
+                <FieldRef Name="LinkFilename" />
+                <FieldRef Name="Modified" />
+                <FieldRef Name="Editor" />
+                <FieldRef Name="MyDokumente" />
+                <FieldRef Name="MyDokumente_x003A_Titel" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+          </pnp:Views>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="b6fa4641-2ea7-4f06-a5a2-31e31e456069" Name="MyDokumente" Required="true" DisplayName="MyDokumente" />
+            <pnp:FieldRef ID="533fd8e0-bd87-4eec-a070-11989d8d62d6" Name="MyDokumente_x003A_Titel" DisplayName="MyDokumente:Titel" />
+            <pnp:FieldRef ID="3881510a-4e4a-4ee8-b102-8ee8e2d0dd4b" Name="CheckoutUser" DisplayName="Ausgecheckt von" />
+            <pnp:FieldRef ID="ccc1037f-f65e-434a-868e-8c98af31fe29" Name="_ComplianceFlags" DisplayName="Schutzaktion" />
+            <pnp:FieldRef ID="d4b6480a-4bed-4094-9a52-30181ea38f1d" Name="_ComplianceTag" DisplayName="Schutzmarkierung" />
+            <pnp:FieldRef ID="92be610e-ddbb-49f4-b3b1-5c2bc768df8f" Name="_ComplianceTagWrittenTime" DisplayName="Schutzmarkierung geändert" />
+            <pnp:FieldRef ID="418d7676-2d6f-42cf-a16a-e43d2971252a" Name="_ComplianceTagUserId" DisplayName="Die ID des Benutzers, der die Schutzmarkierung festgelegt hat" />
+            <pnp:FieldRef ID="8382d247-72a9-44b1-9794-7b177edc89f3" Name="_IsRecord" DisplayName="Aufnahme" />
+          </pnp:FieldRefs>
+        </pnp:ListInstance>
+      </pnp:Lists>
+    </pnp:ProvisioningTemplate>
+  </pnp:Templates>
+</pnp:Provisioning>
