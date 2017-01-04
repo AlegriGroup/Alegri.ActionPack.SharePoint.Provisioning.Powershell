@@ -29,8 +29,9 @@
         </alg:AutomationAction>
       </alg:Action>
     </alg:Actions>
-
-    <alg:Actions Ignore="false">
+  
+    <!-- Example for ClearLookup Actions -->
+    <alg:Actions Ignore="true">
       <alg:Action ActionDescription="Starte ClearLookup After Provisioning" ActionID="9000" Ignore="false">
         <alg:AutomationAction>
           <alg:ActionObject>
@@ -56,6 +57,53 @@
         <alg:AutomationAction>
           <alg:ActionObject>
             <alg:AP_SPProvisioning_ClearLookupSiteColumn FieldName="MyDokumente" ListName="Formatbibliothek"/>
+          </alg:ActionObject>
+        </alg:AutomationAction>
+      </alg:Action>
+    </alg:Actions>
+    
+    <!-- Example for RemoveSiteColumns -->
+    <alg:Actions Ignore="true">
+      <alg:Action ActionDescription="Removed SiteColumn from ContentType" ActionID="690" Ignore="false">
+        <alg:AutomationAction>
+          <alg:ActionObject>
+            <alg:AP_SPProvisioning_RemovedSiteColumnFromContentType FieldName="MyDokumente" ContentTypeName="TestContentType" DoNotUpdateChildren="false"/>
+          </alg:ActionObject>
+        </alg:AutomationAction>
+      </alg:Action>
+      <alg:Action ActionDescription="Check if MyDokumente Deleted on ContentType" ActionID="695" Ignore="false">
+        <alg:ManuellAction>
+          <alg:ManuellTask Aktion="Check if MyDokumente Deleted on ContentType"/>
+        </alg:ManuellAction>
+      </alg:Action>
+      <alg:Action ActionDescription="Removed AllSiteColumn from ContentType" ActionID="690" Ignore="false">
+        <alg:AutomationAction>
+          <alg:ActionObject>
+            <alg:AP_SPProvisioning_RemovedSiteColumnFromContentType ContentTypeName="TestContentType" DoNotUpdateChildren="true"/>
+          </alg:ActionObject>
+        </alg:AutomationAction>
+      </alg:Action>
+      <alg:Action ActionDescription="Check if deleted all SiteColumns on ContentType" ActionID="695" Ignore="false">
+        <alg:ManuellAction>
+          <alg:ManuellTask Aktion="Check if deleted all SiteColumns on ContentType"/>
+        </alg:ManuellAction>
+      </alg:Action>
+      <alg:Action ActionDescription="Test Removed SiteColumn" ActionID="700" Ignore="false">
+        <alg:AutomationAction>
+          <alg:ActionObject>
+            <alg:AP_SPProvisioning_RemovedSiteColumn FieldName="MyDokumente"/>
+          </alg:ActionObject>
+        </alg:AutomationAction>
+      </alg:Action>
+      <alg:Action ActionDescription="Check if onnly MyDokumente deleted" ActionID="701" Ignore="false">
+        <alg:ManuellAction>
+          <alg:ManuellTask Aktion="Check if onnly MyDokumente deleted"/>
+        </alg:ManuellAction>
+      </alg:Action>
+      <alg:Action ActionDescription="Test Removed SiteColumn from Group" ActionID="710" Ignore="false">
+        <alg:AutomationAction>
+          <alg:ActionObject>
+            <alg:AP_SPProvisioning_RemovedSiteColumn GroupName="_AP_TestColumn"/>
           </alg:ActionObject>
         </alg:AutomationAction>
       </alg:Action>

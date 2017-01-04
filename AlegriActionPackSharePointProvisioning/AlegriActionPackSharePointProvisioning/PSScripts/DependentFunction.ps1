@@ -113,3 +113,90 @@ function Use-AP_SPProvisioning_PnP_Get-PnPContentType
     }
 }
 
+function Use-AP_SPProvisioning_PnP_Remove-PnPField
+{
+    [CmdletBinding()]
+    param
+    (
+		$Web,
+		$List,
+		$Identity,
+		$Force
+	)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPField Begin" 
+    }
+    Process
+    {
+		if($List -ne $null -and $Identity -ne $null) 
+		{
+			if($Force -ne $null)
+			{
+				Remove-PnPField-Web $Web -List $List -Identity $Identity -Force
+			}
+			else 
+			{
+				Remove-PnPField-Web $Web -List $List -Identity $Identity
+			}
+			
+		} 
+		elseif ($List -eq $null -and $Identity -ne $null)
+		{
+			if($Force -ne $null)
+			{
+				Remove-PnPField -Web $Web -Identity $Identity -Force
+			}
+			else 
+			{
+				Remove-PnPField -Web $Web -Identity $Identity 
+			}
+		} 
+		else 
+		{
+			Write-Error "[Use-AP_SPProvisioning_PnP_Remove-PnPField] => Missing attributes. At least one of the attributes [List or Identity] must be passed" 
+		} 
+	}
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPField End"
+    }
+}
+
+function Use-AP_SPProvisioning_PnP_Remove-PnPFieldFromContentType
+{
+    [CmdletBinding()]
+    param
+    (
+		$Web,
+		$FieldName,
+		$ContentType,
+		$DoNotUpdateChildren
+	)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPFieldFromContentType Begin" 
+    }
+    Process
+    {
+		if($ContentType -ne $null -and $FieldName -ne $null) 
+		{
+			if($DoNotUpdateChildren)
+			{
+				Remove-PnPFieldFromContentType -Field $FieldName -ContentType $ContentType -DoNotUpdateChildren
+			}
+			else
+			{
+				Remove-PnPFieldFromContentType -Field $FieldName -ContentType $ContentType
+			}
+		} 
+		else 
+		{
+			Write-Error "[Use-AP_SPProvisioning_PnP_Remove-PnPFieldFromContentType] => Missing attributes. At least one of the attributes [ContentType or Field] must be passed" 
+		} 
+	}
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPFieldFromContentType End"
+    }
+}

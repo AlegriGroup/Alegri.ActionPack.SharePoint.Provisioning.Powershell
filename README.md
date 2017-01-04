@@ -20,6 +20,8 @@ Folgende Aktionen stehen Ihnen zur Verfügung.
 | AP_SPProvisioning_ClearLookupSiteColumnOnContentType | Bereinige die Referenz der LookUpSiteColumn innerhalb des Inhaltstyps |
 | AP_SPProvisioning_ClearLookupSiteColumnOnList | Bereinige die Referenz der LookUpSiteColumn innerhalb der Liste |
 | AP_SPProvisioning_ClearLookupSiteColumn | Anpassung der Schema XML der SiteColumn |
+| AP_SPProvisioning_RemovedSiteColumn | Sie entfernen hiermit die SiteColumn von der aktuellen Website |
+| AP_SPProvisioning_RemovedSiteColumnFromContentType | Sie entfernen hiermit SiteColumn von dem ContentType |
 
 # AP_SPProvisioning_ClearLookupSiteColumnAfterProvisioning
 ## Beispiel Aktion XML
@@ -62,6 +64,27 @@ Folgende Aktionen stehen Ihnen zur Verfügung.
 | FieldName | Die Lookup Spalte die angepasst werden soll | required |
 | ListName | Die List Name für das Schema | required |
 
+# AP_SPProvisioning_RemovedSiteColumn
+## Beispiel Aktion XML
+![image](https://github.com/Campergue/Alegri.ActionPack.SharePoint.Provisioning.Powershell/blob/master/AlegriActionPackSharePointProvisioning/AlegriActionPackSharePointProvisioning/Documentation/BeispielRemovedSiteColumn.png)
+
+## Attribute
+| Attribute | Beschreibung | Verwendung |
+| --- | --- | --- |
+| FieldName | Den Namen des SiteColumn das entfernt werden soll | optional |
+| GroupName | Den Gruppennamen der SiteColumns die entfernt werden sollen. Bei der Verwendung des Gruppennamens wird die SiteColumn Namen, falls ebenfalls übergeben, ignoriert. | optional |
+
+# AP_SPProvisioning_RemovedSiteColumnFromContentType
+## Beispiel Aktion XML
+![image](https://github.com/Campergue/Alegri.ActionPack.SharePoint.Provisioning.Powershell/blob/master/AlegriActionPackSharePointProvisioning/AlegriActionPackSharePointProvisioning/Documentation/BeispielRemovedSiteColumnFromContentType.png)
+
+## Attribute
+| Attribute | Beschreibung | Verwendung |
+| --- | --- | --- |
+| FieldName | Den Namen des SiteColumn das entfernt werden soll. Wenn Sie hier keinen Wert angeben werden alle SiteColumns vom ContentType entfernt | optional |
+| ContentTypeName | Den Namen des ContentType wo die SiteColumn entfernt werden soll | required |
+| DoNotUpdateChildren | Sollten Sie es nicht wünschen das die Veerbten ContentTypes mit Upgedatet werden, geben Sie hier bitte False ein. Default ist True | optional |
+
 ---
 
 # Alegri.ActionPack.SharePoint.Environment.Powershell
@@ -86,6 +109,8 @@ The following actions are available.
 | AP_SPProvisioning_ClearLookupSiteColumnOnContentType | Clean the reference of the LookUpSiteColumn within the ContentType |
 | AP_SPProvisioning_ClearLookupSiteColumnOnList | Clean the reference of the LookUpSiteColumn within the list |
 | AP_SPProvisioning_ClearLookupSiteColumn | Adapt the Schema XML from SiteColumn |
+| AP_SPProvisioning_RemovedSiteColumn | You hereby remove the SiteColumn from the current Website |
+| AP_SPProvisioning_RemovedSiteColumnFromContentType | This removes SiteColumn from the ContentType |
 
 # AP_SPProvisioning_ClearLookupSiteColumnAfterProvisioning
 ## Example Action XML
@@ -127,3 +152,25 @@ The following actions are available.
 | --- | --- | --- |
 | FieldName | The lookup column to be customized | required |
 | ListName | The List Name for the schema | required |
+
+# AP_SPProvisioning_RemovedSiteColumn
+## Example Action XML
+![image](https://github.com/Campergue/Alegri.ActionPack.SharePoint.Provisioning.Powershell/blob/master/AlegriActionPackSharePointProvisioning/AlegriActionPackSharePointProvisioning/Documentation/BeispielRemovedSiteColumn.png)
+
+## Attribute
+| Attribute | Description | Use |
+| --- | --- | --- |
+| FieldName | The name of the SiteColumn to remove | optional |
+| GroupName | The group names of the SiteColumns to be removed. When you use the group name, the SiteColumn name is ignored, if passed. | optional |
+
+# AP_SPProvisioning_RemovedSiteColumnFromContentType
+## Example Action XML
+![image](https://github.com/Campergue/Alegri.ActionPack.SharePoint.Provisioning.Powershell/blob/master/AlegriActionPackSharePointProvisioning/AlegriActionPackSharePointProvisioning/Documentation/BeispielRemovedSiteColumnFromContentType.png)
+
+## Attribute
+| Attribute | Description | Use |
+| --- | --- | --- |
+| FieldName | The name of the SiteColumn to remove. If you do not specify a value here, all SiteColumns are removed from the ContentType | optional |
+| ContentTypeName |  The name of the ContentType where the SiteColumn should be removed | required |
+| DoNotUpdateChildren | If you do not want the ContentTypes to be updated with Updated, please enter False. Default is true | optional |
+

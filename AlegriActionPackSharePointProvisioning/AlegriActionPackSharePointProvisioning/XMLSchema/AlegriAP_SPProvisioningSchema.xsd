@@ -20,6 +20,8 @@
         <xs:element name="AP_SPProvisioning_ClearLookupSiteColumnOnContentType" type="alg:ClearLookupSiteColumnOnContentType" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_ClearLookupSiteColumnOnList" type="alg:ClearLookupSiteColumnOnList" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_ClearLookupSiteColumn" type="alg:ClearLookupSiteColumn" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_RemovedSiteColumn" type="alg:RemovedSiteColumn" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_RemovedSiteColumnFromContentType" type="alg:RemovedSiteColumnFromContentType" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -127,6 +129,64 @@
         <xs:documentation>
           The List Name for the schema
           Die List Name für das Schema
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="RemovedSiteColumn">
+    <xs:annotation>
+      <xs:documentation>
+        You hereby remove the SiteColumn from the current Website
+        Sie entfernen hiermit die SiteColumn von der aktuellen Website
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="FieldName" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          The name of the SiteColumn to remove
+          Den Namen des SiteColumn das entfernt werden soll
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="GroupName" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          The group names of the SiteColumns to be removed. When you use the group name, the SiteColumn name is ignored, if passed.
+          Den Gruppennamen der SiteColumns die entfernt werden sollen. Bei der Verwendung des Gruppennamens wird die SiteColumn Namen, falls ebenfalls übergeben, ignoriert.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="RemovedSiteColumnFromContentType">
+    <xs:annotation>
+      <xs:documentation>
+        This removes SiteColumn from the ContentType
+        Sie entfernen hiermit SiteColumn von dem ContentType
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="FieldName" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          The name of the SiteColumn to remove. If you do not specify a value here, all SiteColumns are removed from the ContentType
+          Den Namen des SiteColumn das entfernt werden soll. Wenn Sie hier keinen Wert angeben werden alle SiteColumns vom ContentType entfernt
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="ContentTypeName" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The name of the ContentType where the SiteColumn should be removed
+          Den Namen des ContentType wo die SiteColumn entfernt werden soll
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="DoNotUpdateChildren" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          If you do not want the ContentTypes to be updated with Updated, please enter False. Default is true
+          Sollten Sie es nicht wünschen das die Veerbten ContentTypes mit Upgedatet werden, geben Sie hier bitte False ein. Default ist True
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>

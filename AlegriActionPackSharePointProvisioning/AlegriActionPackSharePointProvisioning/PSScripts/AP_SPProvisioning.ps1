@@ -13,6 +13,7 @@
 # Hiermit binden Sie alle Scripte in die jeweils eine Funktionsaufruf einer Aktion enthält
 . "$PSScriptRoot\DependentFunction.ps1"
 . "$PSScriptRoot\LookupSiteColumnFunctions.ps1"
+. "$PSScriptRoot\SiteColumnFunctions.ps1"
 
 # You should register a new function in the two lower functions.
 # Sie sollten eine neue Funktion in den beiden unteren Funktionen registrieren. 
@@ -46,6 +47,8 @@ function Find-ActionInAP_SPProvisioning
 			"AP_SPProvisioning_ClearLookupSiteColumnOnContentType" { $returnValue = $true }
 			"AP_SPProvisioning_ClearLookupSiteColumnOnList" { $returnValue = $true }
 			"AP_SPProvisioning_ClearLookupSiteColumn" { $returnValue = $true }
+			"AP_SPProvisioning_RemovedSiteColumn" { $returnValue = $true }
+			"AP_SPProvisioning_RemovedSiteColumnFromContentType" { $returnValue = $true }
 			default { $returnValue = $false }
 		  }
 
@@ -90,6 +93,8 @@ function Start-ActionFromAP_SPProvisioning
 			"AP_SPProvisioning_ClearLookupSiteColumnOnContentType" { Start-AP_SPProvisioning_ClearLookupSiteColumnOnContentType -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_ClearLookupSiteColumnOnContentType }
 			"AP_SPProvisioning_ClearLookupSiteColumnOnList" { Start-AP_SPProvisioning_ClearLookupSiteColumnOnList -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_ClearLookupSiteColumnOnList }
 			"AP_SPProvisioning_ClearLookupSiteColumn" { Start-AP_SPProvisioning_ClearLookupSiteColumn -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_ClearLookupSiteColumn }
+			"AP_SPProvisioning_RemovedSiteColumn" { Start-AP_SPProvisioning_RemovedSiteColumn -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_RemovedSiteColumn }
+			"AP_SPProvisioning_RemovedSiteColumnFromContentType" { Start-AP_SPProvisioning_RemovedSiteColumnFromContentType -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_RemovedSiteColumnFromContentType }
 		}
 
 		Write-Host "Action : $($actionName) is ready" -ForegroundColor Green
