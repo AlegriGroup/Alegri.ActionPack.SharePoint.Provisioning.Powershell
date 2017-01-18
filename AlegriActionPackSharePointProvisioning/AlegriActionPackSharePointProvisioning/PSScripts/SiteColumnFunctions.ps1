@@ -395,6 +395,7 @@ function Remove-SPProvisioning_SiteColumnFromContentType
 	}
 	process
 	{
+		Write-Host "Start Remove SiteColumnFromContentType for Field $($FieldName)" -ForegroundColor Yellow
 		Use-AP_SPProvisioning_PnP_Remove-PnPFieldFromContentType -Field $FieldName -ContentType	$ContentType -DoNotUpdateChildren $DoNotUpdateChildren
 	}
 	end

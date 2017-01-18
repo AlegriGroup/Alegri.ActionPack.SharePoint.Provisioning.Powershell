@@ -14,6 +14,7 @@
 . "$PSScriptRoot\DependentFunction.ps1"
 . "$PSScriptRoot\LookupSiteColumnFunctions.ps1"
 . "$PSScriptRoot\SiteColumnFunctions.ps1"
+. "$PSScriptRoot\ProvisioningFunctions.ps1"
 
 # You should register a new function in the two lower functions.
 # Sie sollten eine neue Funktion in den beiden unteren Funktionen registrieren. 
@@ -49,6 +50,8 @@ function Find-ActionInAP_SPProvisioning
 			"AP_SPProvisioning_ClearLookupSiteColumn" { $returnValue = $true }
 			"AP_SPProvisioning_RemovedSiteColumn" { $returnValue = $true }
 			"AP_SPProvisioning_RemovedSiteColumnFromContentType" { $returnValue = $true }
+			"AP_SPProvisioning_PnPProvisioning" { $returnValue = $true }
+			"AP_SPProvisioning_GetProvisioningTemplate" { $returnValue = $true }
 			default { $returnValue = $false }
 		  }
 
@@ -95,6 +98,8 @@ function Start-ActionFromAP_SPProvisioning
 			"AP_SPProvisioning_ClearLookupSiteColumn" { Start-AP_SPProvisioning_ClearLookupSiteColumn -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_ClearLookupSiteColumn }
 			"AP_SPProvisioning_RemovedSiteColumn" { Start-AP_SPProvisioning_RemovedSiteColumn -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_RemovedSiteColumn }
 			"AP_SPProvisioning_RemovedSiteColumnFromContentType" { Start-AP_SPProvisioning_RemovedSiteColumnFromContentType -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_RemovedSiteColumnFromContentType }
+			"AP_SPProvisioning_PnPProvisioning" { Start-AP_SPProvisioning_PnPProvisioning -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_PnPProvisioning }
+			"AP_SPProvisioning_GetProvisioningTemplate"{ Start-AP_SPProvisioning_GetProvisioningTemplate -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_GetProvisioningTemplate}
 		}
 
 		Write-Host "Action : $($actionName) is ready" -ForegroundColor Green

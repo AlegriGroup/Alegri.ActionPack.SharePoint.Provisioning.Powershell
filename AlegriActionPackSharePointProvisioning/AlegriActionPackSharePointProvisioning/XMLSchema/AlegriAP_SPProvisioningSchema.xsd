@@ -22,6 +22,8 @@
         <xs:element name="AP_SPProvisioning_ClearLookupSiteColumn" type="alg:ClearLookupSiteColumn" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_RemovedSiteColumn" type="alg:RemovedSiteColumn" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_RemovedSiteColumnFromContentType" type="alg:RemovedSiteColumnFromContentType" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_PnPProvisioning" type="alg:PnPProvisioning" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_GetProvisioningTemplate" type="alg:GetProvisioningTemplate" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -191,5 +193,50 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  
+
+  <xs:complexType name="PnPProvisioning">
+    <xs:annotation>
+      <xs:documentation>
+        This provisioning is performed by PnP template.
+        Hiermit wird die Provisionierung vom PnP Template durchgeführt.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="pathToProvisioningXML" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The path to the ProvisioningXML where provision should be made
+          Der Pfad zur ProvisioningXML wo Provisioniert werden soll
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="GetProvisioningTemplate">
+    <xs:annotation>
+      <xs:documentation>
+        This creates a provisioning template from the current site
+        
+        Hiermit wird aus der aktuellen verbundene Site ein Provisiong Template erstellt. 
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Out" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The path where the template is to be placed after creation.
+          
+          Der Pfad wo das Template nach Erstellung abgelegt werden soll.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="StandardArtefactsOutput" type="xs:boolean" use="optional" default="true">
+      <xs:annotation>
+        <xs:documentation>
+          Default is the value True and only the following artifacts are considered => Navigation, Fields, ContentTypes, Lists, CustomActions, Files
+
+          Default ist der Wert True und es werden nur folgende Artefakten berücksichtigt => Navigation, Fields, ContentTypes, Lists, CustomActions, Files
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+ 
 </xs:schema>

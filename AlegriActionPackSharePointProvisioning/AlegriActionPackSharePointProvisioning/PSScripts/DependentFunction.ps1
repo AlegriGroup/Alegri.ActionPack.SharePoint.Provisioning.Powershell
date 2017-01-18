@@ -200,3 +200,67 @@ function Use-AP_SPProvisioning_PnP_Remove-PnPFieldFromContentType
 		Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPFieldFromContentType End"
     }
 }
+
+function Use-AP_SPProvisioning_PnP_Apply-PnPProvisioningTemplate
+{
+    [CmdletBinding()]
+    param
+    (
+		[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=0)]
+		[ValidateNotNullOrEmpty()]
+		$Web,
+		[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=1)]
+		[ValidateNotNullOrEmpty()]
+		$Path
+	)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Apply-PnPProvisioningTemplate Begin" 
+    }
+    Process
+    {
+		Apply-PnPProvisioningTemplate -Path $Path -Web $Web -Parameters @{ "newWebId"=$Web.Id ;"newSourceId"=$Web.id }
+	}
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Apply-PnPProvisioningTemplate End"
+    }
+}
+
+function Use-AP_SPProvisioning_PnP_Get-PnPProvisioningTemplate
+{
+    [CmdletBinding()]
+    param
+    (
+		[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=0)]
+		[ValidateNotNullOrEmpty()]
+		$Web,
+		[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=1)]
+		[ValidateNotNullOrEmpty()]
+		$Out,
+		[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=1)]
+		[ValidateNotNullOrEmpty()]
+		[bool]$standard
+	)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Get-PnPProvisioningTemplate Begin" 
+    }
+    Process
+    {
+		if($standard -eq $true) 
+		{
+			Get-PnPProvisioningTemplate -Out $Out -Web $web -Handlers Navigation, Fields, ContentTypes, Lists, CustomActions, Files
+		} 
+		else 
+		{
+			Get-PnPProvisioningTemplate -Out $Out -Web $Web
+		}
+		
+	}
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Get-PnPProvisioningTemplate End"
+    }
+}
+

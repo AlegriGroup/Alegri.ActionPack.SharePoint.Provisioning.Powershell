@@ -5,23 +5,494 @@
   <pnp:Templates>
     <pnp:ProvisioningTemplate ID="ExampleProvisioning" Version="1">
       <pnp:SiteFields>
-               <Field  Type="Lookup" 
-                DisplayName="MyDokumente" 
-                Description="Test Column for Lookup" 
-                Required="TRUE" 
-                Indexed="TRUE" 
-                EnforceUniqueValues="TRUE" 
-                List="{{listid:Dokumente}}" 
-                WebId="6378b72c-0ded-430a-ad1c-5c12100c7ebf" 
-                ShowField="Title" 
-                UnlimitedLengthInDocumentLibrary="FALSE" 
-                Group="_AP_TestColumn" 
-                ID="{b6fa4641-2ea7-4f06-a5a2-31e31e456069}"
-                StaticName="MyDokumente" 
-                Name="MyDokumente" />
+        <!-- Example TaxonomyField -->
+        <Field Type="TaxonomyFieldType" 
+               DisplayName="Test Verwaltete Metadaten" 
+               List="{{listid:TaxonomyHiddenList}}"
+               WebId="{parameter:newWebId}" 
+               ShowField="Term1031" 
+               Required="FALSE" 
+               EnforceUniqueValues="FALSE" 
+               Group="_AP_TestColumn_Group" 
+               ID="{12faa092-bec9-4380-9385-12384c6d0683}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestVerwalteteMetadaten" 
+               Name="TestVerwalteteMetadaten">
+          <Default>
+          </Default>
+          <Customization>
+            <ArrayOfProperty>
+              <Property>
+                <Name>SspId</Name>
+                <Value xmlns:q1="http://www.w3.org/2001/XMLSchema" p4:type="q1:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">{sitecollectiontermstoreid}</Value>
+              </Property>
+              <Property>
+                <Name>GroupId</Name>
+              </Property>
+              <Property>
+                <Name>TermSetId</Name>
+                <Value xmlns:q2="http://www.w3.org/2001/XMLSchema" p4:type="q2:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">{termsetid:Personen:Abteilung}</Value>
+              </Property>
+              <Property>
+                <Name>AnchorId</Name>
+                <Value xmlns:q3="http://www.w3.org/2001/XMLSchema" p4:type="q3:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">00000000-0000-0000-0000-000000000000</Value>
+              </Property>
+              <Property>
+                <Name>UserCreated</Name>
+                <Value xmlns:q4="http://www.w3.org/2001/XMLSchema" p4:type="q4:boolean" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">false</Value>
+              </Property>
+              <Property>
+                <Name>Open</Name>
+                <Value xmlns:q5="http://www.w3.org/2001/XMLSchema" p4:type="q5:boolean" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">true</Value>
+              </Property>
+              <Property>
+                <Name>TextField</Name>
+                <Value xmlns:q6="http://www.w3.org/2001/XMLSchema" p4:type="q6:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">{24c6caeb-f3b7-4dd5-9b6e-e7571314da4b}</Value>
+              </Property>
+              <Property>
+                <Name>IsPathRendered</Name>
+                <Value xmlns:q7="http://www.w3.org/2001/XMLSchema" p4:type="q7:boolean" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">false</Value>
+              </Property>
+              <Property>
+                <Name>IsKeyword</Name>
+                <Value xmlns:q8="http://www.w3.org/2001/XMLSchema" p4:type="q8:boolean" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">false</Value>
+              </Property>
+              <Property>
+                <Name>TargetTemplate</Name>
+              </Property>
+              <Property>
+                <Name>CreateValuesInEditForm</Name>
+                <Value xmlns:q9="http://www.w3.org/2001/XMLSchema" p4:type="q9:boolean" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">false</Value>
+              </Property>
+              <Property>
+                <Name>FilterAssemblyStrongName</Name>
+                <Value xmlns:q10="http://www.w3.org/2001/XMLSchema" p4:type="q10:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">Microsoft.SharePoint.Taxonomy, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Value>
+              </Property>
+              <Property>
+                <Name>FilterClassName</Name>
+                <Value xmlns:q11="http://www.w3.org/2001/XMLSchema" p4:type="q11:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">Microsoft.SharePoint.Taxonomy.TaxonomyField</Value>
+              </Property>
+              <Property>
+                <Name>FilterMethodName</Name>
+                <Value xmlns:q12="http://www.w3.org/2001/XMLSchema" p4:type="q12:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">GetFilteringHtml</Value>
+              </Property>
+              <Property>
+                <Name>FilterJavascriptProperty</Name>
+                <Value xmlns:q13="http://www.w3.org/2001/XMLSchema" p4:type="q13:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">FilteringJavascript</Value>
+              </Property>
+            </ArrayOfProperty>
+          </Customization>
+        </Field>
+        <Field Type="Note" 
+               DisplayName="Test Verwaltete Metadaten_0" 
+               StaticName="m1e26964b5a44eccb492c4ab53100633" 
+               Name="m1e26964b5a44eccb492c4ab53100633" 
+               ID="{2534b9be-0a03-406a-a278-68ef8dd8fd9e}" 
+               ShowInViewForms="FALSE" 
+               Required="FALSE" 
+               Hidden="TRUE" 
+               CanToggleHidden="TRUE"
+               SourceID="{parameter:newSourceId}" />
+        <Field Type="Note" 
+               DisplayName="Test Verwaltete Metadaten_1" 
+               StaticName="h2faa092bec94380938512384c6d0683" 
+               Name="h2faa092bec94380938512384c6d0683" 
+               ID="{24c6caeb-f3b7-4dd5-9b6e-e7571314da4b}" 
+               ShowInViewForms="FALSE" 
+               Required="FALSE" 
+               Hidden="TRUE" 
+               CanToggleHidden="TRUE" 
+               SourceID="{parameter:newSourceId}" />
+
+        <!-- Example Datum und Uhrzeit -->
+        <Field Type="DateTime" 
+               DisplayName="Test DatumUhrzeit" 
+               Description="Test Spalte für DatumUhrzeit" 
+               Required="FALSE" 
+               EnforceUniqueValues="FALSE" 
+               Indexed="FALSE" 
+               Format="DateTime" 
+               Group="_AP_TestColumn_Group" 
+               FriendlyDisplayFormat="Relative" 
+               ID="{51658905-c714-466e-8f51-e61d0c0f42e2}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestDatumUhrzeit" 
+               Name="TestDatumUhrzeit">
+        </Field>
+        
+        <!-- Example Lookup 1-->
+        <Field Type="Lookup" 
+               DisplayName="TestSpalte1" 
+               Description="Test Spalte für Löschen Site Column mit Referenz" 
+               Required="TRUE" 
+               EnforceUniqueValues="FALSE" 
+               List="{{listid:Dokumente}}"
+               WebId="{parameter:newWebId}" 
+               ShowField="Title" 
+               UnlimitedLengthInDocumentLibrary="FALSE" 
+               Group="_AP_TestColumn" 
+               ID="{37488b88-f58b-4a39-a906-caf3d01bb6f4}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestSpalte1" 
+               Name="TestSpalte1" />
+        <Field Type="Lookup" 
+               DisplayName="TestSpalte1:ID" 
+               List="{{listid:Dokumente}}" 
+               WebId="{parameter:newWebId}" 
+               ShowField="ID" 
+               FieldRef="37488b88-f58b-4a39-a906-caf3d01bb6f4" 
+               ReadOnly="TRUE" 
+               UnlimitedLengthInDocumentLibrary="FALSE" 
+               Group="_AP_TestColumn" 
+               ID="{2404f018-ac46-4c4b-b71b-033c5980b567}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestSpalte1_x003a_ID" 
+               Name="TestSpalte1_x003A_ID" />
+        <Field Type="Lookup" 
+               DisplayName="TestSpalte1:Titel" 
+               List="{{listid:Dokumente}}" 
+               WebId="{parameter:newWebId}" 
+               ShowField="Title" 
+               FieldRef="37488b88-f58b-4a39-a906-caf3d01bb6f4" 
+               ReadOnly="TRUE" 
+               UnlimitedLengthInDocumentLibrary="FALSE" 
+               Group="_AP_TestColumn" 
+               ID="{4290012f-ce34-4043-97be-f92547d997c6}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestSpalte1_x003a_Titel" 
+               Name="TestSpalte1_x003A_Titel" />
+        <Field Type="Lookup" 
+               DisplayName="TestSpalte1:Version" 
+               List="{{listid:Dokumente}}" 
+               WebId="{parameter:newWebId}" 
+               ShowField="_UIVersionString" 
+               FieldRef="37488b88-f58b-4a39-a906-caf3d01bb6f4" 
+               ReadOnly="TRUE" 
+               UnlimitedLengthInDocumentLibrary="FALSE" 
+               Group="_AP_TestColumn" 
+               ID="{e9b20430-e7dc-43d3-b582-566d6c010f28}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestSpalte1_x003a_Version" 
+               Name="TestSpalte1_x003A_Version" />
+        <Field Type="Lookup" 
+               DisplayName="TestSpalte1:Kopiequelle" 
+               List="{{listid:Dokumente}}" 
+               WebId="{parameter:newWebId}" 
+               ShowField="_CopySource" 
+               FieldRef="37488b88-f58b-4a39-a906-caf3d01bb6f4" 
+               ReadOnly="TRUE" 
+               UnlimitedLengthInDocumentLibrary="FALSE" 
+               Group="_AP_TestColumn" 
+               ID="{76da0653-5102-4bad-a584-e2158921801c}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestSpalte1_x003a_Kopiequelle" 
+               Name="TestSpalte1_x003A_Kopiequelle" />
+        <Field Type="Lookup" 
+               DisplayName="TestSpalte1:Erstellt" 
+               List="{{listid:Dokumente}}"
+               WebId="{parameter:newWebId}" 
+               ShowField="Created" 
+               FieldRef="37488b88-f58b-4a39-a906-caf3d01bb6f4" 
+               ReadOnly="TRUE" 
+               UnlimitedLengthInDocumentLibrary="FALSE" 
+               Group="_AP_TestColumn" 
+               ID="{fb27856a-7445-43c6-8b42-0aa6e47e8569}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestSpalte1_x003a_Erstellt" 
+               Name="TestSpalte1_x003A_Erstellt" />
+        <Field Type="Lookup" 
+               DisplayName="TestSpalte1:Geändert" 
+               List="{{listid:Dokumente}}" 
+               WebId="{parameter:newWebId}" 
+               ShowField="Modified" 
+               FieldRef="37488b88-f58b-4a39-a906-caf3d01bb6f4" 
+               ReadOnly="TRUE" 
+               UnlimitedLengthInDocumentLibrary="FALSE" 
+               Group="_AP_TestColumn" 
+               ID="{ffbba7af-45c4-4008-921b-8edb16cfc0f4}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestSpalte1_x003a_Geändert" 
+               Name="TestSpalte1_x003A_Geändert" />
+        
+        <!-- Example Lookup 2-->
+        <Field Type="Lookup" 
+               DisplayName="Test Nachschlagen" 
+               Description="Test Spalte für Nachschlagen" 
+               Required="FALSE" 
+               EnforceUniqueValues="FALSE" 
+               List="{{listid:Dokumente}}" 
+               WebId="{parameter:newWebId}" 
+               ShowField="Title" 
+               UnlimitedLengthInDocumentLibrary="FALSE" 
+               Group="_AP_TestColumn_Group" 
+               ID="{bf7d852f-4ef5-44d2-8fba-3fe1baf119f2}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestNachschlagen" 
+               Name="TestNachschlagen" />
+        <Field Type="Lookup" 
+               DisplayName="Test Nachschlagen:Erstellt" 
+               List="{{listid:Dokumente}}" 
+               WebId="{parameter:newWebId}" 
+               ShowField="Created" 
+               FieldRef="bf7d852f-4ef5-44d2-8fba-3fe1baf119f2" 
+               ReadOnly="TRUE" 
+               UnlimitedLengthInDocumentLibrary="FALSE" 
+               Group="_AP_TestColumn_Group" 
+               ID="{c4f7bc23-3139-43e6-b2da-3b50e0d0f3f4}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestNachschlagen_x003a_Erstellt" 
+               Name="TestNachschlagen_x003A_Erstellt" />
+        <Field Type="Lookup" 
+               DisplayName="Test Nachschlagen:ID" 
+               List="{{listid:Dokumente}}" 
+               WebId="{parameter:newWebId}" 
+               ShowField="ID" 
+               FieldRef="bf7d852f-4ef5-44d2-8fba-3fe1baf119f2" 
+               ReadOnly="TRUE" 
+               UnlimitedLengthInDocumentLibrary="FALSE" 
+               Group="_AP_TestColumn_Group" 
+               ID="{145f4463-66ff-4154-8dba-71470b98be91}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestNachschlagen_x003a_ID" 
+               Name="TestNachschlagen_x003A_ID" />
+        
+        <!-- Example Link mit Formatierung -->
+        <Field Type="Link" 
+               DisplayName="Test Link mit Formatierung" 
+               RichText="TRUE" 
+               RichTextMode="ThemeHtml" 
+               Description="Test Spalte für Link mit Formatierung" 
+               Required="FALSE" 
+               Group="_AP_TestColumn_Group" 
+               ID="{5becd22e-c63b-4ab7-a68a-5acf40f06e90}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestLinkMitFormatierung" 
+               Name="TestLinkMitFormatierung" />
+        
+        <!-- Example  Hyperlinkübersichtdaten -->
+        <Field Type="SummaryLinks" 
+               DisplayName="Test Hyperlinkübersichtdaten" 
+               RichText="TRUE" 
+               RichTextMode="FullHtml" 
+               Description="Test Spalte für Hyperlinkübersichtdaten" 
+               Required="FALSE" 
+               Group="_AP_TestColumn_Group" 
+               ID="{bac9d637-2f4b-4060-a678-41b38342484f}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestHyperlinkUebersichtdaten" 
+               Name="TestHyperlinkUebersichtdaten" />
+        
+        <!-- Example PersonGroup -->
+        <Field Type="User" 
+               DisplayName="Test PersonGroup" 
+               List="UserInfo" 
+               Description="Test Spalte für PersonGroup" 
+               Required="FALSE" 
+               EnforceUniqueValues="FALSE" 
+               ShowField="ImnName" 
+               UserSelectionMode="PeopleOnly" 
+               UserSelectionScope="0" 
+               Group="_AP_TestColumn_Group" 
+               ID="{7f8bbf44-c2ea-4e82-a7d7-7380f5a5ca72}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestPersonGroup" 
+               Name="TestPersonGroup" />
+        
+        <!-- Example Bild mit Formatierung -->
+        <Field Type="Image" 
+               DisplayName="Test Bild mit Formatierung" 
+               RichText="TRUE" 
+               RichTextMode="ThemeHtml" 
+               Description="Test Spalte für Bild mit Formatierung" 
+               Required="FALSE" 
+               Group="_AP_TestColumn_Group" 
+               ID="{659f934b-05af-4066-8d44-c4bd21bfc26f}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestBildMitFormatierung" 
+               Name="TestBildMitFormatierung" />
+        
+        <!-- Example Rich Media -->
+        <Field Type="MediaFieldType" 
+               DisplayName="Test Rich Media" 
+               RichText="TRUE" 
+               RichTextMode="FullHtml" 
+               Description="Test Spalte für Rich Media" 
+               Required="FALSE" 
+               Group="_AP_TestColumn_Group" 
+               ID="{2e90c351-8f6a-4fa7-b611-cfb4a82c711d}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestRichMedia" 
+               Name="TestRichMedia" />
+        
+        <!-- Example Link und Bild-->
+        <Field Type="URL" 
+               DisplayName="Test LinkBild" 
+               Description="Test Spalte für Link und Bild" 
+               Required="FALSE" 
+               EnforceUniqueValues="FALSE" 
+               Indexed="FALSE" 
+               Format="Hyperlink" 
+               Group="_AP_TestColumn_Group" 
+               ID="{6db07889-7323-413a-9249-e9247ee72e49}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestLinkBild" 
+               Name="TestLinkBild">
+        </Field>
+        
+        <!-- Example Auswahl-->
+        <Field Type="Choice" 
+               DisplayName="Test Auswahl" 
+               Description="Test Spalte für Auswahl" 
+               Required="FALSE" 
+               EnforceUniqueValues="FALSE" 
+               Indexed="FALSE" 
+               Format="Dropdown" 
+               FillInChoice="FALSE" 
+               Group="_AP_TestColumn_Group" 
+               ID="{d97ed689-adcc-4e7c-9764-03debd5f5fba}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestAuswahl" 
+               Name="TestAuswahl">
+          <Default>Geben Sie Auswahl Nr. 1 ein</Default>
+          <CHOICES>
+            <CHOICE>Geben Sie Auswahl Nr. 1 ein</CHOICE>
+            <CHOICE>Geben Sie Auswahl Nr. 2 ein.</CHOICE>
+            <CHOICE>Geben Sie Auswahl Nr. 3 ein.</CHOICE>
+          </CHOICES>
+        </Field>
+        
+        <!-- Example HTML-Inhalt-->
+        <Field Type="HTML" 
+               DisplayName="Test HTML-Inhalt" 
+               RichText="TRUE" 
+               RichTextMode="ThemeHtml" 
+               Description="Test Spalte für HTML-Inhalt" 
+               Required="FALSE" 
+               Group="_AP_TestColumn_Group" 
+               ID="{2651f78d-ecfc-4705-be02-8f75cf6f4fe4}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestHTMLInhalt" 
+               Name="TestHTMLInhalt" />
+        
+        <!-- Example JaNein-->
+        <Field Type="Boolean" 
+               DisplayName="Test JaNein" 
+               Description="Test Spalte für JaNein" 
+               EnforceUniqueValues="FALSE" 
+               Indexed="FALSE" 
+               Group="_AP_TestColumn_Group" 
+               ID="{7ffd76b0-e72a-4712-9a33-3cb945b908f6}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestJaNein" 
+               Name="TestJaNein">
+          <Default>1</Default>
+        </Field>
+        
+        <!-- Example Eine Textzeile-->
+        <Field Type="Text" 
+               DisplayName="Test Eine Textzeile" 
+               Description="Test Spalte Eine Textzeile" 
+               Required="TRUE" 
+               EnforceUniqueValues="TRUE" 
+               Indexed="TRUE" 
+               MaxLength="155" 
+               Group="_AP_TestColumn_Group" 
+               ID="{457e29b4-1456-4f26-8100-517e9b5335cb}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestEineTextzeile" 
+               Name="TestEineTextzeile">
+          <Default>#Standardwert#</Default>
+        </Field>
+        
+        <!-- Example Ergebnis der Aufgabe-->
+        <Field Type="OutcomeChoice" 
+               DisplayName="Test Ergebnis der Aufgabe" 
+               Description="Test Spalte für Ergebnis der Aufgabe" 
+               Required="FALSE" 
+               EnforceUniqueValues="FALSE" 
+               Indexed="FALSE" 
+               Group="_AP_TestColumn_Group" 
+               ID="{7c6199c0-8ade-4a62-aa1c-c485a1932443}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestErgebnisDerAufgabe" 
+               Name="TestErgebnisDerAufgabe">
+          <Default>Geben Sie Auswahl Nr. 1 ein</Default>
+          <CHOICES>
+            <CHOICE>Geben Sie Auswahl Nr. 1 ein</CHOICE>
+            <CHOICE>Geben Sie Auswahl Nr. 2 ein.</CHOICE>
+            <CHOICE>Geben Sie Auswahl Nr. 3 ein.</CHOICE>
+          </CHOICES>
+        </Field>
+        
+        <!-- Example Mehrere Textzeilen-->
+        <Field Type="Note" 
+               DisplayName="Test Mehrere Textzeilen" 
+               Description="Test Spalte für Mehrere Textzeilen" 
+               Required="FALSE" 
+               EnforceUniqueValues="FALSE" 
+               Indexed="FALSE" 
+               NumLines="6" 
+               RichText="TRUE" 
+               RichTextMode="FullHtml" 
+               IsolateStyles="TRUE" 
+               Sortable="FALSE" 
+               Group="_AP_TestColumn_Group" 
+               ID="{e43be6cd-eacc-4244-8e4a-e923db996232}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestMehrereTextzeilen" 
+               Name="TestMehrereTextzeilen">
+        </Field>
+        
+        <!-- Example Währung-->
+        <Field Type="Currency" 
+               DisplayName="Test Währung" 
+               Description="Test Spalte für Währung" 
+               Required="FALSE" 
+               EnforceUniqueValues="FALSE" 
+               Indexed="FALSE" 
+               LCID="1031" 
+               Group="_AP_TestColumn_Group" 
+               ID="{701743d0-0e0e-4143-b7c2-8250133bce20}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestWaehrung" 
+               Name="TestWaehrung">
+        </Field>
+        
+        <!-- Example Zahl-->
+        <Field Type="Number" 
+               DisplayName="Test Zahl" 
+               Description="Test Spalte für Zahl" 
+               Required="FALSE" 
+               EnforceUniqueValues="FALSE" 
+               Indexed="FALSE" 
+               Group="_AP_TestColumn_Group" 
+               ID="{3dda3ae0-d121-4d83-a99b-bf2ff85eade7}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestZahl" 
+               Name="TestZahl">
+        </Field>
+        
+        <!-- Example Berechnet -->
+        <Field Type="Calculated" 
+               DisplayName="Test Berechnet" 
+               Description="Test Spalte für Berechnet" 
+               EnforceUniqueValues="FALSE" 
+               Indexed="FALSE" 
+               Format="DateOnly" 
+               LCID="1031" 
+               ResultType="Text" 
+               ReadOnly="TRUE" 
+               Group="_AP_TestColumn_Group" 
+               ID="{b6c0f8da-626c-4f72-a230-a785c3232f86}" 
+               SourceID="{parameter:newSourceId}" 
+               StaticName="TestBerechnet" 
+               Name="TestBerechnet">
+          <Formula>=Titel</Formula>
+        </Field>
+        
       </pnp:SiteFields>
       <pnp:ContentTypes>
-        <pnp:ContentType ID="0x0101001AE327E864BFFB45893110FD68290659" Name="TestContentType" Description="Test Content Type" Group="_AP_TestContentType" NewFormUrl="" EditFormUrl="" DisplayFormUrl="">
+        <pnp:ContentType ID="0x0101006F403AC8FF75A449B234FAE79E24A12A" Name="TestContentType" Description="Ein Content Type fürs Testen" Group="_AP_TestContentType" NewFormUrl="" EditFormUrl="" DisplayFormUrl="">
           <pnp:FieldRefs>
             <pnp:FieldRef ID="c042a256-787d-4a6f-8a8a-cf6ab767f12d" Name="ContentType" />
             <pnp:FieldRef ID="5f47e085-2150-41dc-b661-442f3027f552" Name="SelectFilename" />
@@ -31,76 +502,39 @@
             <pnp:FieldRef ID="28cf69c5-fa48-462a-b5cd-27b6f9d2bd5f" Name="Modified" Hidden="true" />
             <pnp:FieldRef ID="822c78e3-1ea9-4943-b449-57863ad33ca9" Name="Modified_x0020_By" />
             <pnp:FieldRef ID="4dd7e525-8d6b-4cb4-9d3e-44ee25f973eb" Name="Created_x0020_By" />
-            <pnp:FieldRef ID="b6fa4641-2ea7-4f06-a5a2-31e31e456069" Name="MyDokumente" Required="true" />
-            <pnp:FieldRef ID="533fd8e0-bd87-4eec-a070-11989d8d62d6" Name="MyDokumente_x003A_Titel" />
+            <pnp:FieldRef ID="37488b88-f58b-4a39-a906-caf3d01bb6f4" Name="TestSpalte1" Required="true" />
+            <pnp:FieldRef ID="2404f018-ac46-4c4b-b71b-033c5980b567" Name="TestSpalte1_x003A_ID" />
+            <pnp:FieldRef ID="4290012f-ce34-4043-97be-f92547d997c6" Name="TestSpalte1_x003A_Titel" />
+            <pnp:FieldRef ID="e9b20430-e7dc-43d3-b582-566d6c010f28" Name="TestSpalte1_x003A_Version" />
+            <pnp:FieldRef ID="76da0653-5102-4bad-a584-e2158921801c" Name="TestSpalte1_x003A_Kopiequelle" />
+            <pnp:FieldRef ID="fb27856a-7445-43c6-8b42-0aa6e47e8569" Name="TestSpalte1_x003A_Erstellt" />
+            <pnp:FieldRef ID="ffbba7af-45c4-4008-921b-8edb16cfc0f4" Name="TestSpalte1_x003A_Geändert" />
+            <pnp:FieldRef ID="d97ed689-adcc-4e7c-9764-03debd5f5fba" Name="TestAuswahl" />
+            <pnp:FieldRef ID="b6c0f8da-626c-4f72-a230-a785c3232f86" Name="TestBerechnet" />
+            <pnp:FieldRef ID="659f934b-05af-4066-8d44-c4bd21bfc26f" Name="TestBildMitFormatierung" />
+            <pnp:FieldRef ID="51658905-c714-466e-8f51-e61d0c0f42e2" Name="TestDatumUhrzeit" />
+            <pnp:FieldRef ID="457e29b4-1456-4f26-8100-517e9b5335cb" Name="TestEineTextzeile" Required="true" />
+            <pnp:FieldRef ID="7c6199c0-8ade-4a62-aa1c-c485a1932443" Name="TestErgebnisDerAufgabe" />
+            <pnp:FieldRef ID="2651f78d-ecfc-4705-be02-8f75cf6f4fe4" Name="TestHTML-Inhalt" />
+            <pnp:FieldRef ID="bac9d637-2f4b-4060-a678-41b38342484f" Name="TestHyperlinkuebersichtdaten" />
+            <pnp:FieldRef ID="7ffd76b0-e72a-4712-9a33-3cb945b908f6" Name="TestJaNein" />
+            <pnp:FieldRef ID="5becd22e-c63b-4ab7-a68a-5acf40f06e90" Name="TestLinkMitFormatierung" />
+            <pnp:FieldRef ID="6db07889-7323-413a-9249-e9247ee72e49" Name="TestLinkBild" />
+            <pnp:FieldRef ID="e43be6cd-eacc-4244-8e4a-e923db996232" Name="TestMehrereTextzeilen" />
+            <pnp:FieldRef ID="bf7d852f-4ef5-44d2-8fba-3fe1baf119f2" Name="TestNachschlagen" />
+            <pnp:FieldRef ID="c4f7bc23-3139-43e6-b2da-3b50e0d0f3f4" Name="TestNachschlagen_x003A_Erstellt" />
+            <pnp:FieldRef ID="145f4463-66ff-4154-8dba-71470b98be91" Name="TestNachschlagen_x003A_ID" />
+            <pnp:FieldRef ID="7f8bbf44-c2ea-4e82-a7d7-7380f5a5ca72" Name="TestPersonGroup" />
+            <pnp:FieldRef ID="2e90c351-8f6a-4fa7-b611-cfb4a82c711d" Name="TestRichMedia" />
+            <pnp:FieldRef ID="24c6caeb-f3b7-4dd5-9b6e-e7571314da4b" Name="h2faa092bec94380938512384c6d0683" Hidden="true" />
+            <pnp:FieldRef ID="f3b0adf9-c1a2-4b02-920d-943fba4b3611" Name="TaxCatchAll" Hidden="true" />
+            <pnp:FieldRef ID="8f6b6dd8-9357-4019-8172-966fcd502ed2" Name="TaxCatchAllLabel" Hidden="true" />
+            <pnp:FieldRef ID="12faa092-bec9-4380-9385-12384c6d0683" Name="TestVerwalteteMetadaten" />
+            <pnp:FieldRef ID="701743d0-0e0e-4143-b7c2-8250133bce20" Name="TestWaehrung" />
+            <pnp:FieldRef ID="3dda3ae0-d121-4d83-a99b-bf2ff85eade7" Name="TestZahl" />
           </pnp:FieldRefs>
         </pnp:ContentType>
       </pnp:ContentTypes>
-      <pnp:Lists>
-        <pnp:ListInstance Title="Test Bibliothek mit Content Type" Description="" DocumentTemplate="{site}/Test Bibliothek mit Content Type/Forms/template.dotx" TemplateType="101" Url="Test Bibliothek mit Content Type" EnableVersioning="true" MinorVersionLimit="0" MaxVersionLimit="500" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-e717-4e80-aa17-d0c71b360101" ContentTypesEnabled="true" EnableAttachments="false">
-          <pnp:ContentTypeBindings>
-            <pnp:ContentTypeBinding ContentTypeID="0x0101001AE327E864BFFB45893110FD68290659" Default="true" />
-            <pnp:ContentTypeBinding ContentTypeID="0x0101" />
-            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
-          </pnp:ContentTypeBindings>
-          <pnp:Views>
-            <View Name="{EE9CA425-FAFA-4DFB-AEB5-82091B27B924}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="Alle Dokumente" Url="/sites/AP_Testsite/Test Bibliothek mit Content Type/Forms/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/dlicon.png?rev=44">
-              <Query>
-                <OrderBy>
-                  <FieldRef Name="FileLeafRef" />
-                </OrderBy>
-              </Query>
-              <ViewFields>
-                <FieldRef Name="DocIcon" />
-                <FieldRef Name="LinkFilename" />
-                <FieldRef Name="Modified" />
-                <FieldRef Name="Editor" />
-              </ViewFields>
-              <RowLimit Paged="TRUE">30</RowLimit>
-              <JSLink>clienttemplates.js</JSLink>
-            </View>
-          </pnp:Views>
-          <pnp:FieldRefs>
-            <pnp:FieldRef ID="b6fa4641-2ea7-4f06-a5a2-31e31e456069" Name="MyDokumente" DisplayName="MyDokumente" />
-            <pnp:FieldRef ID="533fd8e0-bd87-4eec-a070-11989d8d62d6" Name="MyDokumente_x003A_Titel" DisplayName="MyDokumente:Titel" />
-          </pnp:FieldRefs>
-        </pnp:ListInstance>
-        <pnp:ListInstance Title="Test Bibliothek ohne Content Type" Description="" DocumentTemplate="{site}/Test Bibliothek ohne Content Type/Forms/template.dotx" TemplateType="101" Url="Test Bibliothek ohne Content Type" EnableVersioning="true" MinorVersionLimit="0" MaxVersionLimit="500" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-e717-4e80-aa17-d0c71b360101" EnableAttachments="false">
-          <pnp:ContentTypeBindings>
-            <pnp:ContentTypeBinding ContentTypeID="0x0101" Default="true" />
-            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
-          </pnp:ContentTypeBindings>
-          <pnp:Views>
-            <View Name="{1841ACA4-5C64-43ED-BC09-A8A24B755DA0}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="Alle Dokumente" Url="/sites/AP_Testsite/Test Bibliothek ohne Content Type/Forms/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/dlicon.png?rev=44">
-              <Query>
-                <OrderBy>
-                  <FieldRef Name="FileLeafRef" />
-                </OrderBy>
-              </Query>
-              <ViewFields>
-                <FieldRef Name="DocIcon" />
-                <FieldRef Name="LinkFilename" />
-                <FieldRef Name="Modified" />
-                <FieldRef Name="Editor" />
-                <FieldRef Name="MyDokumente" />
-                <FieldRef Name="MyDokumente_x003A_Titel" />
-              </ViewFields>
-              <RowLimit Paged="TRUE">30</RowLimit>
-              <JSLink>clienttemplates.js</JSLink>
-            </View>
-          </pnp:Views>
-          <pnp:FieldRefs>
-            <pnp:FieldRef ID="b6fa4641-2ea7-4f06-a5a2-31e31e456069" Name="MyDokumente" Required="true" DisplayName="MyDokumente" />
-            <pnp:FieldRef ID="533fd8e0-bd87-4eec-a070-11989d8d62d6" Name="MyDokumente_x003A_Titel" DisplayName="MyDokumente:Titel" />
-            <pnp:FieldRef ID="3881510a-4e4a-4ee8-b102-8ee8e2d0dd4b" Name="CheckoutUser" DisplayName="Ausgecheckt von" />
-            <pnp:FieldRef ID="ccc1037f-f65e-434a-868e-8c98af31fe29" Name="_ComplianceFlags" DisplayName="Schutzaktion" />
-            <pnp:FieldRef ID="d4b6480a-4bed-4094-9a52-30181ea38f1d" Name="_ComplianceTag" DisplayName="Schutzmarkierung" />
-            <pnp:FieldRef ID="92be610e-ddbb-49f4-b3b1-5c2bc768df8f" Name="_ComplianceTagWrittenTime" DisplayName="Schutzmarkierung geändert" />
-            <pnp:FieldRef ID="418d7676-2d6f-42cf-a16a-e43d2971252a" Name="_ComplianceTagUserId" DisplayName="Die ID des Benutzers, der die Schutzmarkierung festgelegt hat" />
-            <pnp:FieldRef ID="8382d247-72a9-44b1-9794-7b177edc89f3" Name="_IsRecord" DisplayName="Aufnahme" />
-          </pnp:FieldRefs>
-        </pnp:ListInstance>
-      </pnp:Lists>
     </pnp:ProvisioningTemplate>
   </pnp:Templates>
 </pnp:Provisioning>

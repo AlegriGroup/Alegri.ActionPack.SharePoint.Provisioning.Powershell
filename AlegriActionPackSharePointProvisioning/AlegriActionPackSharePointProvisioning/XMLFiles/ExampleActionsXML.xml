@@ -17,19 +17,47 @@
       <alg:Action ActionDescription="Test Environment Connect" Ignore="false" ActionID="1020">
         <alg:AutomationAction>
           <alg:ActionObject>
-            <alg:AP_SPEnvironment_Connect EnvironmentName="devPat" UserCredentialName="dev_pat" LoadAllWebs="true"/>
+            <alg:AP_SPEnvironment_Connect EnvironmentName="devPatvkfsmart" UserCredentialName="dev_pat" LoadAllWebs="true"/>
           </alg:ActionObject>
         </alg:AutomationAction>
       </alg:Action>
       <alg:Action ActionDescription="Test Environment InitWeb" Ignore="false" ActionID="1030">
         <alg:AutomationAction>
           <alg:ActionObject>
-            <alg:AP_SPEnvironment_InitWeb SiteTitle="Testsite for Action Package"/>
+            <alg:AP_SPEnvironment_InitWeb SiteTitle="vkfsmartTestProvisioning"/>
           </alg:ActionObject>
         </alg:AutomationAction>
       </alg:Action>
     </alg:Actions>
-  
+   
+    <!-- Example for Provisioning-->
+    <alg:Actions Ignore="false">
+      <alg:Action ActionDescription="Test for Get Provisioning Template" ActionID="600" Ignore="false">
+        <alg:AutomationAction>
+          <alg:ActionObject>
+            <alg:AP_SPProvisioning_GetProvisioningTemplate  Out="C:\GitRepos\Powershell_Action_Pack_SharePoint_Provisioning\AlegriActionPackSharePointProvisioning\AlegriActionPackSharePointProvisioning\XMLFiles\Test_GetProvisioningTemplate.xml"/>
+          </alg:ActionObject>
+        </alg:AutomationAction>
+      </alg:Action>
+      <alg:Action ActionDescription="Check the Provisioning" ActionID="510" Ignore="false">
+        <alg:ManuellAction>
+          <alg:ManuellTask Aktion="Check the Provisioning"/>
+        </alg:ManuellAction>
+      </alg:Action>
+      <alg:Action ActionDescription="Test for Provisioning" ActionID="500" Ignore="true">
+        <alg:AutomationAction>
+          <alg:ActionObject>
+            <alg:AP_SPProvisioning_PnPProvisioning pathToProvisioningXML="C:\GitRepos\Powershell_Action_Pack_SharePoint_Provisioning\AlegriActionPackSharePointProvisioning\AlegriActionPackSharePointProvisioning\XMLFiles\ExampleProvisioningClearLookupSiteColumn.xml"/>
+          </alg:ActionObject>
+        </alg:AutomationAction>
+      </alg:Action>
+      <alg:Action ActionDescription="Check the Provisioning" ActionID="510" Ignore="true">
+        <alg:ManuellAction>
+          <alg:ManuellTask Aktion="Check the Provisioning"/>
+        </alg:ManuellAction>
+      </alg:Action>
+    </alg:Actions>
+    
     <!-- Example for ClearLookup Actions -->
     <alg:Actions Ignore="true">
       <alg:Action ActionDescription="Starte ClearLookup After Provisioning" ActionID="9000" Ignore="false">
@@ -67,13 +95,13 @@
       <alg:Action ActionDescription="Removed SiteColumn from ContentType" ActionID="690" Ignore="false">
         <alg:AutomationAction>
           <alg:ActionObject>
-            <alg:AP_SPProvisioning_RemovedSiteColumnFromContentType FieldName="MyDokumente" ContentTypeName="TestContentType" DoNotUpdateChildren="false"/>
+            <alg:AP_SPProvisioning_RemovedSiteColumnFromContentType FieldName="TestRichMedia" ContentTypeName="TestContentType" DoNotUpdateChildren="false"/>
           </alg:ActionObject>
         </alg:AutomationAction>
       </alg:Action>
-      <alg:Action ActionDescription="Check if MyDokumente Deleted on ContentType" ActionID="695" Ignore="false">
+      <alg:Action ActionDescription="Check if TestRichMedia Deleted on ContentType" ActionID="695" Ignore="false">
         <alg:ManuellAction>
-          <alg:ManuellTask Aktion="Check if MyDokumente Deleted on ContentType"/>
+          <alg:ManuellTask Aktion="Check if TestRichMedia Deleted on ContentType"/>
         </alg:ManuellAction>
       </alg:Action>
       <alg:Action ActionDescription="Removed AllSiteColumn from ContentType" ActionID="690" Ignore="false">
@@ -85,32 +113,32 @@
       </alg:Action>
       <alg:Action ActionDescription="Check if deleted all SiteColumns on ContentType" ActionID="695" Ignore="false">
         <alg:ManuellAction>
-          <alg:ManuellTask Aktion="Check if deleted all SiteColumns on ContentType"/>
+          <alg:ManuellTask Aktion="Check if deleted all SiteColumns on ContentType."/>
         </alg:ManuellAction>
       </alg:Action>
       <alg:Action ActionDescription="Test Removed SiteColumn" ActionID="700" Ignore="false">
         <alg:AutomationAction>
           <alg:ActionObject>
-            <alg:AP_SPProvisioning_RemovedSiteColumn FieldName="MyDokumente"/>
+            <alg:AP_SPProvisioning_RemovedSiteColumn FieldName="TestSpalte1"/>
           </alg:ActionObject>
         </alg:AutomationAction>
       </alg:Action>
-      <alg:Action ActionDescription="Check if onnly MyDokumente deleted" ActionID="701" Ignore="false">
+      <alg:Action ActionDescription="Check if onnly TestSpalte1 deleted" ActionID="701" Ignore="false">
         <alg:ManuellAction>
-          <alg:ManuellTask Aktion="Check if onnly MyDokumente deleted"/>
+          <alg:ManuellTask Aktion="Check if onnly TestSpalte1 deleted"/>
         </alg:ManuellAction>
       </alg:Action>
       <alg:Action ActionDescription="Test Removed SiteColumn from Group" ActionID="710" Ignore="false">
         <alg:AutomationAction>
           <alg:ActionObject>
-            <alg:AP_SPProvisioning_RemovedSiteColumn GroupName="_AP_TestColumn"/>
+            <alg:AP_SPProvisioning_RemovedSiteColumn GroupName="_AP_TestColumn_Group"/>
           </alg:ActionObject>
         </alg:AutomationAction>
       </alg:Action>
-    </alg:Actions>
+    </alg:Actions>  
     
     <!--Example from SharePoint Environment-->
-    <alg:Actions Ignore="false">
+    <alg:Actions Ignore="true">
       <alg:Action ActionDescription="Test Environment Disconnect" Ignore="false" ActionID="2000">
         <alg:AutomationAction>
           <alg:ActionObject>

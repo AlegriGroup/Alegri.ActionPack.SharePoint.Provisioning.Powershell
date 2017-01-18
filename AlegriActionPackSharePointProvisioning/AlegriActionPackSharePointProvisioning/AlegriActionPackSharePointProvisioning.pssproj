@@ -40,9 +40,15 @@
     <Compile Include="Documentation\BeispielClearLookupSiteColumnAfterProvisioning.png" />
     <Compile Include="Documentation\BeispielClearLookupSiteColumnOnContentType.png" />
     <Compile Include="Documentation\BeispielClearLookupSiteColumnOnList.png" />
+    <Compile Include="Documentation\BeispielGetProvisioningTemplate.png" />
+    <Compile Include="Documentation\BeispielPnPProvisioning.png" />
+    <Compile Include="Documentation\BeispielRemovedSiteColumn.png" />
+    <Compile Include="Documentation\BeispielRemovedSiteColumnFromContentType.png" />
     <Compile Include="PSScripts\AP_SPProvisioning.ps1" />
     <Compile Include="PSScripts\DependentFunction.ps1" />
     <Compile Include="PSScripts\LookupSiteColumnFunctions.ps1" />
+    <Compile Include="PSScripts\ProvisioningFunctions.ps1" />
+    <Compile Include="PSScripts\SiteColumnFunctions.ps1" />
     <Compile Include="XMLFiles\ExampleActionsXML.xml" />
     <Compile Include="XMLSchema\AlegriActionFlowSchema.xsd" />
     <Compile Include="XMLSchema\AlegriAP_SPProvisioningSchema.xsd" />
