@@ -45,11 +45,15 @@
     <Compile Include="Documentation\BeispielRemovedSiteColumn.png" />
     <Compile Include="Documentation\BeispielRemovedSiteColumnFromContentType.png" />
     <Compile Include="PSScripts\AP_SPProvisioning.ps1" />
+    <Compile Include="PSScripts\ContentTypeFunctions.ps1" />
     <Compile Include="PSScripts\DependentFunction.ps1" />
+    <Compile Include="PSScripts\ListFunctions.ps1" />
     <Compile Include="PSScripts\LookupSiteColumnFunctions.ps1" />
     <Compile Include="PSScripts\ProvisioningFunctions.ps1" />
     <Compile Include="PSScripts\SiteColumnFunctions.ps1" />
+    <Compile Include="PSScripts\WorkWithTemplateFunctions.ps1" />
     <Compile Include="XMLFiles\ExampleActionsXML.xml" />
+    <Compile Include="XMLFiles\ExampleDevProvisioning.xml" />
     <Compile Include="XMLSchema\AlegriActionFlowSchema.xsd" />
     <Compile Include="XMLSchema\AlegriAP_SPProvisioningSchema.xsd" />
     <Compile Include="XMLSchema\ProvisioningSchema-2016-05.xsd" />

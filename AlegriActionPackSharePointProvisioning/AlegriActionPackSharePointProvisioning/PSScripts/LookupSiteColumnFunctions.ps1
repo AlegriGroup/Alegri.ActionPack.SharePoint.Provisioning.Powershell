@@ -23,7 +23,7 @@ function Start-AP_SPProvisioning_ClearLookupSiteColumnAfterProvisioning
     }
     Process
     {	
-		$pathXML = $xmlActionObject.pathToProvisioningXML
+		$pathXML = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.pathToProvisioningXML
 		Clear-AP_SPProvisioning_LookupSiteColumnAfterProvisioning -pathToProvisioningXML $pathXML
     }
     End
