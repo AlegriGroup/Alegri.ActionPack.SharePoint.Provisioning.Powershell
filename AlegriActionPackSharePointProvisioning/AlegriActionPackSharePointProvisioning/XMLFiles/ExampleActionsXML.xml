@@ -8,8 +8,8 @@
        <alg:AutomationAction>
           <alg:ActionObject>
             <alg:AP_SPEnvironment_Init 
-              pathXMLEnvironment="C:\GitRepos\Powershell Action Pack SharePoint Environment\AlegriActionPackSharePointEnvironment\AlegriActionPackSharePointEnvironment\XMLFiles\ExampleEnvironments.xml" 
-              pathXMLUserCredential="C:\GitRepos\Powershell Action Pack SharePoint Environment\AlegriActionPackSharePointEnvironment\AlegriActionPackSharePointEnvironment\XMLFiles\ExampleUserCredential.xml"
+              pathXMLEnvironment="C:\Users\pcampergue\Source\Repos\Powershell Action Pack SharePoint Environment\AlegriActionPackSharePointEnvironment\AlegriActionPackSharePointEnvironment\XMLFiles\ExampleEnvironments.xml" 
+              pathXMLUserCredential="C:\Users\pcampergue\Source\Repos\Powershell Action Pack SharePoint Environment\AlegriActionPackSharePointEnvironment\AlegriActionPackSharePointEnvironment\XMLFiles\ExampleUserCredential.xml"
             />
           </alg:ActionObject>
         </alg:AutomationAction>
@@ -30,8 +30,19 @@
       </alg:Action>
     </alg:Actions>
    
-    <!-- Example for Provisioning-->
+    <!-- Example for Deleted Lists-->
     <alg:Actions Ignore="false">
+      <alg:Action ActionDescription="Entferne Liste" Ignore="false" ActionID="999">
+        <alg:AutomationAction>
+          <alg:ActionObject>
+            <alg:AP_SPProvisioning_RemovedListCorrectly pathToProvisioningXML="C:\Users\pcampergue\Source\Repos\Powershell Action Pack SharePoint Provisioning\AlegriActionPackSharePointProvisioning\AlegriActionPackSharePointProvisioning\XMLFiles\ExampleDevProvisioning.xml" />
+          </alg:ActionObject>
+        </alg:AutomationAction>
+      </alg:Action>
+    </alg:Actions>
+    
+    <!-- Example for Get-Provisioning-->
+    <alg:Actions Ignore="true">
       <alg:Action ActionDescription="Test for Get Provisioning Template" ActionID="600" Ignore="false">
         <alg:AutomationAction>
           <alg:ActionObject>
@@ -44,19 +55,84 @@
           <alg:ManuellTask Aktion="Check the Provisioning"/>
         </alg:ManuellAction>
       </alg:Action>
-      <alg:Action ActionDescription="Test for Provisioning" ActionID="500" Ignore="true">
+    </alg:Actions>
+
+    <!-- Example for Apply-Provisioning-->
+    <alg:Actions Ignore="true">
+    <alg:Action ActionDescription="Test für Apply Provisioning" ActionID="999" Ignore="false">
+      <alg:AutomationAction>
+        <alg:ActionObject>
+          <alg:AP_SPProvisioning_PnPProvisioning pathToProvisioningXML="C:\Users\pcampergue\Source\Repos\Powershell Action Pack SharePoint Provisioning\AlegriActionPackSharePointProvisioning\AlegriActionPackSharePointProvisioning\XMLFiles\ExampleDevProvisioning.xml"/>
+        </alg:ActionObject>
+      </alg:AutomationAction>
+    </alg:Action>
+    </alg:Actions>
+    
+    <!-- Example Remove Content Types Actions -->
+    <alg:Actions Ignore="false">
+      <alg:Action ActionDescription="Removed SiteColumn from ContentType" ActionID="690" Ignore="true">
         <alg:AutomationAction>
           <alg:ActionObject>
-            <alg:AP_SPProvisioning_PnPProvisioning pathToProvisioningXML="C:\GitRepos\Powershell_Action_Pack_SharePoint_Provisioning\AlegriActionPackSharePointProvisioning\AlegriActionPackSharePointProvisioning\XMLFiles\ExampleProvisioningClearLookupSiteColumn.xml"/>
+            <alg:AP_SPProvisioning_RemovedSiteColumnFromContentType FieldName="TestRichMedia" ContentTypeName="TestContentType" DoNotUpdateChildren="false"/>
+          </alg:ActionObject>
+        </alg:AutomationAction>
+      </alg:Action>
+      <alg:Action ActionDescription="Check if TestRichMedia Deleted on ContentType" ActionID="695" Ignore="true">
+        <alg:ManuellAction>
+          <alg:ManuellTask Aktion="Check if TestRichMedia Deleted on ContentType"/>
+        </alg:ManuellAction>
+      </alg:Action>
+      <alg:Action ActionDescription="Removed AllSiteColumn from ContentType" ActionID="690" Ignore="true">
+        <alg:AutomationAction>
+          <alg:ActionObject>
+            <alg:AP_SPProvisioning_RemovedSiteColumnFromContentType ContentTypeName="TestContentType" DoNotUpdateChildren="true"/>
+          </alg:ActionObject>
+        </alg:AutomationAction>
+      </alg:Action>
+      <alg:Action ActionDescription="Removed AllSiteColumn from ContentType" ActionID="690" Ignore="true">
+        <alg:AutomationAction>
+          <alg:ActionObject>
+            <alg:AP_SPProvisioning_RemovedSiteColumnFromContentType ContentTypeName="TestContentType1" DoNotUpdateChildren="true"/>
+          </alg:ActionObject>
+        </alg:AutomationAction>
+      </alg:Action>
+      <alg:Action ActionDescription="Removed AllSiteColumn from ContentType" ActionID="690" Ignore="true">
+        <alg:AutomationAction>
+          <alg:ActionObject>
+            <alg:AP_SPProvisioning_RemovedSiteColumnFromContentType ContentTypeName="TestContentType2" DoNotUpdateChildren="true"/>
+          </alg:ActionObject>
+        </alg:AutomationAction>
+      </alg:Action>
+      <alg:Action ActionDescription="Check if deleted all SiteColumns on ContentType" ActionID="695" Ignore="true">
+        <alg:ManuellAction>
+          <alg:ManuellTask Aktion="Check if deleted all SiteColumns on ContentType"/>
+        </alg:ManuellAction>
+      </alg:Action>
+      <alg:Action ActionDescription="Test Delete One ContentType" ActionID="300" Ignore="true">
+        <alg:AutomationAction>
+          <alg:ActionObject>
+            <alg:AP_SPProvisioning_RemovedContentType Name="TestContentType2"/>
           </alg:ActionObject>
         </alg:AutomationAction>
       </alg:Action>
       <alg:Action ActionDescription="Check the Provisioning" ActionID="510" Ignore="true">
         <alg:ManuellAction>
-          <alg:ManuellTask Aktion="Check the Provisioning"/>
+          <alg:ManuellTask Aktion="Check Delete TestContentType2"/>
         </alg:ManuellAction>
       </alg:Action>
-    </alg:Actions>
+      <alg:Action ActionDescription="Test Delete ContentTypes by Group" ActionID="310" Ignore="false">
+        <alg:AutomationAction>
+          <alg:ActionObject>
+            <alg:AP_SPProvisioning_RemovedContentType GroupName="_AP_TestContentType"/>
+          </alg:ActionObject>
+        </alg:AutomationAction>
+      </alg:Action>
+      <alg:Action ActionDescription="Check the Provisioning" ActionID="510" Ignore="true">
+        <alg:ManuellAction>
+          <alg:ManuellTask Aktion="Check Delete All ContentType for Group _AP_TestContentType"/>
+        </alg:ManuellAction>
+      </alg:Action>
+    </alg:Actions>    
     
     <!-- Example for ClearLookup Actions -->
     <alg:Actions Ignore="true">
@@ -91,31 +167,7 @@
     </alg:Actions>
     
     <!-- Example for RemoveSiteColumns -->
-    <alg:Actions Ignore="true">
-      <alg:Action ActionDescription="Removed SiteColumn from ContentType" ActionID="690" Ignore="false">
-        <alg:AutomationAction>
-          <alg:ActionObject>
-            <alg:AP_SPProvisioning_RemovedSiteColumnFromContentType FieldName="TestRichMedia" ContentTypeName="TestContentType" DoNotUpdateChildren="false"/>
-          </alg:ActionObject>
-        </alg:AutomationAction>
-      </alg:Action>
-      <alg:Action ActionDescription="Check if TestRichMedia Deleted on ContentType" ActionID="695" Ignore="false">
-        <alg:ManuellAction>
-          <alg:ManuellTask Aktion="Check if TestRichMedia Deleted on ContentType"/>
-        </alg:ManuellAction>
-      </alg:Action>
-      <alg:Action ActionDescription="Removed AllSiteColumn from ContentType" ActionID="690" Ignore="false">
-        <alg:AutomationAction>
-          <alg:ActionObject>
-            <alg:AP_SPProvisioning_RemovedSiteColumnFromContentType ContentTypeName="TestContentType" DoNotUpdateChildren="true"/>
-          </alg:ActionObject>
-        </alg:AutomationAction>
-      </alg:Action>
-      <alg:Action ActionDescription="Check if deleted all SiteColumns on ContentType" ActionID="695" Ignore="false">
-        <alg:ManuellAction>
-          <alg:ManuellTask Aktion="Check if deleted all SiteColumns on ContentType."/>
-        </alg:ManuellAction>
-      </alg:Action>
+    <alg:Actions Ignore="false">          
       <alg:Action ActionDescription="Test Removed SiteColumn" ActionID="700" Ignore="false">
         <alg:AutomationAction>
           <alg:ActionObject>
@@ -123,7 +175,7 @@
           </alg:ActionObject>
         </alg:AutomationAction>
       </alg:Action>
-      <alg:Action ActionDescription="Check if onnly TestSpalte1 deleted" ActionID="701" Ignore="false">
+      <alg:Action ActionDescription="Check if onnly TestSpalte1 deleted" ActionID="701" Ignore="true">
         <alg:ManuellAction>
           <alg:ManuellTask Aktion="Check if onnly TestSpalte1 deleted"/>
         </alg:ManuellAction>
@@ -138,11 +190,11 @@
     </alg:Actions>  
     
     <!--Example from SharePoint Environment-->
-    <alg:Actions Ignore="true">
+    <alg:Actions Ignore="false">
       <alg:Action ActionDescription="Test Environment Disconnect" Ignore="false" ActionID="2000">
         <alg:AutomationAction>
           <alg:ActionObject>
-            <alg:AP_SPEnvironment_Disconnect EnvironmentName="devPat"/>
+            <alg:AP_SPEnvironment_Disconnect EnvironmentName="devPatvkfsmart"/>
           </alg:ActionObject>
         </alg:AutomationAction>
       </alg:Action>

@@ -2,6 +2,7 @@
 # DependentFunction.ps1
 #
 
+###### Alegri.ActionPack.SharePoint.Environment.Powershell  ##########
 function Get-AP_SPProvisioning_SPEnvironment_CurrentWeb 
 {
 	[CmdletBinding()]
@@ -21,6 +22,35 @@ function Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
     }
 }
 
+function Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath
+{
+	[CmdletBinding()]
+    [OutputType([int])]
+    param
+    (
+        [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=0)]
+        $path
+	)
+	Begin
+    {
+          Write-Verbose "Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath BEGIN"
+    }
+    Process
+    {
+		return Check-AP_SPEnvironment_ReplaceProjectPath -path $path
+    }
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath END"
+    }
+}
+
+function Use-AP_SPProvisioning_SPEnvironment_Get-ProjectPath 
+{
+	return Get-AP_SPEnvironment_ProjectPath;
+}
+
+##### Fields ############
 function Use-AP_SPProvisioning_PnP_Get-PnPField
 {
     [CmdletBinding()]
@@ -46,6 +76,11 @@ function Use-AP_SPProvisioning_PnP_Get-PnPField
 		} 
 		else 
 		{
+			$ctx = Get-PnPContext
+			if($ctx.Web.Id -eq $Web.Id)
+			{
+				return Get-PnPField;
+			}
 			return Get-PnPField -Web $Web  
 		} 
     }
@@ -54,7 +89,57 @@ function Use-AP_SPProvisioning_PnP_Get-PnPField
 		Write-Verbose "Use-AP_SPProvisioning_PnP_Get-PnPField End"
     }
 }
+function Use-AP_SPProvisioning_PnP_Remove-PnPField
+{
+    [CmdletBinding()]
+    param
+    (
+		$Web,
+		$List,
+		$Identity,
+		$Force
+	)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPField Begin" 
+    }
+    Process
+    {
+		if($List -ne $null -and $Identity -ne $null) 
+		{
+			if($Force -ne $null)
+			{
+				Remove-PnPField -Web $Web -List $List -Identity $Identity -Force
+			}
+			else 
+			{
+				Remove-PnPField -Web $Web -List $List -Identity $Identity
+			}
+			
+		} 
+		elseif ($List -eq $null -and $Identity -ne $null)
+		{
+			if($Force -ne $null)
+			{
+				Remove-PnPField -Web $Web -Identity $Identity -Force
+			}
+			else 
+			{
+				Remove-PnPField -Web $Web -Identity $Identity 
+			}
+		} 
+		else 
+		{
+			Write-Error "[Use-AP_SPProvisioning_PnP_Remove-PnPField] => Missing attributes. At least one of the attributes [List or Identity] must be passed" 
+		} 
+	}
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPField End"
+    }
+}
 
+###### Lists #############
 function Use-AP_SPProvisioning_PnP_Get-PnPList
 {
     [CmdletBinding()]
@@ -83,7 +168,32 @@ function Use-AP_SPProvisioning_PnP_Get-PnPList
 		Write-Verbose "Use-AP_SPProvisioning_PnP_Get-PnPList End"
     }
 }
+function Use-AP_SPProvisioning_PnP_Remove-PnPList
+{
+    [CmdletBinding()]
+    param
+    ( $Web,	$Identity, $Force	)
+    Begin
+    { Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPList Begin" }
+    Process
+    {
+			if($Force)
+			{ 
+				Remove-PnPList -Identity $Identity -Web $Web -Force
+			} 
+			else 
+			{ 
+				Remove-PnPList -Identity $Identity -Web $Web 
+			} 
 
+    }
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPList End"
+    }
+}
+
+###### Content Types #################################
 function Use-AP_SPProvisioning_PnP_Get-PnPContentType
 {
     [CmdletBinding()]
@@ -104,7 +214,12 @@ function Use-AP_SPProvisioning_PnP_Get-PnPContentType
 		} 
 		else 
 		{
-			return Get-PnPContentType -Web $web 
+			$ctx = Get-PnPContext
+			if($ctx.Web.Id -eq $Web.Id)
+			{
+				return Get-PnPContentType;
+			}
+			return Get-PnPContentType -Web $Web 
 		}  
     }
     End
@@ -112,54 +227,102 @@ function Use-AP_SPProvisioning_PnP_Get-PnPContentType
 		Write-Verbose "Use-AP_SPProvisioning_PnP_Get-PnPList End"
     }
 }
-
-function Use-AP_SPProvisioning_PnP_Remove-PnPField
+function Use-AP_SPProvisioning_PnP_Add-PnPContentType
+{
+[CmdletBinding()]
+    param
+    (
+			[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position = 0)]
+			$Web,
+			[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position = 1)]
+			$contentTypeId,
+			[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position = 2)]
+			$contentTypeName,
+			[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position = 2)]
+			$contentTypeDescription,
+			[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position = 2)]
+			$contentTypeGroup
+		)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Add-PnPContentType Begin" 
+    }
+    Process
+    {
+		return Add-PnPContentType -Name $contentTypeName -ContentTypeId $contentTypeId -Description $contentTypeDescription -Group $contentTypeGroup -Web $Web
+	}
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Add-PnPContentType End"
+    }
+}
+function Use-AP_SPProvisioning_PnP_Remove-PnPContentType
 {
     [CmdletBinding()]
     param
     (
 		$Web,
-		$List,
 		$Identity,
 		$Force
 	)
     Begin
     {
-         Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPField Begin" 
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPContentType Begin" 
     }
     Process
     {
-		if($List -ne $null -and $Identity -ne $null) 
+		if($Identity -ne $null) 
 		{
 			if($Force -ne $null)
 			{
-				Remove-PnPField-Web $Web -List $List -Identity $Identity -Force
+				Remove-PnPContentType -Web $Web -Identity $Identity -Force
 			}
 			else 
 			{
-				Remove-PnPField-Web $Web -List $List -Identity $Identity
-			}
-			
-		} 
-		elseif ($List -eq $null -and $Identity -ne $null)
-		{
-			if($Force -ne $null)
-			{
-				Remove-PnPField -Web $Web -Identity $Identity -Force
-			}
-			else 
-			{
-				Remove-PnPField -Web $Web -Identity $Identity 
-			}
+				Remove-PnPContentType -Web $Web -Identity $Identity
+			}			
 		} 
 		else 
 		{
-			Write-Error "[Use-AP_SPProvisioning_PnP_Remove-PnPField] => Missing attributes. At least one of the attributes [List or Identity] must be passed" 
+			Write-Error "[Use-AP_SPProvisioning_PnP_Remove-PnPContentType] => Missing attributes. At least one of the attributes [Identity] must be passed" 
 		} 
 	}
     End
     {
-		Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPField End"
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPContentType End"
+    }
+}
+function Use-AP_SPProvisioning_PnP_Add-PnPFieldFromContentType
+{
+    [CmdletBinding()]
+    param
+    (
+		$Field,
+		$contentTypeId,
+		$Required,
+		$Hidden,
+		$Web
+	)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Add-PnPFieldFromContentType Begin" 
+    }
+    Process
+    {
+		if($Required)
+		{ 
+			if($Hidden) { Add-PnPFieldToContentType -Field $Field -ContentType $contentTypeId -Required -Web $Web -Hidden } 
+			else        { Add-PnPFieldToContentType -Field $Field -ContentType $contentTypeId -Required -Web $Web }
+		} 
+		else 
+		{   
+			if($Hidden) { Add-PnPFieldToContentType -Field $Field -ContentType $contentTypeId -Web $Web -Hidden }
+			else        { Add-PnPFieldToContentType -Field $Field -ContentType $contentTypeId -Web $Web  }
+		}
+	}
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Add-PnPFieldFromContentType End"
     }
 }
 
@@ -200,7 +363,72 @@ function Use-AP_SPProvisioning_PnP_Remove-PnPFieldFromContentType
 		Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPFieldFromContentType End"
     }
 }
+function Use-AP_SPProvisioning_PnP_Add-PnPContentTypeToList
+{
+    [CmdletBinding()]
+    param
+    (
+			[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position = 0)]
+			[ValidateNotNullOrEmpty()]
+			$Web,
+			[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position = 1)]
+			[ValidateNotNullOrEmpty()]
+			$List,
+			[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position = 2)]
+			[ValidateNotNullOrEmpty()]
+			$ContentType,
+			[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position = 3)]
+			[ValidateNotNullOrEmpty()]
+			[bool]$DefaultContentType
+		)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Add-PnPContentType Begin" 
+    }
+    Process
+    {
+			if($DefaultContentType -eq $true) {
+				Add-PnPContentTypeToList -List $List -ContentTyp $ContentType -Web $Web -DefaultContentType 
+			} 
+			else {
+				Add-PnPContentTypeToList -List $List -ContentTyp $ContentType -Web $Web
+			}		
+		}
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Add-PnPContentType End"
+    }
+}
+function Use-AP_SPProvisioning_PnP_Remove-PnPContentTypeFromList
+{
+    [CmdletBinding()]
+    param
+    (
+			[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position = 0)]
+			[ValidateNotNullOrEmpty()]
+			$Web,
+			[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position = 1)]
+			[ValidateNotNullOrEmpty()]
+			$List,
+			[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position = 2)]
+			[ValidateNotNullOrEmpty()]
+			$ContentType
+		)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPContentTypeFromList Begin" 
+    }
+    Process
+    {
+				Remove-PnPContentTypeFromList -List $List -ContentType $ContentType -Web $Web
+		}
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPContentTypeFromList End"
+    }
+}
 
+###### Provisioning #######
 function Use-AP_SPProvisioning_PnP_Apply-PnPProvisioningTemplate
 {
     [CmdletBinding()]
@@ -226,7 +454,6 @@ function Use-AP_SPProvisioning_PnP_Apply-PnPProvisioningTemplate
 		Write-Verbose "Use-AP_SPProvisioning_PnP_Apply-PnPProvisioningTemplate End"
     }
 }
-
 function Use-AP_SPProvisioning_PnP_Get-PnPProvisioningTemplate
 {
     [CmdletBinding()]
@@ -240,7 +467,9 @@ function Use-AP_SPProvisioning_PnP_Get-PnPProvisioningTemplate
 		$Out,
 		[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=1)]
 		[ValidateNotNullOrEmpty()]
-		[bool]$standard
+		[bool]$standard,
+		[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=1)]
+		$handlers
 	)
     Begin
     {
@@ -254,13 +483,20 @@ function Use-AP_SPProvisioning_PnP_Get-PnPProvisioningTemplate
 		} 
 		else 
 		{
-			Get-PnPProvisioningTemplate -Out $Out -Web $Web
-		}
-		
+			if($handlers -eq "" ) {
+				Get-PnPProvisioningTemplate -Out $Out -Web $Web
+			}
+			else {
+				Get-PnPProvisioningTemplate -Out $Out -Web $Web -Handlers $handlers
+			}
+		}		
 	}
     End
     {
 		Write-Verbose "Use-AP_SPProvisioning_PnP_Get-PnPProvisioningTemplate End"
     }
 }
+
+
+
 

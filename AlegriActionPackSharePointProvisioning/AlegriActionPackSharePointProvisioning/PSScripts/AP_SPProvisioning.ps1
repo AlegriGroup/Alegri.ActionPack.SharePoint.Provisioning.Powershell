@@ -3,18 +3,21 @@
 #
 
 #If you want to create default folders for your action package, please comment on the section
-#Kommentieren Sie den Bereich ein, wenn Sie vor haben für Ihr Aktionspaket Standard Ordner anzulegen 
+#Kommentieren Sie den Bereich ein, wenn Sie vor haben fï¿½r Ihr Aktionspaket Standard Ordner anzulegen 
 #$Global:AP_SPProvisioning_Folder_ImportantExample = "$env:USERPROFILE\Documents\ActionFlow\AP_SPProvisioning\ImportantExample"
 
 # All Global Variable where use in this Package and is released from the outside for use
 # $Global:AP_SPProvisioning_MyGlobalVariable = $null
 
 # Allows you to bind all scripts into one function call of an action
-# Hiermit binden Sie alle Scripte in die jeweils eine Funktionsaufruf einer Aktion enthält
+# Hiermit binden Sie alle Scripte in die jeweils eine Funktionsaufruf einer Aktion enthï¿½lt
+. "$PSScriptRoot\ContentTypeFunctions.ps1"
 . "$PSScriptRoot\DependentFunction.ps1"
+. "$PSScriptRoot\ListFunctions.ps1"
 . "$PSScriptRoot\LookupSiteColumnFunctions.ps1"
-. "$PSScriptRoot\SiteColumnFunctions.ps1"
 . "$PSScriptRoot\ProvisioningFunctions.ps1"
+. "$PSScriptRoot\SiteColumnFunctions.ps1"
+. "$PSScriptRoot\WorkWithTemplateFunctions.ps1"
 
 # You should register a new function in the two lower functions.
 # Sie sollten eine neue Funktion in den beiden unteren Funktionen registrieren. 
@@ -22,7 +25,7 @@
 <#.Synopsis
 .DESCRIPTION
 Here is checked if there is the action
-Hier wird geprüft ob es die Aktion gibt
+Hier wird geprÃ¼ft ob es die Aktion gibt
 .PARAMETER actionName
 The name of the action
 Der Name der Aktion
@@ -52,6 +55,11 @@ function Find-ActionInAP_SPProvisioning
 			"AP_SPProvisioning_RemovedSiteColumnFromContentType" { $returnValue = $true }
 			"AP_SPProvisioning_PnPProvisioning" { $returnValue = $true }
 			"AP_SPProvisioning_GetProvisioningTemplate" { $returnValue = $true }
+			"AP_SPProvisioning_RemovedContentType" { $returnValue = $true }
+			"AP_SPProvisioning_RemovedListCorrectly" { $returnValue = $true }
+			"AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName" { $returnValue = $true }
+			"AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName" { $returnValue = $true }
+			"AP_SPProvisioning_SetSiteColumnDisplayName" { $returnValue = $true }
 			default { $returnValue = $false }
 		  }
 
@@ -69,7 +77,7 @@ Start the action
 Start der Aktion
 .DESCRIPTION
 Here the corresponding action is initiated by calling the corresponding function
-Hier wird die entsprechende Aktion angestossen in dem die dazugehörige Funktion aufgerufen wird
+Hier wird die entsprechende Aktion angestossen in dem die dazugehï¿½rige Funktion aufgerufen wird
 .PARAMETER xmlAction
 An XML element <alg: ActionObject>
 Ein XML Element <alg:ActionObject>
@@ -99,7 +107,12 @@ function Start-ActionFromAP_SPProvisioning
 			"AP_SPProvisioning_RemovedSiteColumn" { Start-AP_SPProvisioning_RemovedSiteColumn -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_RemovedSiteColumn }
 			"AP_SPProvisioning_RemovedSiteColumnFromContentType" { Start-AP_SPProvisioning_RemovedSiteColumnFromContentType -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_RemovedSiteColumnFromContentType }
 			"AP_SPProvisioning_PnPProvisioning" { Start-AP_SPProvisioning_PnPProvisioning -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_PnPProvisioning }
-			"AP_SPProvisioning_GetProvisioningTemplate"{ Start-AP_SPProvisioning_GetProvisioningTemplate -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_GetProvisioningTemplate}
+			"AP_SPProvisioning_GetProvisioningTemplate"{ Start-AP_SPProvisioning_GetProvisioningTemplate -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_GetProvisioningTemplate }
+			"AP_SPProvisioning_RemovedContentType"{ Start-AP_SPProvisioning_RemovedContentType -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_RemovedContentType }
+			"AP_SPProvisioning_RemovedListCorrectly"{ Start-AP_SPProvisioning_RemovedListCorrectly -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_RemovedListCorrectly }
+			"AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName" { Start-AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName }
+			"AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName" { Start-AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName }
+			"AP_SPProvisioning_SetSiteColumnDisplayName" { Start-AP_SPProvisioning_SetSiteColumnDisplayName -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_SetSiteColumnDisplayName } 
 		}
 
 		Write-Host "Action : $($actionName) is ready" -ForegroundColor Green
@@ -116,10 +129,10 @@ function Check-ExistFolderInAP_SPProvisioning
     <#
     .SYNOPSIS
     Check if the StandardFolder Exists
-	Überprüfen Sie, ob der StandardFolder vorhanden ist
+	Ã¼berprÃ¼fen Sie, ob der StandardFolder vorhanden ist
     .DESCRIPTION
 	When the module is loaded, it is checked whether the default folders are available. If not, the folders are created accordingly.
-    Beim Laden des Moduls wird überprüft ob die Standardordner vorhanden sind. Falls nicht werden die Ordner entsprechend angelegt.
+    Beim Laden des Moduls wird Ã¼berprÃ¼ft ob die Standardordner vorhanden sind. Falls nicht werden die Ordner entsprechend angelegt.
     #>
     begin
     {
@@ -127,7 +140,7 @@ function Check-ExistFolderInAP_SPProvisioning
     }
     process
     {
-		#Check if Standard folders exist / Prüfe ob Standard Ordner existieren
+		#Check if Standard folders exist / PrÃ¼fe ob Standard Ordner existieren
 		$folder1 = $Global:AP_SPProvisioning_Folder_ImportantExample
 		$checkFolder1 = Test-Path $folder1
 

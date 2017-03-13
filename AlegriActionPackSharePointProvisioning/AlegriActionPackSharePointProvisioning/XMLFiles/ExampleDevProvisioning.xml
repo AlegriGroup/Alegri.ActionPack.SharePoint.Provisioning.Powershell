@@ -1,0 +1,319 @@
+<?xml version="1.0"?>
+<pnp:Provisioning xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+  <pnp:Preferences Generator="OfficeDevPnP.Core, Version=2.11.1701.1, Culture=neutral, PublicKeyToken=3751622786b357c2" />
+  <pnp:Templates>
+    <pnp:ProvisioningTemplate ID="ExampleDev" Version="1" BaseSiteTemplate="STS#0">
+      <pnp:SiteFields>
+        <Field Type="Note" 
+        DisplayName="Test Verwaltete Metadaten_1" 
+        StaticName="h2faa092bec94380938512384c6d0683" 
+        Name="h2faa092bec94380938512384c6d0683" 
+        ID="{24c6caeb-f3b7-4dd5-9b6e-e7571314da4b}" 
+        ShowInViewForms="FALSE" 
+        Required="FALSE" CanToggleHidden="TRUE" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" AllowDeletion="TRUE" Hidden="TRUE" />
+        <Field Type="DateTime" DisplayName="Test DatumUhrzeit" Description="Test Spalte für DatumUhrzeit" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateTime" Group="_AP_TestColumn_Group" FriendlyDisplayFormat="Relative" ID="{51658905-c714-466e-8f51-e61d0c0f42e2}" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" StaticName="TestDatumUhrzeit" Name="TestDatumUhrzeit" AllowDeletion="TRUE">
+        </Field>
+        <Field Type="Lookup" DisplayName="TestSpalte1:ID" WebId="6378b72c-0ded-430a-ad1c-5c12100c7ebf" ShowField="ID" FieldRef="37488b88-f58b-4a39-a906-caf3d01bb6f4" UnlimitedLengthInDocumentLibrary="FALSE" Group="_AP_TestColumn" ID="{2404f018-ac46-4c4b-b71b-033c5980b567}" SourceID="{6378b72c-0ded-430a-ad1c-5c12100c7ebf}" StaticName="TestSpalte1_x003a_ID" Name="TestSpalte1_x003A_ID" List="{{listid:Dokumente}}" ReadOnly="TRUE" />
+        <Field Type="Lookup" DisplayName="Test Nachschlagen:Erstellt" WebId="6378b72c-0ded-430a-ad1c-5c12100c7ebf" ShowField="Created" FieldRef="bf7d852f-4ef5-44d2-8fba-3fe1baf119f2" UnlimitedLengthInDocumentLibrary="FALSE" Group="_AP_TestColumn_Group" ID="{c4f7bc23-3139-43e6-b2da-3b50e0d0f3f4}" SourceID="{6378b72c-0ded-430a-ad1c-5c12100c7ebf}" StaticName="TestNachschlagen_x003a_Erstellt" Name="TestNachschlagen_x003A_Erstellt" List="{{listid:Dokumente}}" ReadOnly="TRUE" />
+        <Field Type="Link" DisplayName="Test Link mit Formatierung" RichText="TRUE" RichTextMode="ThemeHtml" Description="Test Spalte für Link mit Formatierung" Required="FALSE" Group="_AP_TestColumn_Group" ID="{5becd22e-c63b-4ab7-a68a-5acf40f06e90}" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" StaticName="TestLinkMitFormatierung" Name="TestLinkMitFormatierung" AllowDeletion="TRUE" />
+        <Field Type="Lookup" DisplayName="TestSpalte1:Titel" WebId="6378b72c-0ded-430a-ad1c-5c12100c7ebf" ShowField="Title" FieldRef="37488b88-f58b-4a39-a906-caf3d01bb6f4" UnlimitedLengthInDocumentLibrary="FALSE" Group="_AP_TestColumn" ID="{4290012f-ce34-4043-97be-f92547d997c6}" SourceID="{6378b72c-0ded-430a-ad1c-5c12100c7ebf}" StaticName="TestSpalte1_x003a_Titel" Name="TestSpalte1_x003A_Titel" List="{{listid:Dokumente}}" ReadOnly="TRUE" />
+        <Field Type="Lookup" DisplayName="Test Nachschlagen" Description="Test Spalte für Nachschlagen" Required="FALSE" EnforceUniqueValues="FALSE" WebId="6378b72c-0ded-430a-ad1c-5c12100c7ebf" ShowField="Title" UnlimitedLengthInDocumentLibrary="FALSE" Group="_AP_TestColumn_Group" ID="{bf7d852f-4ef5-44d2-8fba-3fe1baf119f2}" SourceID="{6378b72c-0ded-430a-ad1c-5c12100c7ebf}" StaticName="TestNachschlagen" Name="TestNachschlagen" AllowDeletion="TRUE" List="{{listid:Dokumente}}" />
+        <Field Type="Lookup" DisplayName="TestSpalte1:Version" WebId="6378b72c-0ded-430a-ad1c-5c12100c7ebf" ShowField="_UIVersionString" FieldRef="37488b88-f58b-4a39-a906-caf3d01bb6f4" UnlimitedLengthInDocumentLibrary="FALSE" Group="_AP_TestColumn" ID="{e9b20430-e7dc-43d3-b582-566d6c010f28}" SourceID="{6378b72c-0ded-430a-ad1c-5c12100c7ebf}" StaticName="TestSpalte1_x003a_Version" Name="TestSpalte1_x003A_Version" List="{{listid:Dokumente}}" ReadOnly="TRUE" />
+        <Field Type="SummaryLinks" DisplayName="Test Hyperlinkübersichtdaten" RichText="TRUE" RichTextMode="FullHtml" Description="Test Spalte für Hyperlinkübersichtdaten" Required="FALSE" Group="_AP_TestColumn_Group" ID="{bac9d637-2f4b-4060-a678-41b38342484f}" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" StaticName="TestHyperlinkUebersichtdaten" Name="TestHyperlinkUebersichtdaten" AllowDeletion="TRUE" />
+        <Field Type="User" DisplayName="Test PersonGroup" Description="Test Spalte für PersonGroup" Required="FALSE" EnforceUniqueValues="FALSE" ShowField="ImnName" UserSelectionMode="PeopleOnly" UserSelectionScope="0" Group="_AP_TestColumn_Group" ID="{7f8bbf44-c2ea-4e82-a7d7-7380f5a5ca72}" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" StaticName="TestPersonGroup" Name="TestPersonGroup" AllowDeletion="TRUE" />
+        <Field Type="Image" DisplayName="Test Bild mit Formatierung" RichText="TRUE" RichTextMode="ThemeHtml" Description="Test Spalte für Bild mit Formatierung" Required="FALSE" Group="_AP_TestColumn_Group" ID="{659f934b-05af-4066-8d44-c4bd21bfc26f}" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" StaticName="TestBildMitFormatierung" Name="TestBildMitFormatierung" AllowDeletion="TRUE" />
+        <Field Type="MediaFieldType" DisplayName="Test Rich Media" RichText="TRUE" RichTextMode="FullHtml" Description="Test Spalte für Rich Media" Required="FALSE" Group="_AP_TestColumn_Group" ID="{2e90c351-8f6a-4fa7-b611-cfb4a82c711d}" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" StaticName="TestRichMedia" Name="TestRichMedia" AllowDeletion="TRUE" />
+        <Field Type="Lookup" DisplayName="TestSpalte1:Kopiequelle" WebId="6378b72c-0ded-430a-ad1c-5c12100c7ebf" ShowField="_CopySource" FieldRef="37488b88-f58b-4a39-a906-caf3d01bb6f4" UnlimitedLengthInDocumentLibrary="FALSE" Group="_AP_TestColumn" ID="{76da0653-5102-4bad-a584-e2158921801c}" SourceID="{6378b72c-0ded-430a-ad1c-5c12100c7ebf}" StaticName="TestSpalte1_x003a_Kopiequelle" Name="TestSpalte1_x003A_Kopiequelle" List="{{listid:Dokumente}}" ReadOnly="TRUE" />
+        <Field Type="Lookup" DisplayName="Test Nachschlagen:ID" WebId="6378b72c-0ded-430a-ad1c-5c12100c7ebf" ShowField="ID" FieldRef="bf7d852f-4ef5-44d2-8fba-3fe1baf119f2" UnlimitedLengthInDocumentLibrary="FALSE" Group="_AP_TestColumn_Group" ID="{145f4463-66ff-4154-8dba-71470b98be91}" SourceID="{6378b72c-0ded-430a-ad1c-5c12100c7ebf}" StaticName="TestNachschlagen_x003a_ID" Name="TestNachschlagen_x003A_ID" List="{{listid:Dokumente}}" ReadOnly="TRUE" />
+        <Field Type="Lookup" DisplayName="TestSpalte1:Erstellt" WebId="6378b72c-0ded-430a-ad1c-5c12100c7ebf" ShowField="Created" FieldRef="37488b88-f58b-4a39-a906-caf3d01bb6f4" UnlimitedLengthInDocumentLibrary="FALSE" Group="_AP_TestColumn" ID="{fb27856a-7445-43c6-8b42-0aa6e47e8569}" SourceID="{6378b72c-0ded-430a-ad1c-5c12100c7ebf}" StaticName="TestSpalte1_x003a_Erstellt" Name="TestSpalte1_x003A_Erstellt" List="{{listid:Dokumente}}" ReadOnly="TRUE" />
+        <Field Type="Lookup" DisplayName="TestSpalte1" Description="Test Spalte für Löschen Site Column mit Referenz" Required="TRUE" EnforceUniqueValues="FALSE" WebId="6378b72c-0ded-430a-ad1c-5c12100c7ebf" ShowField="Title" UnlimitedLengthInDocumentLibrary="FALSE" Group="_AP_TestColumn" ID="{37488b88-f58b-4a39-a906-caf3d01bb6f4}" SourceID="{6378b72c-0ded-430a-ad1c-5c12100c7ebf}" StaticName="TestSpalte1" Name="TestSpalte1" AllowDeletion="TRUE" List="{{listid:Dokumente}}" />
+        <Field Type="URL" DisplayName="Test LinkBild" Description="Test Spalte für Link und Bild" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Hyperlink" Group="_AP_TestColumn_Group" ID="{6db07889-7323-413a-9249-e9247ee72e49}" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" StaticName="TestLinkBild" Name="TestLinkBild" AllowDeletion="TRUE">
+        </Field>
+        <Field Type="Choice" DisplayName="Test Auswahl" Description="Test Spalte für Auswahl" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" Group="_AP_TestColumn_Group" ID="{d97ed689-adcc-4e7c-9764-03debd5f5fba}" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" StaticName="TestAuswahl" Name="TestAuswahl" AllowDeletion="TRUE">
+          <Default>Geben Sie Auswahl Nr. 1 ein</Default>
+          <CHOICES>
+            <CHOICE>Geben Sie Auswahl Nr. 1 ein</CHOICE>
+            <CHOICE>Geben Sie Auswahl Nr. 2 ein.</CHOICE>
+            <CHOICE>Geben Sie Auswahl Nr. 3 ein.</CHOICE>
+          </CHOICES>
+        </Field>
+        <Field Type="HTML" DisplayName="Test HTML-Inhalt" RichText="TRUE" RichTextMode="ThemeHtml" Description="Test Spalte für HTML-Inhalt" Required="FALSE" Group="_AP_TestColumn_Group" ID="{2651f78d-ecfc-4705-be02-8f75cf6f4fe4}" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" StaticName="TestHTMLInhalt" Name="TestHTMLInhalt" AllowDeletion="TRUE" />
+        <Field Type="TaxonomyFieldType" DisplayName="Test Verwaltete Metadaten" WebId="6378b72c-0ded-430a-ad1c-5c12100c7ebf" ShowField="Term1031" Required="FALSE" EnforceUniqueValues="FALSE" Group="_AP_TestColumn_Group" ID="{12faa092-bec9-4380-9385-12384c6d0683}" SourceID="{6378b72c-0ded-430a-ad1c-5c12100c7ebf}" StaticName="TestVerwalteteMetadaten" Name="TestVerwalteteMetadaten" List="{{listid:TaxonomyHiddenList}}" AllowDeletion="TRUE">
+          <Default>
+          </Default>
+          <Customization>
+            <ArrayOfProperty>
+              <Property>
+                <Name>SspId</Name>
+                <Value xmlns:q1="http://www.w3.org/2001/XMLSchema" p4:type="q1:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">{sitecollectiontermstoreid}</Value>
+              </Property>
+              <Property>
+                <Name>GroupId</Name>
+              </Property>
+              <Property>
+                <Name>TermSetId</Name>
+                <Value xmlns:q2="http://www.w3.org/2001/XMLSchema" p4:type="q2:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">{termsetid:Personen:Abteilung}</Value>
+              </Property>
+              <Property>
+                <Name>AnchorId</Name>
+                <Value xmlns:q3="http://www.w3.org/2001/XMLSchema" p4:type="q3:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">00000000-0000-0000-0000-000000000000</Value>
+              </Property>
+              <Property>
+                <Name>UserCreated</Name>
+                <Value xmlns:q4="http://www.w3.org/2001/XMLSchema" p4:type="q4:boolean" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">false</Value>
+              </Property>
+              <Property>
+                <Name>Open</Name>
+                <Value xmlns:q5="http://www.w3.org/2001/XMLSchema" p4:type="q5:boolean" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">true</Value>
+              </Property>
+              <Property>
+                <Name>TextField</Name>
+                <Value xmlns:q6="http://www.w3.org/2001/XMLSchema" p4:type="q6:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">{24c6caeb-f3b7-4dd5-9b6e-e7571314da4b}</Value>
+              </Property>
+              <Property>
+                <Name>IsPathRendered</Name>
+                <Value xmlns:q7="http://www.w3.org/2001/XMLSchema" p4:type="q7:boolean" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">false</Value>
+              </Property>
+              <Property>
+                <Name>IsKeyword</Name>
+                <Value xmlns:q8="http://www.w3.org/2001/XMLSchema" p4:type="q8:boolean" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">false</Value>
+              </Property>
+              <Property>
+                <Name>TargetTemplate</Name>
+              </Property>
+              <Property>
+                <Name>CreateValuesInEditForm</Name>
+                <Value xmlns:q9="http://www.w3.org/2001/XMLSchema" p4:type="q9:boolean" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">false</Value>
+              </Property>
+              <Property>
+                <Name>FilterAssemblyStrongName</Name>
+                <Value xmlns:q10="http://www.w3.org/2001/XMLSchema" p4:type="q10:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">Microsoft.SharePoint.Taxonomy, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Value>
+              </Property>
+              <Property>
+                <Name>FilterClassName</Name>
+                <Value xmlns:q11="http://www.w3.org/2001/XMLSchema" p4:type="q11:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">Microsoft.SharePoint.Taxonomy.TaxonomyField</Value>
+              </Property>
+              <Property>
+                <Name>FilterMethodName</Name>
+                <Value xmlns:q12="http://www.w3.org/2001/XMLSchema" p4:type="q12:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">GetFilteringHtml</Value>
+              </Property>
+              <Property>
+                <Name>FilterJavascriptProperty</Name>
+                <Value xmlns:q13="http://www.w3.org/2001/XMLSchema" p4:type="q13:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">FilteringJavascript</Value>
+              </Property>
+            </ArrayOfProperty>
+          </Customization>
+        </Field>
+        <Field Type="Lookup" DisplayName="TestSpalte1:Geändert" WebId="6378b72c-0ded-430a-ad1c-5c12100c7ebf" ShowField="Modified" FieldRef="37488b88-f58b-4a39-a906-caf3d01bb6f4" UnlimitedLengthInDocumentLibrary="FALSE" Group="_AP_TestColumn" ID="{ffbba7af-45c4-4008-921b-8edb16cfc0f4}" SourceID="{6378b72c-0ded-430a-ad1c-5c12100c7ebf}" StaticName="TestSpalte1_x003A_Ge_x00e4_ndert" Name="TestSpalte1_x003A_Ge_x00e4_ndert" List="{{listid:Dokumente}}" ReadOnly="TRUE" />
+        <Field Type="Boolean" DisplayName="Test JaNein" Description="Test Spalte für JaNein" EnforceUniqueValues="FALSE" Indexed="FALSE" Group="_AP_TestColumn_Group" ID="{7ffd76b0-e72a-4712-9a33-3cb945b908f6}" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" StaticName="TestJaNein" Name="TestJaNein" AllowDeletion="TRUE">
+          <Default>1</Default>
+        </Field>
+        <Field Type="Text" DisplayName="Test Eine Textzeile" Description="Test Spalte Eine Textzeile" Required="TRUE" EnforceUniqueValues="TRUE" Indexed="TRUE" MaxLength="155" Group="_AP_TestColumn_Group" ID="{457e29b4-1456-4f26-8100-517e9b5335cb}" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" StaticName="TestEineTextzeile" Name="TestEineTextzeile" AllowDeletion="TRUE">
+          <Default>#Standardwert#</Default>
+        </Field>
+        <Field Type="Note" DisplayName="Test Verwaltete Metadaten_0" StaticName="m1e26964b5a44eccb492c4ab53100633" Name="m1e26964b5a44eccb492c4ab53100633" ID="{2534b9be-0a03-406a-a278-68ef8dd8fd9e}" ShowInViewForms="FALSE" Required="FALSE" CanToggleHidden="TRUE" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" Hidden="TRUE" />
+        <Field Type="OutcomeChoice" DisplayName="Test Ergebnis der Aufgabe" Description="Test Spalte für Ergebnis der Aufgabe" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Group="_AP_TestColumn_Group" ID="{7c6199c0-8ade-4a62-aa1c-c485a1932443}" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" StaticName="TestErgebnisDerAufgabe" Name="TestErgebnisDerAufgabe" AllowDeletion="TRUE">
+          <Default>Geben Sie Auswahl Nr. 1 ein</Default>
+          <CHOICES>
+            <CHOICE>Geben Sie Auswahl Nr. 1 ein</CHOICE>
+            <CHOICE>Geben Sie Auswahl Nr. 2 ein.</CHOICE>
+            <CHOICE>Geben Sie Auswahl Nr. 3 ein.</CHOICE>
+          </CHOICES>
+        </Field>
+        <Field Type="Note" DisplayName="Test Mehrere Textzeilen" Description="Test Spalte für Mehrere Textzeilen" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" NumLines="6" RichText="TRUE" RichTextMode="FullHtml" IsolateStyles="TRUE" Sortable="FALSE" Group="_AP_TestColumn_Group" ID="{e43be6cd-eacc-4244-8e4a-e923db996232}" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" StaticName="TestMehrereTextzeilen" Name="TestMehrereTextzeilen" AllowDeletion="TRUE">
+        </Field>
+        <Field Type="Currency" DisplayName="Test Währung" Description="Test Spalte für Währung" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" LCID="1031" Group="_AP_TestColumn_Group" ID="{701743d0-0e0e-4143-b7c2-8250133bce20}" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" StaticName="TestWaehrung" Name="TestWaehrung" AllowDeletion="TRUE">
+        </Field>
+        <Field ID="{261075DB-0525-4FB8-A6EA-772014186599}" Name="LayoutWebpartsContent" StaticName="LayoutWebpartsContent" DisplayName="Seitenlayoutinhalt" Type="HTML" SourceID="http://schemas.microsoft.com/sharepoint/v3" Group="_Hidden" Description="Diese Spalte speichert den Inhalt von Webparts im Seitenlayout auf einer Websiteseite." ShowInNewForm="FALSE" ShowInEditForm="FALSE" ShowInDisplayForm="FALSE" ShowInViewForms="FALSE" ShowInListSettings="FALSE" ShowInVersionHistory="FALSE" RichText="TRUE" RichTextMode="FullHtml" />
+        <Field Type="Number" DisplayName="Test Zahl" Description="Test Spalte für Zahl" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Group="_AP_TestColumn_Group" ID="{3dda3ae0-d121-4d83-a99b-bf2ff85eade7}" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" StaticName="TestZahl" Name="TestZahl" AllowDeletion="TRUE">
+        </Field>
+        <Field Type="Calculated" DisplayName="Test Berechnet" Description="Test Spalte für Berechnet" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" LCID="1031" ResultType="Text" Group="_AP_TestColumn_Group" ID="{b6c0f8da-626c-4f72-a230-a785c3232f86}" SourceID="6378b72c-0ded-430a-ad1c-5c12100c7ebf" StaticName="TestBerechnet" Name="TestBerechnet" AllowDeletion="TRUE" ReadOnly="TRUE">
+          <Formula>=Titel</Formula>
+        </Field>
+      </pnp:SiteFields>
+      <pnp:ContentTypes>
+        <pnp:ContentType ID="0x010100653E1F86F333486AB54B2105D836C0F7" Name="TestContentType1" Description="Ein Content Type fürs Testen" Group="_AP_TestContentType" NewFormUrl="" EditFormUrl="" DisplayFormUrl="">
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="c042a256-787d-4a6f-8a8a-cf6ab767f12d" Name="ContentType" />
+            <pnp:FieldRef ID="5f47e085-2150-41dc-b661-442f3027f552" Name="SelectFilename" />
+            <pnp:FieldRef ID="8553196d-ec8d-4564-9861-3dbe931050c8" Name="FileLeafRef" Required="true" />
+            <pnp:FieldRef ID="8c06beca-0777-48f7-91c7-6da68bc07b69" Name="Created" Hidden="true" />
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" />
+            <pnp:FieldRef ID="28cf69c5-fa48-462a-b5cd-27b6f9d2bd5f" Name="Modified" Hidden="true" />
+            <pnp:FieldRef ID="822c78e3-1ea9-4943-b449-57863ad33ca9" Name="Modified_x0020_By" />
+            <pnp:FieldRef ID="4dd7e525-8d6b-4cb4-9d3e-44ee25f973eb" Name="Created_x0020_By" />
+            <pnp:FieldRef ID="37488b88-f58b-4a39-a906-caf3d01bb6f4" Name="TestSpalte1" Required="true" />
+            <pnp:FieldRef ID="2404f018-ac46-4c4b-b71b-033c5980b567" Name="TestSpalte1_x003A_ID" />
+            <pnp:FieldRef ID="4290012f-ce34-4043-97be-f92547d997c6" Name="TestSpalte1_x003A_Titel" />
+            <pnp:FieldRef ID="e9b20430-e7dc-43d3-b582-566d6c010f28" Name="TestSpalte1_x003A_Version" />
+            <pnp:FieldRef ID="76da0653-5102-4bad-a584-e2158921801c" Name="TestSpalte1_x003A_Kopiequelle" />
+            <pnp:FieldRef ID="fb27856a-7445-43c6-8b42-0aa6e47e8569" Name="TestSpalte1_x003A_Erstellt" />
+            <pnp:FieldRef ID="ffbba7af-45c4-4008-921b-8edb16cfc0f4" Name="TestSpalte1_x003A_Geändert" />
+            <pnp:FieldRef ID="d97ed689-adcc-4e7c-9764-03debd5f5fba" Name="TestAuswahl" />
+            <pnp:FieldRef ID="b6c0f8da-626c-4f72-a230-a785c3232f86" Name="TestBerechnet" />
+            <pnp:FieldRef ID="659f934b-05af-4066-8d44-c4bd21bfc26f" Name="TestBildMitFormatierung" />
+            <pnp:FieldRef ID="51658905-c714-466e-8f51-e61d0c0f42e2" Name="TestDatumUhrzeit" />
+            <pnp:FieldRef ID="457e29b4-1456-4f26-8100-517e9b5335cb" Name="TestEineTextzeile" Required="true" />
+            <pnp:FieldRef ID="7c6199c0-8ade-4a62-aa1c-c485a1932443" Name="TestErgebnisDerAufgabe" />
+            <pnp:FieldRef ID="7ffd76b0-e72a-4712-9a33-3cb945b908f6" Name="TestJaNein" />
+            <pnp:FieldRef ID="5becd22e-c63b-4ab7-a68a-5acf40f06e90" Name="TestLinkMitFormatierung" />
+            <pnp:FieldRef ID="6db07889-7323-413a-9249-e9247ee72e49" Name="TestLinkBild" />
+            <pnp:FieldRef ID="e43be6cd-eacc-4244-8e4a-e923db996232" Name="TestMehrereTextzeilen" />
+            <pnp:FieldRef ID="bf7d852f-4ef5-44d2-8fba-3fe1baf119f2" Name="TestNachschlagen" />
+            <pnp:FieldRef ID="c4f7bc23-3139-43e6-b2da-3b50e0d0f3f4" Name="TestNachschlagen_x003A_Erstellt" />
+            <pnp:FieldRef ID="145f4463-66ff-4154-8dba-71470b98be91" Name="TestNachschlagen_x003A_ID" />
+            <pnp:FieldRef ID="7f8bbf44-c2ea-4e82-a7d7-7380f5a5ca72" Name="TestPersonGroup" />
+            <pnp:FieldRef ID="2e90c351-8f6a-4fa7-b611-cfb4a82c711d" Name="TestRichMedia" />
+            <pnp:FieldRef ID="24c6caeb-f3b7-4dd5-9b6e-e7571314da4b" Name="h2faa092bec94380938512384c6d0683" Hidden="true" />
+            <pnp:FieldRef ID="f3b0adf9-c1a2-4b02-920d-943fba4b3611" Name="TaxCatchAll" Hidden="true" />
+            <pnp:FieldRef ID="8f6b6dd8-9357-4019-8172-966fcd502ed2" Name="TaxCatchAllLabel" Hidden="true" />
+            <pnp:FieldRef ID="12faa092-bec9-4380-9385-12384c6d0683" Name="TestVerwalteteMetadaten" />
+            <pnp:FieldRef ID="701743d0-0e0e-4143-b7c2-8250133bce20" Name="TestWaehrung" />
+            <pnp:FieldRef ID="3dda3ae0-d121-4d83-a99b-bf2ff85eade7" Name="TestZahl" />
+            <pnp:FieldRef ID="bac9d637-2f4b-4060-a678-41b38342484f" Name="TestHyperlinkUebersichtdaten" />
+            <pnp:FieldRef ID="2651f78d-ecfc-4705-be02-8f75cf6f4fe4" Name="TestHTMLInhalt" />
+          </pnp:FieldRefs>
+        </pnp:ContentType>
+        <pnp:ContentType ID="0x0101006E5B6566219E4DEA90F76DB708711869" Name="TestContentType2" Description="Ein Content Type fürs Testen" Group="_AP_TestContentType" NewFormUrl="" EditFormUrl="" DisplayFormUrl="">
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="c042a256-787d-4a6f-8a8a-cf6ab767f12d" Name="ContentType" />
+            <pnp:FieldRef ID="5f47e085-2150-41dc-b661-442f3027f552" Name="SelectFilename" />
+            <pnp:FieldRef ID="8553196d-ec8d-4564-9861-3dbe931050c8" Name="FileLeafRef" Required="true" />
+            <pnp:FieldRef ID="8c06beca-0777-48f7-91c7-6da68bc07b69" Name="Created" Hidden="true" />
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" />
+            <pnp:FieldRef ID="28cf69c5-fa48-462a-b5cd-27b6f9d2bd5f" Name="Modified" Hidden="true" />
+            <pnp:FieldRef ID="822c78e3-1ea9-4943-b449-57863ad33ca9" Name="Modified_x0020_By" />
+            <pnp:FieldRef ID="4dd7e525-8d6b-4cb4-9d3e-44ee25f973eb" Name="Created_x0020_By" />
+            <pnp:FieldRef ID="37488b88-f58b-4a39-a906-caf3d01bb6f4" Name="TestSpalte1" Required="true" />
+            <pnp:FieldRef ID="2404f018-ac46-4c4b-b71b-033c5980b567" Name="TestSpalte1_x003A_ID" />
+            <pnp:FieldRef ID="4290012f-ce34-4043-97be-f92547d997c6" Name="TestSpalte1_x003A_Titel" />
+            <pnp:FieldRef ID="e9b20430-e7dc-43d3-b582-566d6c010f28" Name="TestSpalte1_x003A_Version" />
+            <pnp:FieldRef ID="76da0653-5102-4bad-a584-e2158921801c" Name="TestSpalte1_x003A_Kopiequelle" />
+            <pnp:FieldRef ID="fb27856a-7445-43c6-8b42-0aa6e47e8569" Name="TestSpalte1_x003A_Erstellt" />
+            <pnp:FieldRef ID="ffbba7af-45c4-4008-921b-8edb16cfc0f4" Name="TestSpalte1_x003A_Geändert" />
+            <pnp:FieldRef ID="d97ed689-adcc-4e7c-9764-03debd5f5fba" Name="TestAuswahl" />
+            <pnp:FieldRef ID="b6c0f8da-626c-4f72-a230-a785c3232f86" Name="TestBerechnet" />
+            <pnp:FieldRef ID="659f934b-05af-4066-8d44-c4bd21bfc26f" Name="TestBildMitFormatierung" />
+            <pnp:FieldRef ID="51658905-c714-466e-8f51-e61d0c0f42e2" Name="TestDatumUhrzeit" />
+            <pnp:FieldRef ID="457e29b4-1456-4f26-8100-517e9b5335cb" Name="TestEineTextzeile" Required="true" />
+            <pnp:FieldRef ID="7c6199c0-8ade-4a62-aa1c-c485a1932443" Name="TestErgebnisDerAufgabe" />
+            <pnp:FieldRef ID="7ffd76b0-e72a-4712-9a33-3cb945b908f6" Name="TestJaNein" />
+            <pnp:FieldRef ID="5becd22e-c63b-4ab7-a68a-5acf40f06e90" Name="TestLinkMitFormatierung" />
+            <pnp:FieldRef ID="6db07889-7323-413a-9249-e9247ee72e49" Name="TestLinkBild" />
+            <pnp:FieldRef ID="e43be6cd-eacc-4244-8e4a-e923db996232" Name="TestMehrereTextzeilen" />
+            <pnp:FieldRef ID="bf7d852f-4ef5-44d2-8fba-3fe1baf119f2" Name="TestNachschlagen" />
+            <pnp:FieldRef ID="c4f7bc23-3139-43e6-b2da-3b50e0d0f3f4" Name="TestNachschlagen_x003A_Erstellt" />
+            <pnp:FieldRef ID="145f4463-66ff-4154-8dba-71470b98be91" Name="TestNachschlagen_x003A_ID" />
+            <pnp:FieldRef ID="7f8bbf44-c2ea-4e82-a7d7-7380f5a5ca72" Name="TestPersonGroup" />
+            <pnp:FieldRef ID="2e90c351-8f6a-4fa7-b611-cfb4a82c711d" Name="TestRichMedia" />
+            <pnp:FieldRef ID="24c6caeb-f3b7-4dd5-9b6e-e7571314da4b" Name="h2faa092bec94380938512384c6d0683" Hidden="true" />
+            <pnp:FieldRef ID="f3b0adf9-c1a2-4b02-920d-943fba4b3611" Name="TaxCatchAll" Hidden="true" />
+            <pnp:FieldRef ID="8f6b6dd8-9357-4019-8172-966fcd502ed2" Name="TaxCatchAllLabel" Hidden="true" />
+            <pnp:FieldRef ID="12faa092-bec9-4380-9385-12384c6d0683" Name="TestVerwalteteMetadaten" />
+            <pnp:FieldRef ID="701743d0-0e0e-4143-b7c2-8250133bce20" Name="TestWaehrung" />
+            <pnp:FieldRef ID="3dda3ae0-d121-4d83-a99b-bf2ff85eade7" Name="TestZahl" />
+            <pnp:FieldRef ID="bac9d637-2f4b-4060-a678-41b38342484f" Name="TestHyperlinkUebersichtdaten" />
+            <pnp:FieldRef ID="2651f78d-ecfc-4705-be02-8f75cf6f4fe4" Name="TestHTMLInhalt" />
+          </pnp:FieldRefs>
+        </pnp:ContentType>
+        <pnp:ContentType ID="0x0101006F403AC8FF75A449B234FAE79E24A12A" Name="TestContentType" Description="Ein Content Type fürs Testen" Group="_AP_TestContentType" NewFormUrl="" EditFormUrl="" DisplayFormUrl="">
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="c042a256-787d-4a6f-8a8a-cf6ab767f12d" Name="ContentType" />
+            <pnp:FieldRef ID="5f47e085-2150-41dc-b661-442f3027f552" Name="SelectFilename" />
+            <pnp:FieldRef ID="8553196d-ec8d-4564-9861-3dbe931050c8" Name="FileLeafRef" Required="true" />
+            <pnp:FieldRef ID="8c06beca-0777-48f7-91c7-6da68bc07b69" Name="Created" Hidden="true" />
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" />
+            <pnp:FieldRef ID="28cf69c5-fa48-462a-b5cd-27b6f9d2bd5f" Name="Modified" Hidden="true" />
+            <pnp:FieldRef ID="822c78e3-1ea9-4943-b449-57863ad33ca9" Name="Modified_x0020_By" />
+            <pnp:FieldRef ID="4dd7e525-8d6b-4cb4-9d3e-44ee25f973eb" Name="Created_x0020_By" />
+            <pnp:FieldRef ID="37488b88-f58b-4a39-a906-caf3d01bb6f4" Name="TestSpalte1" Required="true" />
+            <pnp:FieldRef ID="2404f018-ac46-4c4b-b71b-033c5980b567" Name="TestSpalte1_x003A_ID" />
+            <pnp:FieldRef ID="4290012f-ce34-4043-97be-f92547d997c6" Name="TestSpalte1_x003A_Titel" />
+            <pnp:FieldRef ID="e9b20430-e7dc-43d3-b582-566d6c010f28" Name="TestSpalte1_x003A_Version" />
+            <pnp:FieldRef ID="76da0653-5102-4bad-a584-e2158921801c" Name="TestSpalte1_x003A_Kopiequelle" />
+            <pnp:FieldRef ID="fb27856a-7445-43c6-8b42-0aa6e47e8569" Name="TestSpalte1_x003A_Erstellt" />
+            <pnp:FieldRef ID="ffbba7af-45c4-4008-921b-8edb16cfc0f4" Name="TestSpalte1_x003A_Geändert" />
+            <pnp:FieldRef ID="d97ed689-adcc-4e7c-9764-03debd5f5fba" Name="TestAuswahl" />
+            <pnp:FieldRef ID="b6c0f8da-626c-4f72-a230-a785c3232f86" Name="TestBerechnet" />
+            <pnp:FieldRef ID="659f934b-05af-4066-8d44-c4bd21bfc26f" Name="TestBildMitFormatierung" />
+            <pnp:FieldRef ID="51658905-c714-466e-8f51-e61d0c0f42e2" Name="TestDatumUhrzeit" />
+            <pnp:FieldRef ID="457e29b4-1456-4f26-8100-517e9b5335cb" Name="TestEineTextzeile" Required="true" />
+            <pnp:FieldRef ID="7c6199c0-8ade-4a62-aa1c-c485a1932443" Name="TestErgebnisDerAufgabe" />
+            <pnp:FieldRef ID="7ffd76b0-e72a-4712-9a33-3cb945b908f6" Name="TestJaNein" />
+            <pnp:FieldRef ID="5becd22e-c63b-4ab7-a68a-5acf40f06e90" Name="TestLinkMitFormatierung" />
+            <pnp:FieldRef ID="6db07889-7323-413a-9249-e9247ee72e49" Name="TestLinkBild" />
+            <pnp:FieldRef ID="e43be6cd-eacc-4244-8e4a-e923db996232" Name="TestMehrereTextzeilen" />
+            <pnp:FieldRef ID="bf7d852f-4ef5-44d2-8fba-3fe1baf119f2" Name="TestNachschlagen" />
+            <pnp:FieldRef ID="c4f7bc23-3139-43e6-b2da-3b50e0d0f3f4" Name="TestNachschlagen_x003A_Erstellt" />
+            <pnp:FieldRef ID="145f4463-66ff-4154-8dba-71470b98be91" Name="TestNachschlagen_x003A_ID" />
+            <pnp:FieldRef ID="7f8bbf44-c2ea-4e82-a7d7-7380f5a5ca72" Name="TestPersonGroup" />
+            <pnp:FieldRef ID="2e90c351-8f6a-4fa7-b611-cfb4a82c711d" Name="TestRichMedia" />
+            <pnp:FieldRef ID="24c6caeb-f3b7-4dd5-9b6e-e7571314da4b" Name="h2faa092bec94380938512384c6d0683" Hidden="true" />
+            <pnp:FieldRef ID="f3b0adf9-c1a2-4b02-920d-943fba4b3611" Name="TaxCatchAll" Hidden="true" />
+            <pnp:FieldRef ID="8f6b6dd8-9357-4019-8172-966fcd502ed2" Name="TaxCatchAllLabel" Hidden="true" />
+            <pnp:FieldRef ID="12faa092-bec9-4380-9385-12384c6d0683" Name="TestVerwalteteMetadaten" />
+            <pnp:FieldRef ID="701743d0-0e0e-4143-b7c2-8250133bce20" Name="TestWaehrung" />
+            <pnp:FieldRef ID="3dda3ae0-d121-4d83-a99b-bf2ff85eade7" Name="TestZahl" />
+            <pnp:FieldRef ID="bac9d637-2f4b-4060-a678-41b38342484f" Name="TestHyperlinkUebersichtdaten" />
+            <pnp:FieldRef ID="2651f78d-ecfc-4705-be02-8f75cf6f4fe4" Name="TestHTMLInhalt" />
+          </pnp:FieldRefs>
+        </pnp:ContentType>
+      </pnp:ContentTypes>
+      <pnp:Lists>
+        <pnp:ListInstance Title="Test Liste" Description="" DocumentTemplate="" TemplateType="100" Url="Lists/TestList" MinorVersionLimit="0" MaxVersionLimit="0" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" ContentTypesEnabled="true" EnableAttachments="false" EnableFolderCreation="false">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x0101006F403AC8FF75A449B234FAE79E24A12A" Default="true" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{2FFC1071-01FD-4754-AC8E-B1C28C316FEB}" DefaultView="TRUE" Type="HTML" DisplayName="Alle Segmente" Url="/sites/vkfsmartTestProvisioning/Lists/TestList/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=44">
+              <Query>
+                <OrderBy>
+                  <FieldRef Name="Title" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="Title" />
+                <FieldRef Name="TestAuswahl" />
+                <FieldRef Name="TestBerechnet" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+          </pnp:Views>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="24c6caeb-f3b7-4dd5-9b6e-e7571314da4b" Name="h2faa092bec94380938512384c6d0683" Hidden="true" DisplayName="Test Verwaltete Metadaten_1" />
+            <pnp:FieldRef ID="822c78e3-1ea9-4943-b449-57863ad33ca9" Name="Modified_x0020_By" DisplayName="Dokument geändert von" />
+            <pnp:FieldRef ID="4dd7e525-8d6b-4cb4-9d3e-44ee25f973eb" Name="Created_x0020_By" DisplayName="Dokument erstellt von" />
+            <pnp:FieldRef ID="37488b88-f58b-4a39-a906-caf3d01bb6f4" Name="TestSpalte1" Required="true" DisplayName="TestSpalte1" />
+            <pnp:FieldRef ID="2404f018-ac46-4c4b-b71b-033c5980b567" Name="TestSpalte1_x003A_ID" DisplayName="TestSpalte1:ID" />
+            <pnp:FieldRef ID="4290012f-ce34-4043-97be-f92547d997c6" Name="TestSpalte1_x003A_Titel" DisplayName="TestSpalte1:Titel" />
+            <pnp:FieldRef ID="e9b20430-e7dc-43d3-b582-566d6c010f28" Name="TestSpalte1_x003A_Version" DisplayName="TestSpalte1:Version" />
+            <pnp:FieldRef ID="76da0653-5102-4bad-a584-e2158921801c" Name="TestSpalte1_x003A_Kopiequelle" DisplayName="TestSpalte1:Kopiequelle" />
+            <pnp:FieldRef ID="fb27856a-7445-43c6-8b42-0aa6e47e8569" Name="TestSpalte1_x003A_Erstellt" DisplayName="TestSpalte1:Erstellt" />
+            <pnp:FieldRef ID="ffbba7af-45c4-4008-921b-8edb16cfc0f4" Name="TestSpalte1_x003A_Ge_x00e4_ndert" DisplayName="TestSpalte1:Geändert" />
+            <pnp:FieldRef ID="d97ed689-adcc-4e7c-9764-03debd5f5fba" Name="TestAuswahl" DisplayName="Test Auswahl" />
+            <pnp:FieldRef ID="659f934b-05af-4066-8d44-c4bd21bfc26f" Name="TestBildMitFormatierung" DisplayName="Test Bild mit Formatierung" />
+            <pnp:FieldRef ID="51658905-c714-466e-8f51-e61d0c0f42e2" Name="TestDatumUhrzeit" DisplayName="Test DatumUhrzeit" />
+            <pnp:FieldRef ID="457e29b4-1456-4f26-8100-517e9b5335cb" Name="TestEineTextzeile" DisplayName="Test Eine Textzeile" />
+            <pnp:FieldRef ID="7c6199c0-8ade-4a62-aa1c-c485a1932443" Name="TestErgebnisDerAufgabe" DisplayName="Test Ergebnis der Aufgabe" />
+            <pnp:FieldRef ID="7ffd76b0-e72a-4712-9a33-3cb945b908f6" Name="TestJaNein" DisplayName="Test JaNein" />
+            <pnp:FieldRef ID="5becd22e-c63b-4ab7-a68a-5acf40f06e90" Name="TestLinkMitFormatierung" DisplayName="Test Link mit Formatierung" />
+            <pnp:FieldRef ID="6db07889-7323-413a-9249-e9247ee72e49" Name="TestLinkBild" DisplayName="Test LinkBild" />
+            <pnp:FieldRef ID="e43be6cd-eacc-4244-8e4a-e923db996232" Name="TestMehrereTextzeilen" DisplayName="Test Mehrere Textzeilen" />
+            <pnp:FieldRef ID="bf7d852f-4ef5-44d2-8fba-3fe1baf119f2" Name="TestNachschlagen" DisplayName="Test Nachschlagen" />
+            <pnp:FieldRef ID="c4f7bc23-3139-43e6-b2da-3b50e0d0f3f4" Name="TestNachschlagen_x003A_Erstellt" DisplayName="Test Nachschlagen:Erstellt" />
+            <pnp:FieldRef ID="145f4463-66ff-4154-8dba-71470b98be91" Name="TestNachschlagen_x003A_ID" DisplayName="Test Nachschlagen:ID" />
+            <pnp:FieldRef ID="7f8bbf44-c2ea-4e82-a7d7-7380f5a5ca72" Name="TestPersonGroup" DisplayName="Test PersonGroup" />
+            <pnp:FieldRef ID="2e90c351-8f6a-4fa7-b611-cfb4a82c711d" Name="TestRichMedia" DisplayName="Test Rich Media" />
+            <pnp:FieldRef ID="12faa092-bec9-4380-9385-12384c6d0683" Name="TestVerwalteteMetadaten" DisplayName="Test Verwaltete Metadaten" />
+            <pnp:FieldRef ID="701743d0-0e0e-4143-b7c2-8250133bce20" Name="TestWaehrung" DisplayName="Test Währung" />
+            <pnp:FieldRef ID="3dda3ae0-d121-4d83-a99b-bf2ff85eade7" Name="TestZahl" DisplayName="Test Zahl" />
+            <pnp:FieldRef ID="bac9d637-2f4b-4060-a678-41b38342484f" Name="TestHyperlinkUebersichtdaten" DisplayName="Test Hyperlinkübersichtdaten" />
+            <pnp:FieldRef ID="2651f78d-ecfc-4705-be02-8f75cf6f4fe4" Name="TestHTMLInhalt" DisplayName="Test HTML-Inhalt" />
+            <pnp:FieldRef ID="b6c0f8da-626c-4f72-a230-a785c3232f86" Name="TestBerechnet" DisplayName="Test Berechnet" />
+          </pnp:FieldRefs>
+        </pnp:ListInstance>
+      </pnp:Lists>
+    </pnp:ProvisioningTemplate>
+  </pnp:Templates>
+</pnp:Provisioning>

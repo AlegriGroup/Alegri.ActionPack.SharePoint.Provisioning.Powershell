@@ -24,6 +24,11 @@
         <xs:element name="AP_SPProvisioning_RemovedSiteColumnFromContentType" type="alg:RemovedSiteColumnFromContentType" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_PnPProvisioning" type="alg:PnPProvisioning" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_GetProvisioningTemplate" type="alg:GetProvisioningTemplate" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_RemovedContentType" type="alg:RemovedContentType" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_RemovedListCorrectly" type="alg:RemovedListCorrectly" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName" type="alg:CleanPnPTemplateSiteColumnByGroupName" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName" type="alg:CleanPnPTemplateContentTypeByGroupName" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_SetSiteColumnDisplayName" type="alg:AP_SPProvisioning_SetSiteColumnDisplayName" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -209,21 +214,28 @@
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="Handlers" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          Nur Spezielle Artefakte des Templates Provisionieren
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
 
   <xs:complexType name="GetProvisioningTemplate">
     <xs:annotation>
       <xs:documentation>
         This creates a provisioning template from the current site
-        
-        Hiermit wird aus der aktuellen verbundene Site ein Provisiong Template erstellt. 
+
+        Hiermit wird aus der aktuellen verbundene Site ein Provisiong Template erstellt.
       </xs:documentation>
     </xs:annotation>
     <xs:attribute name="Out" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>
           The path where the template is to be placed after creation.
-          
+
           Der Pfad wo das Template nach Erstellung abgelegt werden soll.
         </xs:documentation>
       </xs:annotation>
@@ -237,6 +249,116 @@
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="Handlers" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          Nur Spezielle Artefakte des Templates ausgeben : Navigation, Fields, ContentTypes, Lists, CustomActions, Files
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
- 
+
+  <xs:complexType name="RemovedContentType">
+    <xs:annotation>
+      <xs:documentation>
+        Removes ContentType from the current linked site
+        Hiermit entfernen Sie ContentType aus der aktuellen verbundene Site
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Name" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          The name of the ContentType to remove
+          Den Namen des ContentType das entfernt werden soll
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="GroupName" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          The group names of the ContentType to be removed. When you use the group name, the ContentType name is ignored, if passed.
+          Den Gruppennamen der ContentTypes die entfernt werden sollen. Bei der Verwendung des Gruppennamens wird der ContentType Namen, falls ebenfalls übergeben, ignoriert.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="RemovedListCorrectly">
+    <xs:annotation>
+      <xs:documentation>
+        Hiermit wird das Entfernen der Listen angestossen
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="pathToProvisioningXML" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The path to the ProvisioningXML where provision should be made
+          Der Pfad zur ProvisioningXML wo Provisioniert werden soll
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="CleanPnPTemplateSiteColumnByGroupName">
+    <xs:annotation>
+      <xs:documentation>
+        Damit werden SitColumns aus dem Provisioning Template entfernt
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="pathToProvisioningXML" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The path to the ProvisioningXML where the SiteColumn are contained.
+          Der Pfad zur ProvisioningXML wo die SiteColumn enthalten sind.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="GroupNames" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Den Gruppennamen der im Template bestehen bleiben soll.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="CleanPnPTemplateContentTypeByGroupName">
+    <xs:annotation>
+      <xs:documentation>
+        Damit werden SitColumns aus dem Provisioning Template entfernt
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="pathToProvisioningXML" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The path to the ProvisioningXML where the SiteColumn are contained.
+          Der Pfad zur ProvisioningXML wo die SiteColumn enthalten sind.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="GroupNames" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Den Gruppennamen der im Template bestehen bleiben soll.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  
+  <xs:complexType name="AP_SPProvisioning_SetSiteColumnDisplayName">
+    <xs:annotation>
+      <xs:documentation>
+        Damit werden SitColumns aus dem Provisioning Template entfernt
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="pathToProvisioningXML" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The path to the ProvisioningXML where the SiteColumn are contained.
+          Der Pfad zur ProvisioningXML wo die SiteColumn enthalten sind.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  
 </xs:schema>

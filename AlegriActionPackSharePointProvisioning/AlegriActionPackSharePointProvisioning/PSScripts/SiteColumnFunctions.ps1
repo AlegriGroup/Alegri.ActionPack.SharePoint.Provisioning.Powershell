@@ -106,15 +106,54 @@ function Start-AP_SPProvisioning_RemovedSiteColumnFromContentType
 	}
 }
 
+function Start-AP_SPProvisioning_SetSiteColumnDisplayName
+{
+	[CmdletBinding()]
+	param
+	(
+        [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=0)]
+        [System.Xml.XmlLinkedNode]$xmlActionObject
+	)
+	begin
+	{
+		Write-Verbose "Start-AP_SPProvisioning_SetSiteColumnDisplayName begin"
+	}
+	process
+	{
+		$xmlFilePath = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.pathToProvisioningXML
+		$currentWeb = Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
+
+		[xml]$content = Get-Content -Path $xmlFilePath -Encoding UTF8
+		$siteFields = $content.Provisioning.Templates.ProvisioningTemplate.SiteFields.Field
+
+		foreach($siteField in $siteFields)
+		{
+			$currentField = Use-AP_SPProvisioning_PnP_Get-PnPField -Web $currentWeb.Web -Identity $siteField.ID
+            
+            if($currentField.Title -ne $siteField.DisplayName) 
+            {
+                $currentField.Title = $siteField.DisplayName
+                $currentField.Update()
+                $currentField.Context.ExecuteQuery()
+                Write-Host "Spalte $($siteField.Name) zu $($siteField.DisplayName) geÃ¤ndert"
+            }
+		}
+	}
+	end
+	{
+		Write-Verbose "Start-AP_SPProvisioning_SetSiteColumnDisplayName end"
+	}
+}
+
 function Select-AP_SPProvisioning_SiteColumn
 {
 	<# 
 	.SYNOPSIS
 	Checks whether a SiteColumn or Groups should be deleted
-	Prüft ob eine SiteColumn oder Gruppen gelöscht werden sollen
+	Prï¿½ft ob eine SiteColumn oder Gruppen gelï¿½scht werden sollen
     .DESCRIPTION
 	If you have specified a field name, it is deleted. If you specify a group name, all SiteColumns in the group will be removed and the FieldName will be passed if it is also present.
-    Wenn Sie einen Fieldname angegeben haben, wird dieser gelöscht. Wenn Sie eine Gruppenamen angeben, werde alle SiteColumns in der Gruppe entfernt und der FieldName wird übergangen, sollte dieser ebenfalls vorhanden sein.
+    Wenn Sie einen Fieldname angegeben haben, wird dieser gelï¿½scht. Wenn Sie eine Gruppenamen angeben, werde alle SiteColumns in der Gruppe entfernt und der FieldName wird ï¿½bergangen, sollte dieser ebenfalls vorhanden sein.
 	.PARAMETER Web
 	The Current Web Object 
 	Das Aktuelle Web Objekt
@@ -173,10 +212,10 @@ function Remove-SPProvisioning_AllSiteColumnFromGroup
 	<# 
 	.SYNOPSIS
 	Removes all SiteColumns belonging to the group
-	Entfernt alle SiteColumn die der Gruppe angehören	
+	Entfernt alle SiteColumn die der Gruppe angehï¿½ren	
     .DESCRIPTION
 	Removes all SiteColumns belonging to the group
-    Entfernt alle SiteColumn die der Gruppe angehören
+    Entfernt alle SiteColumn die der Gruppe angehï¿½ren
     .PARAMETER Groupname
 	The Name of the Group 
     Der Name der Gruppe
@@ -228,14 +267,14 @@ function Find-SPProvisioning_SiteColumnReferenz
 {
 	<# 
 	.SYNOPSIS
-	Es wird geprüft ob es Abhängigkeiten zu der SiteColumn gibt	
+	Es wird geprï¿½ft ob es Abhï¿½ngigkeiten zu der SiteColumn gibt	
     .DESCRIPTION
-	Es wird geprüft ob es Abhängigkeiten zu der SiteColumn gibt. Wenn ja werden diese zuerst in das Array gefüllt.
-	Danach die Spalte selbst. Somit können Sie zuerst die Abhängigen Spalten löschen und danach die Hauptspalte.
+	Es wird geprï¿½ft ob es Abhï¿½ngigkeiten zu der SiteColumn gibt. Wenn ja werden diese zuerst in das Array gefï¿½llt.
+	Danach die Spalte selbst. Somit kï¿½nnen Sie zuerst die Abhï¿½ngigen Spalten lï¿½schen und danach die Hauptspalte.
     .PARAMETER SiteColumns
-	Ein Array mit allen SiteColumns zu überprüfen
+	Ein Array mit allen SiteColumns zu ï¿½berprï¿½fen
 	.PARAMETER SiteColumn
-	Die SiteColumn die nach Abhängigkeit überprüft werden soll
+	Die SiteColumn die nach Abhï¿½ngigkeit ï¿½berprï¿½ft werden soll
 	.OUTPUT Array
 	Ein Array mit allen SiteColumns
 	#>
@@ -404,15 +443,98 @@ function Remove-SPProvisioning_SiteColumnFromContentType
 	}
 }
 
+function Remove-FieldsFromListsCorrectly
+{
+	<# 
+	.SYNOPSIS
+	Entfernt die SiteColumn von der Liste
+    .DESCRIPTION
+    Es werden auf allen ï¿½bergebenen Listen die verwendete SiteColumn im Projekt aus der Liste entfernt
+    .PARAMETER arrayLists
+    Die Liste auf dennen die SiteColumn entfernt werden sollen.
+	#>
+	[CmdletBinding()]
+	param(
+	[Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true,Position=0)]
+	[ValidateNotNullOrEmpty()]
+    $arrayLists,
+	[Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true,Position=1)]
+	$arraySiteColumn
+	)
+	begin
+	{
+		Write-Verbose "RemoveFieldsFromLists begin"
+	}
+	process
+	{
+		Write-Host "START RemoveFieldsFromLists"
+
+		foreach($liste in $arrayLists)
+		{   
+			Write-Host "Removing fields from List $liste"
+             
+			$currentWeb = Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
+			$list = Use-AP_SPProvisioning_PnP_Get-PnPList -Identity $liste -Web $currentWeb.Web
+
+			if($list)
+			{
+				$list.Context.Load($list.Fields)
+				$list.Context.ExecuteQuery()
+                
+                $sortedFields = $list.Fields | Sort-Object  -Property "InternalName" -Descending
+                
+				$fieldsReferenz = $sortedFields |  Where-Object {$_.InternalName -match "x003A" }
+				$fieldNormal = $sortedFields |  Where-Object {$_.InternalName -notmatch "x003A" }
+				
+				#Erst die Felder mit Referenz				    
+				for ($i = 0; $i -lt $fieldsReferenz.Count; $i++)         
+				{
+					$field = $fieldsReferenz[$i]
+					if($arraySiteColumn -contains $field.InternalName)
+					{
+						Use-AP_SPProvisioning_PnP_Remove-PnPField -Web $currentWeb.Web -List $list -Identity $field.InternalName -Force $true                     
+						Write-Host "Deleted field $($field.InternalName) from list" -Type success
+					}
+                    
+				}
+
+				#Danach die Felder ohne Referenz
+				for ($i = 0; $i -lt $fieldNormal.Count; $i++)         
+				{
+					$field = $fieldNormal[$i]
+					if($arraySiteColumn -contains $field.InternalName)
+					{
+						Use-AP_SPProvisioning_PnP_Remove-PnPField -Web $currentWeb.Web -List $list -Identity $field.InternalName -Force $true                     
+						Write-Host "Deleted field $($field.InternalName) from list" -Type success
+					}                    
+				}
+
+                $list.Context.ExecuteQuery()
+			}
+			else 
+			{
+				$text = "ERROR Deleted field from list $liste because List not found"
+				Write-Host $text -Type error
+				$text = $text + "Soll das Skript weiter machen?"
+				Create-QuestionTask -statement $text
+			}
+		}
+	}
+	end
+	{
+		Write-Verbose "RemoveFieldsFromLists end"
+	}
+}
+
 #TODO
-# Funktion ist für das Provisionieren ausgelegt
+# Funktion ist fÃ¼r das Provisionieren ausgelegt
 function Remove-SPProvisioning_AllSiteColumnsFromContentTypesFromProvisioning
 {
 	<# 
 	.SYNOPSIS
     Entfernt alle SiteColumns am ContentTypes
     .DESCRIPTION
-    Es werden alle ContentTypes und alle SiteColumns geladen. Dann wird geprüft ob am ContentType einer der SiteColumn enthalten ist, 
+    Es werden alle ContentTypes und alle SiteColumns geladen. Dann wird geprï¿½ft ob am ContentType einer der SiteColumn enthalten ist, 
 	wenn ja wird dieser vom ContentType entfernt.
     .PARAMETER WebContent 
     der XML Knoten mit den WebContents
@@ -432,7 +554,7 @@ function Remove-SPProvisioning_AllSiteColumnsFromContentTypesFromProvisioning
 		$ct = $WebContent.ContentTypes.ContentType
 		$sc = $WebContent.SiteColumns.SiteColumn
 
-		WriteHost "START RemoveSiteColumnsFromContentTypes"
+		Write-Host "START RemoveSiteColumnsFromContentTypes"
 
 		$web = $Global:CurrentWeb
 		$web.Context.Load($web.AvailableContentTypes)
@@ -442,7 +564,7 @@ function Remove-SPProvisioning_AllSiteColumnsFromContentTypesFromProvisioning
 		{
 			if($ct.InternalName -contains $contentType.Name)
 			{
-				WriteHost "Removing site columns from Content Type $($contentType.Name)"
+				Write-Host "Removing site columns from Content Type $($contentType.Name)"
 
 				$contentType.Context.Load($contentType.Fields)
 				$contentType.Context.Load($contentType.FieldLinks)
@@ -467,7 +589,7 @@ function Remove-SPProvisioning_AllSiteColumnsFromContentTypesFromProvisioning
 								$fieldLinkDependet.DeleteObject()
 								$contentType.Update($true);
 								$contentType.Context.ExecuteQuery()
-								WriteHost "Removed Dependent Site Column $($nameDependet)" -Type success
+								Write-Host "Removed Dependent Site Column $($nameDependet)" -Type success
 							}
 							else 
 							{
@@ -482,11 +604,11 @@ function Remove-SPProvisioning_AllSiteColumnsFromContentTypesFromProvisioning
 							$fieldLink.DeleteObject()
 							$contentType.Update($true);
 							$contentType.Context.ExecuteQuery()
-							WriteHost "Removed Site Column $($field.InternalName)" -Type success
+							Write-Host "Removed Site Column $($field.InternalName)" -Type success
 						}
 						else 
 						{
-							WriteHost "Error to Delete the FieldLinks $($field.InternalName)" -Type error
+							Write-Host "Error to Delete the FieldLinks $($field.InternalName)" -Type error
 						}
 					}
 				}
