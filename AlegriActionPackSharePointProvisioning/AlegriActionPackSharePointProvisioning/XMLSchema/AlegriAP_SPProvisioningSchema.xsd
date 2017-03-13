@@ -29,6 +29,7 @@
         <xs:element name="AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName" type="alg:CleanPnPTemplateSiteColumnByGroupName" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName" type="alg:CleanPnPTemplateContentTypeByGroupName" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_SetSiteColumnDisplayName" type="alg:AP_SPProvisioning_SetSiteColumnDisplayName" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_ChangeVersionInFile" type="alg:ChangeVersionInFile" minOccurs="0" maxOccurs="unbounded"/>        
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -359,6 +360,15 @@
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ChangeVersionInFile">
+    <xs:annotation>
+      <xs:documentation>
+        Damit werden SitColumns aus dem Provisioning Template entfernt
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="FileName" type="xs:string" use="required"/>
   </xs:complexType>
   
 </xs:schema>

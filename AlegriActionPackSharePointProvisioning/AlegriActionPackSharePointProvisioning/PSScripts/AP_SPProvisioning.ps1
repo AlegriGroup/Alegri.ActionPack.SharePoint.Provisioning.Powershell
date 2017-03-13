@@ -18,6 +18,7 @@
 . "$PSScriptRoot\ProvisioningFunctions.ps1"
 . "$PSScriptRoot\SiteColumnFunctions.ps1"
 . "$PSScriptRoot\WorkWithTemplateFunctions.ps1"
+. "$PSScriptRoot\FileFunctions.ps1"
 
 # You should register a new function in the two lower functions.
 # Sie sollten eine neue Funktion in den beiden unteren Funktionen registrieren. 
@@ -60,6 +61,7 @@ function Find-ActionInAP_SPProvisioning
 			"AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName" { $returnValue = $true }
 			"AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName" { $returnValue = $true }
 			"AP_SPProvisioning_SetSiteColumnDisplayName" { $returnValue = $true }
+			"AP_SPProvisioning_ChangeVersionInFile" { $returnValue = $true }
 			default { $returnValue = $false }
 		  }
 
@@ -113,6 +115,7 @@ function Start-ActionFromAP_SPProvisioning
 			"AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName" { Start-AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName }
 			"AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName" { Start-AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName }
 			"AP_SPProvisioning_SetSiteColumnDisplayName" { Start-AP_SPProvisioning_SetSiteColumnDisplayName -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_SetSiteColumnDisplayName } 
+			"AP_SPProvisioning_ChangeVersionInFile" { Start-AP_SPProvisioning_ChangeVersionInFile -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_ChangeVersionInFile } 			
 		}
 
 		Write-Host "Action : $($actionName) is ready" -ForegroundColor Green

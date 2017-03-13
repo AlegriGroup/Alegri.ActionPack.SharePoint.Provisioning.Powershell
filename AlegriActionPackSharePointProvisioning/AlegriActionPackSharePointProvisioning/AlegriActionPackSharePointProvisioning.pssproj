@@ -47,6 +47,7 @@
     <Compile Include="PSScripts\AP_SPProvisioning.ps1" />
     <Compile Include="PSScripts\ContentTypeFunctions.ps1" />
     <Compile Include="PSScripts\DependentFunction.ps1" />
+    <Compile Include="PSScripts\FileFunctions.ps1" />
     <Compile Include="PSScripts\ListFunctions.ps1" />
     <Compile Include="PSScripts\LookupSiteColumnFunctions.ps1" />
     <Compile Include="PSScripts\ProvisioningFunctions.ps1" />
