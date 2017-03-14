@@ -29,7 +29,8 @@
         <xs:element name="AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName" type="alg:CleanPnPTemplateSiteColumnByGroupName" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName" type="alg:CleanPnPTemplateContentTypeByGroupName" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_SetSiteColumnDisplayName" type="alg:AP_SPProvisioning_SetSiteColumnDisplayName" minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element name="AP_SPProvisioning_ChangeVersionInFile" type="alg:ChangeVersionInFile" minOccurs="0" maxOccurs="unbounded"/>        
+        <xs:element name="AP_SPProvisioning_ChangeVersionInFile" type="alg:ChangeVersionInFile" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_AddWebPartToSite" type="alg:AddWebPartToSite" minOccurs="0" maxOccurs="unbounded"/>        
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -369,6 +370,55 @@
       </xs:documentation>
     </xs:annotation>
     <xs:attribute name="FileName" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="AddWebPartToSite">
+    <xs:annotation>
+      <xs:documentation>
+        Damit werden SitColumns aus dem Provisioning Template entfernt
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Site" type="alg:Site" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="RemoveExistWebParts" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          Damit kann angegeben werden ob die vorhandenen WebParts entfernt werden sollen.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="Site">
+    <xs:annotation>
+      <xs:documentation>
+        Bitte geben Sie die entsprechende Eigenschaften an die Sie Bearbeiten möchten
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="WebPart" type="alg:WebPart" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="ServerRelativePageUrl" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="WebPart">
+    <xs:annotation>
+      <xs:documentation>
+        Geben Sie hier die nötigen Eigenschaften zu dem WebPart ein
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ChangeXML" type="alg:KeyValue" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="FileWithXMLContent" type="xs:string" use="required"/>
+    <xs:attribute name="ZoneID" type="xs:string" use="required"/>
+    <xs:attribute name="ZoneIndex" type="xs:integer" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="KeyValue">
+    <xs:attribute name="Key" type="xs:string" use="required"/>
+    <xs:attribute name="Value" type="xs:string" use="required"/>
   </xs:complexType>
   
 </xs:schema>

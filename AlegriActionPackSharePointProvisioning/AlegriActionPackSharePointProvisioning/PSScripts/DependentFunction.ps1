@@ -497,6 +497,32 @@ function Use-AP_SPProvisioning_PnP_Get-PnPProvisioningTemplate
     }
 }
 
+###### Web Parts #######
+function Use-AP_SPProvisioning_PnP_Get-PnPWebPart
+{
+	[CmdletBinding()]
+    param
+    (
+		[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=0)]
+		[ValidateNotNullOrEmpty()]
+		$Web,
+		[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=1)]
+		[ValidateNotNullOrEmpty()]
+		$Path
+	)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Apply-PnPProvisioningTemplate Begin" 
+    }
+    Process
+    {
+		Apply-PnPProvisioningTemplate -Path $Path -Web $Web -Parameters @{ "newWebId"=$Web.Id ;"newSourceId"=$Web.id }
+	}
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Apply-PnPProvisioningTemplate End"
+    }
+}
 
 
 

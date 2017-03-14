@@ -62,6 +62,7 @@ function Find-ActionInAP_SPProvisioning
 			"AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName" { $returnValue = $true }
 			"AP_SPProvisioning_SetSiteColumnDisplayName" { $returnValue = $true }
 			"AP_SPProvisioning_ChangeVersionInFile" { $returnValue = $true }
+			"AP_SPProvisioning_AddWebPartToSite" { $returnValue = $true }
 			default { $returnValue = $false }
 		  }
 
@@ -115,7 +116,8 @@ function Start-ActionFromAP_SPProvisioning
 			"AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName" { Start-AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName }
 			"AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName" { Start-AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName }
 			"AP_SPProvisioning_SetSiteColumnDisplayName" { Start-AP_SPProvisioning_SetSiteColumnDisplayName -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_SetSiteColumnDisplayName } 
-			"AP_SPProvisioning_ChangeVersionInFile" { Start-AP_SPProvisioning_ChangeVersionInFile -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_ChangeVersionInFile } 			
+			"AP_SPProvisioning_ChangeVersionInFile" { Start-AP_SPProvisioning_ChangeVersionInFile -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_ChangeVersionInFile } 	
+			"AP_SPProvisioning_AddWebPartToSite" { Start-AP_SPProvisioning_AddWebPartToSite -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_AddWebPartToSite } 		
 		}
 
 		Write-Host "Action : $($actionName) is ready" -ForegroundColor Green

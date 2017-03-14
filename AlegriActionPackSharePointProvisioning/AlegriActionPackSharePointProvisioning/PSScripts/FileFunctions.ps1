@@ -59,8 +59,7 @@ function Start-AP_SPProvisioning_ChangeVersionInFile
 	}
 }
 
-##TODO Alle funktionen noch anpassen
-function AddWebParts
+function Start-AP_SPProvisioning_AddWebPartToSite
 {
 	<# 
 	.SYNOPSIS
@@ -73,17 +72,21 @@ function AddWebParts
     #>
 	[CmdletBinding()]
 	param(
-	[Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true,Position=0)]
-	[ValidateNotNullOrEmpty()]
-    $arrayWebPartSite 
+	[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=0)]
+    $xmlActionObject
 	)
 	begin
 	{
-		Write-Verbose "AddWebParts begin"
+		Write-Verbose "Start-AP_SPProvisioning_AddWebPartToSite begin"
 	}
 	process
 	{
-		RemoveWebParts -arrayWebPartSite $arrayWebPartSite
+		$RemoveWebPart = $xmlActionObject.RemoveExistWebParts
+		$arrayWebPartSite = $xmlActionObject.Site
+		if($RemoveWebPart -eq "true")
+		{
+			Remove-WebParts -arrayWebPartSite $arrayWebPartSite
+		}		
 
 		foreach($site in $arrayWebPartSite.ChildNodes)
 		{
@@ -131,11 +134,11 @@ function AddWebParts
 		}
 	end
 	{
-		Write-Verbose "AddWebParts end"
+		Write-Verbose "Start-AP_SPProvisioning_AddWebPartToSite end"
 	}
 }
 
-function RemoveWebParts
+function Remove-WebParts
 {    
 	<# 
 	.SYNOPSIS
@@ -178,6 +181,11 @@ function RemoveWebParts
 		Write-Verbose "RemoveWebParts end"
 	}
 }
+
+##TODO Alle funktionen noch anpassen
+
+
+
 
 function Start-AddWebParts
 {
