@@ -203,22 +203,11 @@ function Remove-ContentTypesFromListsCorrectly
 				{
 					if($arrayContentType -contains $contentType.Name)
 					{
-						Use-AP_SPProvisioning_PnP_Add-PnPContentTypeToList -List $list -ContentType "0x0105" -DefaultContentType $true -Web $currentWeb.Web
-
-						$query = [Microsoft.SharePoint.Client.CamlQuery]::CreateAllItemsQuery(3000, "ID")
-						$listItems = $list.GetItems( $query )
-						$listItems.Context.Load($listItems)
-						$listItems.Context.ExecuteQuery()
-						foreach($item in $listItems) 
-						{
-							$item["ContentTypeId"] = "0x0105"
-							$item.Update()
-							$listItems.Context.ExecuteQuery()
-						}
-						
+						Remove-ContentTypFromListItems -list $list -currentWeb $currentWeb
+												
 						Use-AP_SPProvisioning_PnP_Remove-PnPContentTypeFromList -List $list.Title -ContentType $contentType.Name -Web $currentWeb.Web
 						
-						Write-Host "Deleted content type $($contentType.Name) from list" -Type success
+						Write-Host "Deleted content type $($contentType.Name) from list"
 					}                
 				}
 			}
@@ -259,7 +248,7 @@ function Add-ContentTypes
 	}
 	process
 	{
-		[xml]$wpXml = Get-Content "$($xmlFile)" -Encoding UTF8
+		[xml]$wpXml = Get-Content "$($xmlFile)" 
 		$currentWeb = Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
 		$XMLcontentTypes = $wpXml.Provisioning.Templates.ProvisioningTemplate.ContentTypes.ContentType
         

@@ -32,7 +32,7 @@ function Start-AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName {
 			}
 		}	
 
-		Set-Content -Path $xmlFilePath -Value $content.InnerXml
+		Set-Content -Path $xmlFilePath -Value $content.InnerXml -Encoding UTF8
 
     }
     End 
@@ -68,7 +68,7 @@ function Start-AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName {
 			}
 		}	
 
-		Set-Content -Path $xmlFilePath -Value $content.InnerXml
+		Set-Content -Path $xmlFilePath -Value $content.InnerXml -Encoding UTF8
 
     }
     End 
