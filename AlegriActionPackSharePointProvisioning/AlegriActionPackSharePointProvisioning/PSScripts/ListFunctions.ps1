@@ -148,7 +148,7 @@ function Start-AP_SPProvisioning_AddListContentsFromCSV
     Process
     {
 		  $path = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.PathToCsv;
-		  $content = Get-Content $path -Encoding UTF8
+		  $content = Get-Content $path -Encoding String
 		  Add-ALG_ListContents -contentCsv $content -Listname $xmlActionObject.ListName
           #$listname = $xmlActionObject.ListName
 	}
@@ -345,9 +345,11 @@ function Add-ALG_ListContents
 			{
 				$valueString.Add($columns[$i] ,$values[$i])				
 			}
+			
 			Use-AP_SPProvisioning_PnP_Add-PnPListItem -List $Listname -Values $valueString -Web $currentWeb.Web
+			
+			Write-Host "Item $($j) from $($contentCsv.Count) are create"
 		}
-
 	}
 	end
 	{

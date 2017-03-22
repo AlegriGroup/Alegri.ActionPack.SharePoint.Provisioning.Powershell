@@ -228,7 +228,7 @@ function Use-AP_SPProvisioning_PnP_Add-PnPListItem
     }
     Process
     {
-		Add-SPOListItem -List $List -Values $Values -Web $Web
+		Add-PnPListItem -List $List -Values $Values
     }
     End
     {
