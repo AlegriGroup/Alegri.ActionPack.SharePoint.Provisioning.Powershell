@@ -32,7 +32,8 @@
         <xs:element name="AP_SPProvisioning_ChangeVersionInFile" type="alg:ChangeVersionInFile" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_AddWebPartToSite" type="alg:AddWebPartToSite" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_RemoveContentTypFromListItems" type="alg:RemovedContentTypeFromListItems" minOccurs="0" maxOccurs="unbounded"/>
-        
+        <xs:element name="AP_SPProvisioning_GetListContentsToCSV" type="alg:ListContentsToCSV" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_AddListContentsFromCSV" type="alg:AddListContentFromCSV" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -443,6 +444,78 @@
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="ListContentsToCSV">
+    <xs:annotation>
+      <xs:documentation>
+        Hiermit können Sie eine Liste auslesen und erhalten eine pnp:DataRows XML Baum
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Column" type="alg:ListColumn" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="ListName" type="xs:string" use="required"/>
+    <xs:attribute name="OutputFile" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Geben Sie hier den Pfad an. Wo die CSV Datei abgespeichert wird.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ListColumn">
+    <xs:annotation>
+      <xs:documentation>
+        Hiermit definieren Sie eine ListSpalte
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence maxOccurs="1">
+      <xs:element name="String" type="alg:StringColumn" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Url" type="alg:UrlColumn" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Lookup" type="alg:LookupColumn" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attribute name="ColumnInternalName" type="xs:string"/>
+    <xs:attribute name="DisplayName" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="LookupColumn">
+    <xs:annotation>
+      <xs:documentation>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="List" type="xs:string"/>
+    <xs:attribute name="ListValue" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="UrlColumn">
+    <xs:annotation>
+      <xs:documentation>
+        Bitte geben Sie die nötigen Eigenschaften für eine UrlColumn an.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="LinkText" type="xs:string" use="required"/>
+    <xs:attribute name="LinkUrl" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="StringColumn">
+    <xs:annotation>
+      <xs:documentation>
+        Hiermit gebe Sie die nötigen Eigenschaften für eine StringColumn an.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Value" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="AddListContentFromCSV">
+    <xs:annotation>
+      <xs:documentation>
+        Hiermit können Sie den Inhalt einer CSV Datei in eine Liste importieren.
+        1. Spalte müssen die Spaltenbezeichnung (InternalName) enthalten sein
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="PathToCsv" type="xs:string" use="required" />
+    <xs:attribute name="ListName" type="xs:string" use="optional" />
   </xs:complexType>
   
 </xs:schema>

@@ -110,6 +110,53 @@ function Start-AP_SPProvisioning_RemoveContentTypFromListItems
     }
 }
 
+function Start-AP_SPProvisioning_GetListContentsToCSV
+{
+    param
+    (
+        [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=0)]
+        [System.Xml.XmlLinkedNode]$xmlActionObject
+	)
+
+    Begin
+    {
+        Write-Verbose "Start-AP_SPProvisioning_GetListContentsToCSV Begin"
+    }
+    Process
+    {
+		  $path = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.OutputFile;
+		  Get-ListContentsToCSV -columns $xmlActionObject.Column -ListName $xmlActionObject.ListName -FileName $path
+	}
+    End
+    {
+		Write-Verbose "Start-AP_SPProvisioning_GetListContentsToCSV End"
+    }
+}
+
+function Start-AP_SPProvisioning_AddListContentsFromCSV
+{
+    param
+    (
+        [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=0)]
+        [System.Xml.XmlLinkedNode]$xmlActionObject
+	)
+
+    Begin
+    {
+        Write-Verbose "Start-AP_SPProvisioning_AddListContentsFromCSV Begin"
+    }
+    Process
+    {
+		  $path = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.PathToCsv;
+		  $content = Get-Content $path -Encoding UTF8
+		  Add-ALG_ListContents -contentCsv $content -Listname $xmlActionObject.ListName
+          #$listname = $xmlActionObject.ListName
+	}
+    End
+    {
+		Write-Verbose "Start-AP_SPProvisioning_AddListContentsFromCSV End"
+    }
+}
 
 function Remove-ListsFromWeb
 {
@@ -184,4 +231,126 @@ function Remove-ContentTypFromListItems
 	{
 		Write-Verbose "Remove-ContentTypFromListItems end"
 	}  
+}
+
+function Get-ListContentsToCSV
+{
+	<# 
+	.SYNOPSIS
+    Installation der Umgebung	
+    .DESCRIPTION
+    Es wird auf Grundlage des SubSite Knoten die Anwendung auf der verbundenen Umgebung installiert
+    .PARAMETER SitesXmlKnoten 
+    Der XML Knoten der Site
+    Es muss vom Schema http://schemas.sharePoint.Provisioning.alegri.eu sein.   
+	#>
+	[CmdletBinding()]
+	param(
+		[Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true,Position=1)]
+		[System.Array]$columns,
+		[Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true,Position=1)]
+		[ValidateNotNullOrEmpty()]
+		[string]$ListName,
+		[Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true,Position=1)]
+		[ValidateNotNullOrEmpty()]
+		[string]$FileName
+	)
+	begin
+	{
+		Write-Verbose "Get-ListContentsToCSV begin"
+	}
+	process
+	{
+		[System.Collections.ArrayList]$dataArray = New-Object System.Collections.ArrayList;
+		$itemString = "";
+		$currentWeb = Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
+
+		#1. Spalte die Columns
+		for($i = 0; $i -lt $columns.Count; $i++)
+        {
+			if($i -gt 0){ $itemString += ";" }
+
+			$itemString += 	$columns[$i].ColumnInternalName
+		}
+		$dataArray.Add($itemString);
+
+        #2 nun die Werte
+		$items = Use-AP_SPProvisioning_PnP_Get-PnPListItem -List $ListName -Web $currentWeb.Web
+
+		Write-Host "Es werden $($items.Count) Items aufbereitet"
+
+        foreach($item in $items)   
+		{
+			$itemString = "";
+			for($i = 0; $i -lt $columns.Count; $i++)
+			{
+				if($i -gt 0){ $itemString += ";" }
+                
+                $value = $item[$columns[$i].ColumnInternalName]
+                
+                switch($value)
+                {
+                    "Microsoft.SharePoint.Client.FieldLookupValue" { $itemString += $item[$columns[$i].ColumnInternalName].LookupId }
+                    default { $itemString +=  $value }
+                } 
+            }
+
+			$dataArray.Add($itemString);
+        }
+
+        $dataArray | Set-Content -Path $FileName -Force
+	}
+	end
+	{
+		Write-Verbose "Get-ListContentsToCSV end"
+	}
+}
+
+function Add-ALG_ListContents
+{
+	<# 
+	.SYNOPSIS
+    Installation der Umgebung	
+    .DESCRIPTION
+    Es wird auf Grundlage des SubSite Knoten die Anwendung auf der verbundenen Umgebung installiert
+    .PARAMETER SitesXmlKnoten 
+    Der XML Knoten der Site
+    Es muss vom Schema http://schemas.sharePoint.Provisioning.alegri.eu sein.   
+	#>
+	[CmdletBinding()]
+	param(
+		[Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true,Position=0)]
+        [System.Array]$contentCsv,
+		[Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true,Position=1)]
+        [string]$Listname
+	)
+	begin
+	{
+		Write-Verbose "Add-ALG_ListContents begin"
+	}
+	process
+	{
+		$currentWeb = Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
+		#1.Column Field with InternalName
+		$columns = $contentCsv[0].Split(";");
+				
+		#iterate all Items
+		for ($j = 1; $j -lt $contentCsv.Count; $j++) 
+        {
+			$values = $contentCsv[$j].Split(";");
+			
+			$valueString = @{}
+			
+			for($i = 0; $i -lt $columns.Count;$i++)
+			{
+				$valueString.Add($columns[$i] ,$values[$i])				
+			}
+			Use-AP_SPProvisioning_PnP_Add-PnPListItem -List $Listname -Values $valueString -Web $currentWeb.Web
+		}
+
+	}
+	end
+	{
+		Write-Verbose "Add-ALG_ListContents end"
+	}
 }

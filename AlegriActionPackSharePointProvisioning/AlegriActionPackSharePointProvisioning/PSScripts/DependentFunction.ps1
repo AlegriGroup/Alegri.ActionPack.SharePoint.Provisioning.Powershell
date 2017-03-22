@@ -192,7 +192,49 @@ function Use-AP_SPProvisioning_PnP_Remove-PnPList
 		Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPList End"
     }
 }
-
+function Use-AP_SPProvisioning_PnP_Get-PnPListItem
+{
+    [CmdletBinding()]
+    param
+    (
+		$Web,
+		$List
+	)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Get-PnPListItem Begin" 
+    }
+    Process
+    {
+		return Get-PnPListItem -List $list -Web $Web
+    }
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Get-PnPListItem End"
+    }
+}
+function Use-AP_SPProvisioning_PnP_Add-PnPListItem
+{
+    [CmdletBinding()]
+    param
+    (
+		$List,
+		$Values,
+		$Web
+	)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Get-PnPListItem Begin" 
+    }
+    Process
+    {
+		Add-SPOListItem -List $List -Values $Values -Web $Web
+    }
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Get-PnPListItem End"
+    }
+}
 ###### Content Types #################################
 function Use-AP_SPProvisioning_PnP_Get-PnPContentType
 {
