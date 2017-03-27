@@ -47,18 +47,20 @@ function Start-AP_SPProvisioning_RemovedListCorrectly
 
 			# ------------------------
 			# Content Types from Lists
-			# ------------------------    
-			Remove-ContentTypesFromListsCorrectly -arrayLists $lists -arrayContentType $contentTypes 
-			Write-Host "Successfully removed content types from list" 
-			Write-Host
-    
+			# ------------------------
+			if($contentTypes){   
+				Remove-ContentTypesFromListsCorrectly -arrayLists $lists -arrayContentType $contentTypes 
+				Write-Host "Successfully removed content types from list" 
+				Write-Host
+			}
 			# ------------------------
 			# Fields from Lists
 			# ------------------------
-			Remove-FieldsFromListsCorrectly -arrayLists $lists -arraySiteColumn $siteColumns
-			Write-Host "Successfully removed fields from lists" 
-			Write-Host
-
+			if($siteColumns) {
+				Remove-FieldsFromListsCorrectly -arrayLists $lists -arraySiteColumn $siteColumns
+				Write-Host "Successfully removed fields from lists" 
+				Write-Host
+			}
 			# ------------------------
 			# Lists from Web
 			# ------------------------
