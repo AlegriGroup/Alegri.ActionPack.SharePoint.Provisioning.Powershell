@@ -35,6 +35,8 @@
         <xs:element name="AP_SPProvisioning_GetListContentsToCSV" type="alg:ListContentsToCSV" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_AddListContentsFromCSV" type="alg:AddListContentFromCSV" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_AddFieldsOnListFromProvXML" type="alg:AddFieldsOnListFromProvXML" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_RemovedSubsite" type="alg:RemovedSubsite" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_AddSubsite" type="alg:CreateSubSite" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -541,6 +543,22 @@
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="RemovedSubsite">
+    <xs:annotation>
+      <xs:documentation>
+        Hiermit wird das Entfernen der Subsiten angestossen
+      </xs:documentation>
+    </xs:annotation>
+  </xs:complexType>
+
+  <xs:complexType name="CreateSubSite">
+    <xs:annotation>
+      <xs:documentation>
+        Das erstellen der Subsite wird angestossen
+      </xs:documentation>
+    </xs:annotation>
   </xs:complexType>
   
 </xs:schema>

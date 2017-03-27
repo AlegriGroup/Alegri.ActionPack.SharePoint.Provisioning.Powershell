@@ -19,6 +19,7 @@
 . "$PSScriptRoot\SiteColumnFunctions.ps1"
 . "$PSScriptRoot\WorkWithTemplateFunctions.ps1"
 . "$PSScriptRoot\FileFunctions.ps1"
+. "$PSScriptRoot\SiteFunctions.ps1"
 
 # You should register a new function in the two lower functions.
 # Sie sollten eine neue Funktion in den beiden unteren Funktionen registrieren. 
@@ -68,6 +69,8 @@ function Find-ActionInAP_SPProvisioning
 			"AP_SPProvisioning_AddListContentsFromCSV" { $returnValue = $true }
 			"AP_SPProvisioning_AddFieldsOnListFromProvXML" { $returnValue = $true }
 			"AP_SPProvisioning_AddFieldsOnListFromProvXML" { $returnValue = $true }
+			"AP_SPProvisioning_RemovedSubsite" { $returnValue = $true }	
+			"AP_SPProvisioning_AddSubsite" { $returnValue = $true }				  	  
 			default { $returnValue = $false }
 		  }
 
@@ -126,7 +129,9 @@ function Start-ActionFromAP_SPProvisioning
 			"AP_SPProvisioning_RemoveContentTypFromListItems" { Start-AP_SPProvisioning_RemoveContentTypFromListItems -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_RemoveContentTypFromListItems } 
 			"AP_SPProvisioning_GetListContentsToCSV" { Start-AP_SPProvisioning_GetListContentsToCSV -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_GetListContentsToCSV } 
 			"AP_SPProvisioning_AddListContentsFromCSV" { Start-AP_SPProvisioning_AddListContentsFromCSV -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_AddListContentsFromCSV } 
-			"AP_SPProvisioning_AddFieldsOnListFromProvXML" { Start-AP_SPProvisioning_AddFieldsOnListFromProvXML -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_AddFieldsOnListFromProvXML }		
+			"AP_SPProvisioning_AddFieldsOnListFromProvXML" { Start-AP_SPProvisioning_AddFieldsOnListFromProvXML -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_AddFieldsOnListFromProvXML }	
+			"AP_SPProvisioning_RemovedSubsite" { Start-AP_SPProvisioning_RemovedSubsite -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_RemovedSubsite }	
+			"AP_SPProvisioning_AddSubsite" { Start-AP_SPProvisioning_AddSubsite -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_AddSubsite }	
 		}
 
 		Write-Host "Action : $($actionName) is ready" -ForegroundColor Green

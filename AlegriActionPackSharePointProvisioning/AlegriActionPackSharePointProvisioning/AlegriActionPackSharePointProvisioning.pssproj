@@ -52,6 +52,7 @@
     <Compile Include="PSScripts\LookupSiteColumnFunctions.ps1" />
     <Compile Include="PSScripts\ProvisioningFunctions.ps1" />
     <Compile Include="PSScripts\SiteColumnFunctions.ps1" />
+    <Compile Include="PSScripts\SiteFunctions.ps1" />
     <Compile Include="PSScripts\WorkWithTemplateFunctions.ps1" />
     <Compile Include="XMLFiles\ExampleActionsXML.xml" />
     <Compile Include="XMLFiles\ExampleDevProvisioning.xml" />

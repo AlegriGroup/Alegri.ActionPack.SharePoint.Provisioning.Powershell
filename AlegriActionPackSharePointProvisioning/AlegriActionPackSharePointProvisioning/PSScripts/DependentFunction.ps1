@@ -21,7 +21,6 @@ function Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
 		Write-Verbose "Use_AP_SPProvisioning_SPEnvironment_CurrentWeb  End"
     }
 }
-
 function Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath
 {
 	[CmdletBinding()]
@@ -44,11 +43,126 @@ function Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath
 		Write-Verbose "Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath END"
     }
 }
-
 function Use-AP_SPProvisioning_SPEnvironment_Get-ProjectPath 
 {
 	return Get-AP_SPEnvironment_ProjectPath;
 }
+function Use-AP_SPProvisioning_SPEnvironment_Get-CurrentEnvironment
+{
+	return $Global:AP_SPEnvironment_XmlCurrentEnvironment
+}
+function Use-AP_SPProvisioning_SPEnvironment_Get-EnvironmentFromDestignation
+{
+[CmdletBinding()]
+    [OutputType([int])]
+    param
+    (
+        [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=0)]
+        $destignation
+	)
+	Begin
+    {
+          Write-Verbose "Use-AP_SPProvisioning_SPEnvironment_Get-EnvironmentFromDestignation BEGIN"
+    }
+    Process
+    {
+		return Get-EnvironmentFromDestignation -destignation $destignation
+    }
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_SPEnvironment_Get-EnvironmentFromDestignation END"
+    }
+}
+function Use-AP_SPProvisioning_SPEnvironment_Get-WebFromTitle
+{
+	[CmdletBinding()]
+    [OutputType([int])]
+    param
+    (
+        [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=0)]
+        $title
+	)
+	Begin
+    {
+          Write-Verbose "Use-AP_SPProvisioning_SPEnvironment_Get-WebFromTitle BEGIN"
+    }
+    Process
+    {
+		return Get-WebFromTitle -title $title
+    }
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_SPEnvironment_Get-WebFromTitle END"
+    }
+}
+
+##### Site ##############
+function Use-AP_SPProvisioning_PnP_Remove-PnPWeb
+{
+	[CmdletBinding()]
+    param
+    (
+		$Identity,
+		$Force
+	)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPWeb Begin" 
+    }
+    Process
+    {
+		if($Identity -ne $null) 
+		{
+			if($Force){
+				Remove-PnPWeb -Identity $Identity -Force
+			}
+			else
+			{
+				Remove-PnPWeb -Identity $Identity
+			}
+		} 
+		else 
+		{
+			Write-Host "The Argument URL are missed" -ForegroundColor Red
+		} 
+    }
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPWeb End"
+    }
+}
+function Use-AP_SPProvisioning_PnP_New-PnPWeb
+{
+	[CmdletBinding()]
+    param
+    (
+		$Title,
+		$Url,
+		$Description,
+		$Locale,
+		$Template
+	)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_New-PnPWeb Begin" 
+    }
+    Process
+    {
+		if($Title -ne $null -and $Url -ne $null -and $Description -ne $null -and $Locale -ne $null -and $Template -ne $null) 
+		{
+			New-PnPWeb -Title $Title -Url $Url -Description $Description -Locale $Locale -Template $Template
+		} 
+		else 
+		{
+			Write-Host "One Argument URL are missed [Use-AP_SPProvisioning_PnP_New-PnPWeb]" -ForegroundColor Red
+		} 
+    }
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_New-PnPWeb End"
+    }
+}
+
 
 ##### Fields ############
 function Use-AP_SPProvisioning_PnP_Get-PnPField
@@ -406,7 +520,6 @@ function Use-AP_SPProvisioning_PnP_Add-PnPFieldFromContentType
 		Write-Verbose "Use-AP_SPProvisioning_PnP_Add-PnPFieldFromContentType End"
     }
 }
-
 function Use-AP_SPProvisioning_PnP_Remove-PnPFieldFromContentType
 {
     [CmdletBinding()]
