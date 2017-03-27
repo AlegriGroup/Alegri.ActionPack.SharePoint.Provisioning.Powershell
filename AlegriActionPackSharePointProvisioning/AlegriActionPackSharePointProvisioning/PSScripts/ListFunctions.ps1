@@ -158,6 +158,32 @@ function Start-AP_SPProvisioning_AddListContentsFromCSV
     }
 }
 
+function Start-AP_SPProvisioning_AddFieldsOnListFromProvXML
+{
+    param
+    (
+        [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=0)]
+        [System.Xml.XmlLinkedNode]$xmlActionObject
+	)
+
+    Begin
+    {
+        Write-Verbose "Start-AP_SPProvisioning_AddFieldsOnListFromProvXML Begin"
+    }
+    Process
+    {
+			$path = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.pathToProvisioningXML;
+
+			$ListInstance = Get-AP_SPProvisioning_GetListInstanceFromXML -pathToProvisioningXML $path -title $xmlActionObject.Listname
+		  
+			Add-FieldToList -ListInstanceXML $ListInstance
+	}
+    End
+    {
+		Write-Verbose "Start-AP_SPProvisioning_AddFieldsOnListFromProvXML End"
+    }
+}
+
 function Remove-ListsFromWeb
 {
 	<# 
@@ -355,4 +381,45 @@ function Add-ALG_ListContents
 	{
 		Write-Verbose "Add-ALG_ListContents end"
 	}
+}
+
+function Add-FieldToList
+{
+	param
+    (
+        $ListInstanceXML
+	)
+
+    Begin
+    {
+        Write-Verbose "Add-FieldToList Begin"
+    }
+    Process
+    {
+		$currentWeb = Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
+		$listname = $ListInstanceXML.Url
+		$list = Use-AP_SPProvisioning_PnP_Get-PnPList -Web $currentWeb.Web -Identity $listname
+        if($list) {
+		$fields = $ListInstanceXML.Fields
+
+		foreach($field in $fields.Field)
+		{
+			$displayName = $field.DisplayName
+			$internalName = $field.Name
+			$type = $field.Type
+			$id  =$field.ID
+			Use-AP_SPProvisioning_PnP_Add-PnPField -List $list.Id -DisplayName $displayName -InternalName $internalName -Type $type -Id $id
+
+			Write-Host "Create Succesfully Field $($internalName) on List $($listname)" -ForegroundColor Green
+		}
+       }
+       else 
+       {
+            Write-Host "List can not founded $($listname)" -ForegroundColor Red
+       }
+	}
+    End
+    {
+		Write-Verbose "Add-FieldToList End"
+    }
 }

@@ -66,6 +66,8 @@ function Find-ActionInAP_SPProvisioning
 			"AP_SPProvisioning_RemoveContentTypFromListItems" { $returnValue = $true }
 			"AP_SPProvisioning_GetListContentsToCSV" { $returnValue = $true }
 			"AP_SPProvisioning_AddListContentsFromCSV" { $returnValue = $true }
+			"AP_SPProvisioning_AddFieldsOnListFromProvXML" { $returnValue = $true }
+			"AP_SPProvisioning_AddFieldsOnListFromProvXML" { $returnValue = $true }
 			default { $returnValue = $false }
 		  }
 
@@ -123,7 +125,8 @@ function Start-ActionFromAP_SPProvisioning
 			"AP_SPProvisioning_AddWebPartToSite" { Start-AP_SPProvisioning_AddWebPartToSite -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_AddWebPartToSite } 
 			"AP_SPProvisioning_RemoveContentTypFromListItems" { Start-AP_SPProvisioning_RemoveContentTypFromListItems -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_RemoveContentTypFromListItems } 
 			"AP_SPProvisioning_GetListContentsToCSV" { Start-AP_SPProvisioning_GetListContentsToCSV -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_GetListContentsToCSV } 
-			"AP_SPProvisioning_AddListContentsFromCSV" { Start-AP_SPProvisioning_AddListContentsFromCSV -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_AddListContentsFromCSV } 		
+			"AP_SPProvisioning_AddListContentsFromCSV" { Start-AP_SPProvisioning_AddListContentsFromCSV -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_AddListContentsFromCSV } 
+			"AP_SPProvisioning_AddFieldsOnListFromProvXML" { Start-AP_SPProvisioning_AddFieldsOnListFromProvXML -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_AddFieldsOnListFromProvXML }		
 		}
 
 		Write-Host "Action : $($actionName) is ready" -ForegroundColor Green

@@ -138,6 +138,44 @@ function Use-AP_SPProvisioning_PnP_Remove-PnPField
 		Write-Verbose "Use-AP_SPProvisioning_PnP_Remove-PnPField End"
     }
 }
+function Use-AP_SPProvisioning_PnP_Add-PnPField
+{
+	[CmdletBinding()]
+    param
+    (
+		$Web,
+		$List,
+		$DisplayName,
+		$InternalName,
+		$Type,
+		$Id
+	)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Add-PnPField Begin" 
+    }
+    Process
+    {
+		if($DisplayName -ne $null -and $InternalName -ne $null -and $Type -ne $null) {
+			if($List -ne $null) 
+			{
+				Add-PnPField -List $List -DisplayName $DisplayName -InternalName $InternalName -Type $Type -Id $Id			
+			} 
+			else
+			{
+				Add-PnPField -DisplayName $DisplayName -InternalName $InternalName -Type $Type -Id $Id	
+			} 
+		}
+		else 
+		{
+			Write-Error "[Use-AP_SPProvisioning_PnP_Add-PnPField] => Missing attributes. At least one of the attributes [DisplayName, InternalName or Type] must be passed" 
+		} 
+	}
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Add-PnPField End"
+    }
+}
 
 ###### Lists #############
 function Use-AP_SPProvisioning_PnP_Get-PnPList
@@ -235,6 +273,7 @@ function Use-AP_SPProvisioning_PnP_Add-PnPListItem
 		Write-Verbose "Use-AP_SPProvisioning_PnP_Get-PnPListItem End"
     }
 }
+
 ###### Content Types #################################
 function Use-AP_SPProvisioning_PnP_Get-PnPContentType
 {

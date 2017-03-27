@@ -189,3 +189,30 @@ function Get-AP_SPProvisioning_GetSiteColumngNameFromXML {
         Write-Verbose "End Start-AP_SPProvisioning_GetProvisioningTemplate"
     }
 }
+function Get-AP_SPProvisioning_GetListInstanceFromXML {
+	param
+    (
+        [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=0)]
+        $pathToProvisioningXML,
+		$title
+    )
+    Begin {
+        Write-Verbose "START Get-AP_SPProvisioning_GetContentTypeFromXML"
+    }
+    Process {	
+        
+        [XML]$provElement = Get-Content -Path $pathToProvisioningXML -Encoding String
+
+        if($provElement.Provisioning.Templates.ProvisioningTemplate.Lists.ListInstance) 
+        {
+            return $provElement.Provisioning.Templates.ProvisioningTemplate.Lists.ListInstance | Where-Object {$_.Title -eq $title }
+        }
+        else 
+		{
+			throw "No ListInstance with Title $($title) on File $($pathToProvisioningXML)"
+		}
+    }
+    End {
+        Write-Verbose "End Start-AP_SPProvisioning_GetProvisioningTemplate"
+    }
+}

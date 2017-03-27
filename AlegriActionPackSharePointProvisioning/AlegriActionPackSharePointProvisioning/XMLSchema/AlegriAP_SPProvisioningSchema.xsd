@@ -34,6 +34,7 @@
         <xs:element name="AP_SPProvisioning_RemoveContentTypFromListItems" type="alg:RemovedContentTypeFromListItems" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_GetListContentsToCSV" type="alg:ListContentsToCSV" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_AddListContentsFromCSV" type="alg:AddListContentFromCSV" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_AddFieldsOnListFromProvXML" type="alg:AddFieldsOnListFromProvXML" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -445,6 +446,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
+  
   <xs:complexType name="ListContentsToCSV">
     <xs:annotation>
       <xs:documentation>
@@ -516,6 +518,29 @@
     </xs:annotation>
     <xs:attribute name="PathToCsv" type="xs:string" use="required" />
     <xs:attribute name="ListName" type="xs:string" use="optional" />
+  </xs:complexType>
+
+  <xs:complexType name="AddFieldsOnListFromProvXML">
+    <xs:annotation>
+      <xs:documentation>
+        Damit werden die Fields einer Liste aus der Provisionierungsxml installiert
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="pathToProvisioningXML" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The path to the ProvisioningXML where the SiteColumn are contained.
+          Der Pfad zur ProvisioningXML wo die SiteColumn enthalten sind.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Listname" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Der Name der Liste wo die Fields installiert werden sollen
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   
 </xs:schema>
