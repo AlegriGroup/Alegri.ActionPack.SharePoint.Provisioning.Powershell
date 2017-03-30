@@ -671,7 +671,7 @@ function Use-AP_SPProvisioning_PnP_Apply-PnPProvisioningTemplate
     }
     Process
     {
-        Apply-PnPProvisioningTemplate -Path $Path
+        Apply-PnPProvisioningTemplate -Path $Path -Web $Web
 	}
     End
     {
