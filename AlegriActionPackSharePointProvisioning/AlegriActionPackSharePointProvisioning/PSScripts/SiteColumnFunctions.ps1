@@ -345,7 +345,7 @@ function Remove-SPProvisioning_SiteColumn
 		{
 			try 
 			{
-				Use-AP_SPProvisioning_PnP_Remove-PnPField -Identity $siteField -Web $Web -Force $true
+				Use-AP_SPProvisioning_PnP_Remove-PnPField -Identity $siteField.Title -Web $Web -Force $true
 				Write-Host "Deleted Site Column $($siteField.InternalName)" -ForegroundColor Green               
 			}
 			catch
