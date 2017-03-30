@@ -248,7 +248,7 @@ function Add-ContentTypes
 	}
 	process
 	{
-		[xml]$wpXml = Get-Content "$($xmlFile)" 
+		[xml]$wpXml = Get-Content "$($xmlFile)" -Encoding String
 		$currentWeb = Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
 		$XMLcontentTypes = $wpXml.Provisioning.Templates.ProvisioningTemplate.ContentTypes.ContentType
         

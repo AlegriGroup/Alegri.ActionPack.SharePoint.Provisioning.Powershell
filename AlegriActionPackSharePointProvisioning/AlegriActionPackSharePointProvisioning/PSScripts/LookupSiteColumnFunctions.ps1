@@ -438,13 +438,19 @@ function Rename-AP_SPProvisioning_SchemaXML_Field
 
         $List_Value = "{" + $List_Value + "}";
 
-        if($WebID_Value) { $xml.Field.WebID = $WebID_Value }
+        if($WebID_Value) {
+            if($xml.Field.WebID) {
+                $xml.Field.WebID = $WebID_Value 
+            } else {
+                $xml.Field.SetAttribute("WebID",$WebID_Value);
+            }
+        }
         if($List_Value) {
-         if($xml.Field.List) {
-            $xml.Field.List = $List_Value
-         } else {
-            $xml.Field.SetAttribute("List",$List_Value);
-         }  
+            if($xml.Field.List) {
+                $xml.Field.List = $List_Value
+            } else {
+                $xml.Field.SetAttribute("List",$List_Value);
+            }  
         }
 
         $fieldSchema = $xml.InnerXml
