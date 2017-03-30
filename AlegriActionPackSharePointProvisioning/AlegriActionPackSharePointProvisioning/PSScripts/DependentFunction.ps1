@@ -96,6 +96,34 @@ function Use-AP_SPProvisioning_SPEnvironment_Get-WebFromTitle
     }
 }
 
+##### Base ##############
+function Use-AP_SPProvisioning_PnP_Set-PnPTraceLog
+{
+	[CmdletBinding()]
+    param
+    (
+		$modus
+	)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Set-PnPTraceLog Begin" 
+    }
+    Process
+    {
+		$path = $Global:AP_SPProvisioning_Folder_LogFiles + "\traceoutput.txt"
+		if($modus) {
+			Set-PnPTraceLog -On -LogFile $path -Level Debug
+		}
+		else {
+			Set-PnPTraceLog -Off
+		}
+    }
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Set-PnPTraceLog End"
+    }
+}
+
 ##### Site ##############
 function Use-AP_SPProvisioning_PnP_Remove-PnPWeb
 {
@@ -103,7 +131,8 @@ function Use-AP_SPProvisioning_PnP_Remove-PnPWeb
     param
     (
 		$Identity,
-		$Force
+		$Force,
+		$Web
 	)
     Begin
     {
@@ -114,11 +143,11 @@ function Use-AP_SPProvisioning_PnP_Remove-PnPWeb
 		if($Identity -ne $null) 
 		{
 			if($Force){
-				Remove-PnPWeb -Identity $Identity -Force
+				Remove-PnPWeb -Identity $Identity -Force -Web $Web
 			}
 			else
 			{
-				Remove-PnPWeb -Identity $Identity
+				Remove-PnPWeb -Identity $Identity -Web $Web
 			}
 		} 
 		else 
@@ -140,7 +169,8 @@ function Use-AP_SPProvisioning_PnP_New-PnPWeb
 		$Url,
 		$Description,
 		$Locale,
-		$Template
+		$Template,
+		$Web
 	)
     Begin
     {
@@ -148,9 +178,9 @@ function Use-AP_SPProvisioning_PnP_New-PnPWeb
     }
     Process
     {
-		if($Title -ne $null -and $Url -ne $null -and $Description -ne $null -and $Locale -ne $null -and $Template -ne $null) 
+		if($Title -ne $null -and $Url -ne $null -and $Description -ne $null -and $Locale -ne $null -and $Template -ne $null -and $Web -ne $null) 
 		{
-			New-PnPWeb -Title $Title -Url $Url -Description $Description -Locale $Locale -Template $Template
+			New-PnPWeb -Title $Title -Url $Url -Description $Description -Locale $Locale -Template $Template -Web $Web
 		} 
 		else 
 		{
@@ -641,7 +671,7 @@ function Use-AP_SPProvisioning_PnP_Apply-PnPProvisioningTemplate
     }
     Process
     {
-		Apply-PnPProvisioningTemplate -Path $Path -Web $Web -Parameters @{ "newWebId"=$Web.Id ;"newSourceId"=$Web.id }
+        Apply-PnPProvisioningTemplate -Path $Path
 	}
     End
     {

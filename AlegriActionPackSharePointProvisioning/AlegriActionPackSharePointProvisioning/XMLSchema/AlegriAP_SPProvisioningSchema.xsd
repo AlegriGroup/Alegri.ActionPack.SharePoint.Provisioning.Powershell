@@ -37,6 +37,7 @@
         <xs:element name="AP_SPProvisioning_AddFieldsOnListFromProvXML" type="alg:AddFieldsOnListFromProvXML" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_RemovedSubsite" type="alg:RemovedSubsite" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_AddSubsite" type="alg:CreateSubSite" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_DebugModus" type="alg:DebugModus" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -559,6 +560,15 @@
         Das erstellen der Subsite wird angestossen
       </xs:documentation>
     </xs:annotation>
+  </xs:complexType>
+
+  <xs:complexType name="DebugModus">
+    <xs:annotation>
+      <xs:documentation>
+        Damit können Sie den DebugModus aktivieren. Die Log File finden Sie unter den StandardOrdner
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Modus" type="xs:boolean" use="required" />
   </xs:complexType>
   
 </xs:schema>

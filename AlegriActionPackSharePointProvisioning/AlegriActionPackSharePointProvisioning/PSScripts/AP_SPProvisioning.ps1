@@ -3,8 +3,8 @@
 #
 
 #If you want to create default folders for your action package, please comment on the section
-#Kommentieren Sie den Bereich ein, wenn Sie vor haben f�r Ihr Aktionspaket Standard Ordner anzulegen 
-#$Global:AP_SPProvisioning_Folder_ImportantExample = "$env:USERPROFILE\Documents\ActionFlow\AP_SPProvisioning\ImportantExample"
+#Kommentieren Sie den Bereich ein, wenn Sie vor haben für Ihr Aktionspaket Standard Ordner anzulegen 
+$Global:AP_SPProvisioning_Folder_LogFiles = "$env:USERPROFILE\Documents\ActionFlow\AP_SPProvisioning\LogFiles"
 
 # All Global Variable where use in this Package and is released from the outside for use
 # $Global:AP_SPProvisioning_MyGlobalVariable = $null
@@ -20,6 +20,7 @@
 . "$PSScriptRoot\WorkWithTemplateFunctions.ps1"
 . "$PSScriptRoot\FileFunctions.ps1"
 . "$PSScriptRoot\SiteFunctions.ps1"
+. "$PSScriptRoot\BaseFunctions.ps1"
 
 # You should register a new function in the two lower functions.
 # Sie sollten eine neue Funktion in den beiden unteren Funktionen registrieren. 
@@ -70,7 +71,8 @@ function Find-ActionInAP_SPProvisioning
 			"AP_SPProvisioning_AddFieldsOnListFromProvXML" { $returnValue = $true }
 			"AP_SPProvisioning_AddFieldsOnListFromProvXML" { $returnValue = $true }
 			"AP_SPProvisioning_RemovedSubsite" { $returnValue = $true }	
-			"AP_SPProvisioning_AddSubsite" { $returnValue = $true }				  	  
+			"AP_SPProvisioning_AddSubsite" { $returnValue = $true }	
+			"AP_SPProvisioning_DebugModus" { $returnValue = $true } 			  	  
 			default { $returnValue = $false }
 		  }
 
@@ -132,6 +134,7 @@ function Start-ActionFromAP_SPProvisioning
 			"AP_SPProvisioning_AddFieldsOnListFromProvXML" { Start-AP_SPProvisioning_AddFieldsOnListFromProvXML -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_AddFieldsOnListFromProvXML }	
 			"AP_SPProvisioning_RemovedSubsite" { Start-AP_SPProvisioning_RemovedSubsite -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_RemovedSubsite }	
 			"AP_SPProvisioning_AddSubsite" { Start-AP_SPProvisioning_AddSubsite -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_AddSubsite }	
+			"AP_SPProvisioning_DebugModus" { Start-AP_SPProvisioning_DebugModus -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_DebugModus }	
 		}
 
 		Write-Host "Action : $($actionName) is ready" -ForegroundColor Green
@@ -160,7 +163,7 @@ function Check-ExistFolderInAP_SPProvisioning
     process
     {
 		#Check if Standard folders exist / Prüfe ob Standard Ordner existieren
-		$folder1 = $Global:AP_SPProvisioning_Folder_ImportantExample
+		$folder1 = $Global:AP_SPProvisioning_Folder_LogFiles
 		$checkFolder1 = Test-Path $folder1
 
         if (!$checkFolder1)

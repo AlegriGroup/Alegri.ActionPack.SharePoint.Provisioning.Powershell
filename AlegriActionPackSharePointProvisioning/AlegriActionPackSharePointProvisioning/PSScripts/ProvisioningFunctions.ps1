@@ -117,7 +117,7 @@ function Get-AP_SPProvisioning_GetContentTypeNameFromXML {
     Process {	
         $array = @()
 
-        [XML]$provElement = Get-Content -Path $pathToProvisioningXML -Encoding UTF8
+        [XML]$provElement = Get-Content -Path $pathToProvisioningXML -Encoding String
         
         if($provElement.Provisioning.Templates.ProvisioningTemplate.ContentTypes) 
         {
@@ -145,7 +145,7 @@ function Get-AP_SPProvisioning_GetListTitleFromXML {
     }
     Process {	
         $array = @()
-        [XML]$provElement = Get-Content -Path $pathToProvisioningXML -Encoding UTF8
+        [XML]$provElement = Get-Content -Path $pathToProvisioningXML -Encoding String
 
         if($provElement.Provisioning.Templates.ProvisioningTemplate.Lists) 
         {
@@ -173,7 +173,7 @@ function Get-AP_SPProvisioning_GetSiteColumngNameFromXML {
     }
     Process {	
         $array = @()
-        [XML]$provElement = Get-Content -Path $pathToProvisioningXML -Encoding UTF8
+        [XML]$provElement = Get-Content -Path $pathToProvisioningXML -Encoding String
 
         if($provElement.Provisioning.Templates.ProvisioningTemplate.SiteFields) 
         {

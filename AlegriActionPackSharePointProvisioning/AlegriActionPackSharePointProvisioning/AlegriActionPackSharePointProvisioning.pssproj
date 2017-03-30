@@ -45,6 +45,7 @@
     <Compile Include="Documentation\BeispielRemovedSiteColumn.png" />
     <Compile Include="Documentation\BeispielRemovedSiteColumnFromContentType.png" />
     <Compile Include="PSScripts\AP_SPProvisioning.ps1" />
+    <Compile Include="PSScripts\BaseFunctions.ps1" />
     <Compile Include="PSScripts\ContentTypeFunctions.ps1" />
     <Compile Include="PSScripts\DependentFunction.ps1" />
     <Compile Include="PSScripts\FileFunctions.ps1" />

@@ -200,7 +200,7 @@ function Clear-AP_SPProvisioning_LookupSiteColumnAfterProvisioning()
     {
 		$currentWeb = Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
 
-		[xml]$wpXml = Get-Content "$($pathToProvisioningXML)" -Encoding UTF8
+		[xml]$wpXml = Get-Content "$($pathToProvisioningXML)" -Encoding String
 		$XMLSiteColumns = $wpXml.Provisioning.Templates.ProvisioningTemplate.SiteFields.Field | Where-Object { $_.Type -like "Lookup*"}
 
 		$fields = Use-AP_SPProvisioning_PnP_Get-PnPField -Web $currentWeb.Web

@@ -123,7 +123,7 @@ function Start-AP_SPProvisioning_SetSiteColumnDisplayName
 		$xmlFilePath = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.pathToProvisioningXML
 		$currentWeb = Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
 
-		[xml]$content = Get-Content -Path $xmlFilePath -Encoding UTF8
+		[xml]$content = Get-Content -Path $xmlFilePath -Encoding String
 		$siteFields = $content.Provisioning.Templates.ProvisioningTemplate.SiteFields.Field
 
 		foreach($siteField in $siteFields)

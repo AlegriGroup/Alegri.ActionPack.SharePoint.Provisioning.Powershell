@@ -104,8 +104,9 @@ function Start-CreateSubSite
 			if($env.Locale) { $locale = $env.Locale }
 			$template = "STS#0"
 			if($env.Template) { $template = $env.Template }
+			$currentWeb = Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
 
-			Use-AP_SPProvisioning_PnP_New-PnPWeb -Title $title -Url $url -Description $description -Locale $locale -Template $template
+			Use-AP_SPProvisioning_PnP_New-PnPWeb -Title $title -Url $url -Description $description -Locale $locale -Template $template -Web $currentWeb.Web
 		}
 		else 
 		{
@@ -144,7 +145,8 @@ function Remove-SubSite
 			if($subsite)
 			{
 				Write-Host "Remove Subsites $($subsite.Title)"
-				Use-AP_SPProvisioning_PnP_Remove-PnPWeb -Identity $subsite.Web.Id -Force $true
+				$currentWeb = Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
+				Use-AP_SPProvisioning_PnP_Remove-PnPWeb -Identity $subsite.Web.Id -Force $true -Web $currentWeb.Web
 				Write-Host "Successfully Remove Subsites $($subsite.Title)" -ForegroundColor Green
 			}
 			else 

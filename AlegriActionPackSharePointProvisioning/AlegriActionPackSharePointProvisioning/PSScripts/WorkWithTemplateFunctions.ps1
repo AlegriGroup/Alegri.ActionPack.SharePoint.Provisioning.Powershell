@@ -16,7 +16,7 @@ function Start-AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName {
         $xmlFilePath = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.pathToProvisioningXML;
 		$groupNames = $xmlActionObject.GroupNames.split(";");
 
-        [xml]$content = Get-Content -Path $xmlFilePath -Encoding UTF8
+        [xml]$content = Get-Content -Path $xmlFilePath -Encoding String
 		$siteFields = $content.Provisioning.Templates.ProvisioningTemplate.SiteFields.Field
 	
 		foreach($siteField in $siteFields)
@@ -32,7 +32,7 @@ function Start-AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName {
 			}
 		}	
 
-		Set-Content -Path $xmlFilePath -Value $content.InnerXml -Encoding UTF8
+		Set-Content -Path $xmlFilePath -Value $content.InnerXml -Encoding String
 
     }
     End 
@@ -57,7 +57,7 @@ function Start-AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName {
         $xmlFilePath = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.pathToProvisioningXML;
 		$groupNames = $xmlActionObject.GroupNames.split(";");
 
-        [xml]$content = Get-Content -Path $xmlFilePath -Encoding UTF8
+        [xml]$content = Get-Content -Path $xmlFilePath -Encoding String
 		$contentTypes = $content.Provisioning.Templates.ProvisioningTemplate.ContentTypes.ContentType
 
         foreach($contentType in $contentTypes)
@@ -68,7 +68,7 @@ function Start-AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName {
 			}
 		}	
 
-		Set-Content -Path $xmlFilePath -Value $content.InnerXml -Encoding UTF8
+		Set-Content -Path $xmlFilePath -Value $content.InnerXml -Encoding String
 
     }
     End 
