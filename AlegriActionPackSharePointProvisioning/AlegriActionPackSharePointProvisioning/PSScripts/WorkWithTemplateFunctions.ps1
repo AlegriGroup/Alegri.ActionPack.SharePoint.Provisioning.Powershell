@@ -31,9 +31,9 @@ function Start-AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName {
 				$content.Provisioning.Templates.ProvisioningTemplate.SiteFields.RemoveChild($siteField);
 			}
 		}	
-
-		Set-Content -Path $xmlFilePath -Value $content.InnerXml -Encoding String
-
+		
+		$xmlobj = [xml] $content.InnerXml
+		$xmlobj.Save($xmlFilePath);
     }
     End 
 	{
@@ -217,9 +217,10 @@ function Create-AP_SPProvisioning_TemplateWithHandlers
 
 		$tempFilePath = $projectPath + "\Temp\TempProvisioning.xml"
 
-		Set-Content -Path $tempFilePath -Value $content.InnerXml
+		$xmlobj = [xml] $content.InnerXml
+		$xmlobj.Save($tempFilePath);
 
-		return $projectPath + "\Temp\TempProvisioning.xml";
+		return $tempFilePath;
     }
     End 
 	{
