@@ -331,8 +331,14 @@ function Clear-AP_SPProvisioning_LookupSiteColumnOnContentType
 
 		if($checkField)
 		{
-			Rename-AP_SPProvisioning_SchemaXML_Field -Field $checkField -List_Value $listid -WebId_Value $webid
-			Write-Host "Rename SchemaXML from Field $($checkField.Title) on ContentType $($contentType.Name)" -BackgroundColor Green
+            if($checkField.Hidden)
+            {
+                Write-Host "DONT Rename because Hidden for SchemaXML from Field $($checkField.Title) on ContentType $($contentType.Name)" -ForegroundColor Red
+            } else 
+            {
+                Rename-AP_SPProvisioning_SchemaXML_Field -Field $checkField -List_Value $listid -WebId_Value $webid
+			    Write-Host "Rename SchemaXML from Field $($checkField.Title) on ContentType $($contentType.Name)" -BackgroundColor Green
+            }   			
 		}
 	}
 	end
@@ -377,12 +383,14 @@ function Clear-AP_SPProvisioning_LookupSiteColumnOnList
 	}
     Process
     {
-		$checkField = Use-AP_SPProvisioning_PnP_Get-PnPField -Web $Web -List $listToFind -Identity $field.Title
+		$checkField = Use-AP_SPProvisioning_PnP_Get-PnPField -Web $Web -List $listToFind
+
+        $findColum = $checkField | Where-Object { $_.InternalName -eq $field.InternalName }
                 
-		if($checkField -ne $null)
+		if($findColum -and $findColum -ne $null)
 		{
-			Rename-AP_SPProvisioning_SchemaXML_Field -Field $checkField -List_Value $listid -WebId_Value $Web.Id
-			Write-Host "Rename SchemaXML from Field $($checkField.Title) on List $($listToFind.Title)" -BackgroundColor Green
+			Rename-AP_SPProvisioning_SchemaXML_Field -Field $findColum -List_Value $listid -WebId_Value $Web.Id
+			Write-Host "Rename SchemaXML from Field $($findColum.Title) on List $($listToFind.Title)" -BackgroundColor Green
 		} 
 	}
 	end
