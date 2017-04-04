@@ -88,7 +88,12 @@ function Use-AP_SPProvisioning_SPEnvironment_Get-WebFromTitle
     }
     Process
     {
-		return Get-WebFromTitle -title $title
+		try{
+			$web = Get-WebFromTitle -title $title
+			return $web;
+		} catch {
+			return $null;
+		}		
     }
     End
     {
@@ -142,13 +147,15 @@ function Use-AP_SPProvisioning_PnP_Remove-PnPWeb
     {
 		if($Identity -ne $null) 
 		{
-			if($Force){
-				Remove-PnPWeb -Identity $Identity -Force -Web $Web
-			}
-			else
-			{
-				Remove-PnPWeb -Identity $Identity -Web $Web
-			}
+			
+				if($Force){
+					Remove-PnPWeb -Identity $Identity -Force -Web $Web
+				}
+				else
+				{
+					Remove-PnPWeb -Identity $Identity -Web $Web
+				}
+			
 		} 
 		else 
 		{

@@ -19,7 +19,8 @@ function Start-AP_SPProvisioning_PnPProvisioning {
 	{
         Write-Verbose "Start Start-AP_SPProvisioning_PnPProvisioning"
     }
-    Process {	
+    Process 
+    {	
         $xmlFilePath = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.pathToProvisioningXML;
 		$handlers  = "";
 		if($xmlActionObject.Handlers) { $handlers = $xmlActionObject.Handlers };
@@ -33,7 +34,8 @@ function Start-AP_SPProvisioning_PnPProvisioning {
 				$xmlFilePath = Create-AP_SPProvisioning_TemplateWithHandlers -pathToProvisioning $xmlFilePath -handlers $handlers	
             }
 
-            if($handlers -eq "ContentTypes") {
+            if($handlers -eq "ContentTypes") 
+            {
 				Add-ContentTypes -xmlFile $xmlFilePath
 			}   
 			else 

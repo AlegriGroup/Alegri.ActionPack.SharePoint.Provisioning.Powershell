@@ -151,7 +151,7 @@ function Remove-SubSite
 			}
 			else 
 			{
-				throw "Web ist nicht geladen [Remove-SubSite]"
+				Write-Host "Web ist nicht geladen [Remove-SubSite]" -ForegroundColor Red
 			}
 		} 
 		else
