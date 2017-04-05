@@ -217,23 +217,33 @@ function Use-AP_SPProvisioning_PnP_Get-PnPField
     }
     Process
     {
-		if($List -ne $null -and $Identity -ne $null) 
-		{
-			return Get-PnPField -Web $Web -List $List -Identity $Identity
-		} 
-		elseif ($List -eq $null -and $Identity -ne $null)
-		{
-			return Get-PnPField -Web $Web -Identity $Identity
-		} 
-		else 
-		{
-			$ctx = Get-PnPContext
-			if($ctx.Web.Id -eq $Web.Id)
-			{
-				return Get-PnPField;
-			}
-			return Get-PnPField -Web $Web  
-		} 
+        if($Identity -ne $null)
+        {
+            if($List -ne $null) 
+		    {
+			    return Get-PnPField -Web $Web -List $List -Identity $Identity
+		    } 
+		    else
+		    {
+			    return Get-PnPField -Web $Web -Identity $Identity
+		    }
+        }
+        else
+        {
+            if($List -ne $null) 
+		    {
+                return Get-PnPField -Web $Web -List $List
+            }
+            else 
+		    {
+			    $ctx = Get-PnPContext
+			    if($ctx.Web.Id -eq $Web.Id)
+			    {
+				    return Get-PnPField;
+			    }
+			    return Get-PnPField -Web $Web  
+		    } 
+        }		
     }
     End
     {

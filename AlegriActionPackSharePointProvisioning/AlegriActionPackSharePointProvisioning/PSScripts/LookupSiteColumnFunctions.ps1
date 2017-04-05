@@ -209,7 +209,7 @@ function Clear-AP_SPProvisioning_LookupSiteColumnAfterProvisioning()
 
 		foreach($xmlSiteColumn in $XMLSiteColumns)
 		{
-			Write-Host "Check Lookup $($XMLSiteColumn.Name)" -BackgroundColor Green
+			Write-Host "Check Lookup $($XMLSiteColumn.Name)" -ForegroundColor Blue -BackgroundColor Yellow
 		
 			$listName = $xmlSiteColumn.List
 
