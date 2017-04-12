@@ -21,6 +21,7 @@ $Global:AP_SPProvisioning_Folder_LogFiles = "$env:USERPROFILE\Documents\ActionFl
 . "$PSScriptRoot\FileFunctions.ps1"
 . "$PSScriptRoot\SiteFunctions.ps1"
 . "$PSScriptRoot\BaseFunctions.ps1"
+. "$PSScriptRoot\BrandingFunctions.ps1"
 
 # You should register a new function in the two lower functions.
 # Sie sollten eine neue Funktion in den beiden unteren Funktionen registrieren. 
@@ -72,7 +73,8 @@ function Find-ActionInAP_SPProvisioning
 			"AP_SPProvisioning_AddFieldsOnListFromProvXML" { $returnValue = $true }
 			"AP_SPProvisioning_RemovedSubsite" { $returnValue = $true }	
 			"AP_SPProvisioning_AddSubsite" { $returnValue = $true }	
-			"AP_SPProvisioning_DebugModus" { $returnValue = $true } 			  	  
+			"AP_SPProvisioning_DebugModus" { $returnValue = $true } 
+			"AP_SPProvisioning_SetHomepage" { $returnValue = $true }
 			default { $returnValue = $false }
 		  }
 
@@ -135,6 +137,7 @@ function Start-ActionFromAP_SPProvisioning
 			"AP_SPProvisioning_RemovedSubsite" { Start-AP_SPProvisioning_RemovedSubsite -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_RemovedSubsite }	
 			"AP_SPProvisioning_AddSubsite" { Start-AP_SPProvisioning_AddSubsite -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_AddSubsite }	
 			"AP_SPProvisioning_DebugModus" { Start-AP_SPProvisioning_DebugModus -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_DebugModus }	
+			"AP_SPProvisioning_SetHomepage" { Start-AP_SPProvisioning_SetHomepage -xmlActionObject $xmlAction.ActionObject.AP_SPProvisioning_SetHomepage }
 		}
 
 		Write-Host "Action : $($actionName) is ready" -ForegroundColor Green

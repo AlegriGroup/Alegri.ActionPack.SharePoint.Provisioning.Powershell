@@ -33,7 +33,7 @@ function Start-AP_SPProvisioning_ChangeVersionInFile
 			{
 				$file = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $changeVersion.FileName
 
-                if($file -like "*.dwp" -or $file -like "*.webPart" -or $file -like "*.xml")
+                if($file -like "*.dwp" -or $file -like "*.xml")
                 {
                     $content = Get-Content -Path $file -Encoding String
                     
@@ -114,7 +114,7 @@ function Start-AP_SPProvisioning_AddWebPartToSite
 			{
 				foreach($site in $arrayWebPartSite)
 				{
-					Add-WebPartsToSite -xmlNodeSite -$site
+					Add-WebPartsToSite -xmlNodeSite $site
 				}
 			}
 	}
@@ -174,11 +174,12 @@ function Add-WebPartToSite
 	{
 		$currentWeb = Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
 		$pathToWebPart = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $xmlWebPart.FileWithXMLContent;
-		[xml]$wpXml = Get-Content "$($pathToWebPart)";
-            
+		
 		if($xmlWebPart.ChangeXML)
 		{
 			Write-Host "START ChangeXML"    
+            
+            [xml]$wpXml = Get-Content "$($pathToWebPart)";
 
 			foreach($param in $xmlWebPart.ChangeXML)
 			{                    
@@ -206,11 +207,16 @@ function Add-WebPartToSite
 			if($xmlWebPart.Replace.EnvVariable -eq "true")
 			{
 				Write-Host "Start Replace Env Variable"
-				$wpString = [String]$wpXml
-				$wpString = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $wpString
-				[xml]$wpXml = $wpString
+				$wpXml = Get-Content "$($pathToWebPart)";
+				$wpXml = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $wpXml
+				[xml]$wpXml = $wpXml
 			}
 		}
+        
+        if(!$wpXml)
+        {
+            [xml]$wpXml = Get-Content "$($pathToWebPart)";
+        }
 
 		Use-AP_SPProvisioning_PnP_Add-PnPWebPartToWebPartPage -ServerRelativePageUrl $ServerRelativePageUrl -XML $wpXml.OuterXml -ZoneId $xmlWebPart.ZoneID -ZoneIndex $xmlWebPart.ZoneIndex -Web $currentWeb.Web
             

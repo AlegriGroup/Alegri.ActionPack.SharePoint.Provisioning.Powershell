@@ -129,6 +129,29 @@ function Use-AP_SPProvisioning_PnP_Set-PnPTraceLog
     }
 }
 
+##### Branding ##########
+function Use-AP_SPProvisioning_PnP_Set-PnPHomePage
+{
+	[CmdletBinding()]
+    param
+    (
+		$RootFolderRelativeUrl,
+		$Web
+	)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Set-PnPTraceLog Begin" 
+    }
+    Process
+    {
+		Set-PnPHomePage -RootFolderRelativeUrl $RootFolderRelativeUrl -Web $Web
+    }
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Set-PnPTraceLog End"
+    }
+}
+
 ##### Site ##############
 function Use-AP_SPProvisioning_PnP_Remove-PnPWeb
 {

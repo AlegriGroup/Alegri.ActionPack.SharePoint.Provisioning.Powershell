@@ -38,6 +38,7 @@
         <xs:element name="AP_SPProvisioning_RemovedSubsite" type="alg:RemovedSubsite" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_AddSubsite" type="alg:CreateSubSite" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="AP_SPProvisioning_DebugModus" type="alg:DebugModus" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="AP_SPProvisioning_SetHomepage" type="alg:SetHomepage" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -580,6 +581,15 @@
       </xs:documentation>
     </xs:annotation>
     <xs:attribute name="Modus" type="xs:boolean" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="SetHomepage">
+    <xs:annotation>
+      <xs:documentation>
+        Hiermit wird die hinterlegt Page als HomePage Site gesetzt
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="RootFolderRelativeUrl" type="xs:string" use="required" />
   </xs:complexType>
   
 </xs:schema>
