@@ -430,6 +430,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="ChangeXML" type="alg:KeyValue" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="Replace" type="alg:Replace" minOccurs="0" maxOccurs="1"/>
     </xs:sequence>
     <xs:attribute name="FileWithXMLContent" type="xs:string" use="required"/>
     <xs:attribute name="ZoneID" type="xs:string" use="required"/>
@@ -441,6 +442,10 @@
     <xs:attribute name="Value" type="xs:string" use="required"/>
   </xs:complexType>
 
+  <xs:complexType name="Replace">
+    <xs:attribute name="EnvVariable" type="xs:boolean" use="required"/>
+  </xs:complexType>
+  
   <xs:complexType name="RemovedContentTypeFromListItems">
     <xs:annotation>
       <xs:documentation>

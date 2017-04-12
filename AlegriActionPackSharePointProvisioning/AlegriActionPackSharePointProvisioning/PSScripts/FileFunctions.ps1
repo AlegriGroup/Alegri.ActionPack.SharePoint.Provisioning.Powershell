@@ -33,15 +33,38 @@ function Start-AP_SPProvisioning_ChangeVersionInFile
 			{
 				$file = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $changeVersion.FileName
 
-				if($CurrentEnvironment.SharePointVersion -eq "15")
-				{
-					(Get-Content $file -Encoding String) -replace '16.0.0.0', '15.0.0.0' | Set-Content $file -Encoding String
+                if($file -like "*.dwp" -or $file -like "*.webPart" -or $file -like "*.xml")
+                {
+                    $content = Get-Content -Path $file -Encoding String
+                    
+                    if($CurrentEnvironment.SharePointVersion -eq "15")
+				    {
+                        $content = $content.Replace('16.0.0.0', '15.0.0.0')
 
-				}
-				if($CurrentEnvironment.SharePointVersion -eq "16")
-				{
-					(Get-Content $file -Encoding String) -replace '15.0.0.0', '16.0.0.0' | Set-Content $file -Encoding String
-				}
+				    }
+				    if($CurrentEnvironment.SharePointVersion -eq "16")
+				    {
+                        $content = $content.Replace('15.0.0.0', '16.0.0.0') 
+ 				    }
+                    
+                    $xmlobj = [xml] $content
+                    $xmlobj.Save($file);
+                }
+                else
+                {
+                    $content = Get-Content -Path $file -Encoding String
+
+				    if($CurrentEnvironment.SharePointVersion -eq "15")
+				    {					    
+                        $content = $content.Replace('16.0.0.0', '15.0.0.0') 
+				    }
+				    if($CurrentEnvironment.SharePointVersion -eq "16")
+				    {
+                        $content = $content.Replace('15.0.0.0', '16.0.0.0')             
+ 				    }
+
+                    Set-Content -Path $file -Value $content -Encoding String
+                }
 
 				Write-Host "Change Version '$($CurrentEnvironment.SharePointVersion)' in File $file" 
 			}
@@ -176,6 +199,17 @@ function Add-WebPartToSite
 			}               
                 
 			Write-Host "END ChangeXML"    
+		}
+
+		if($xmlWebPart.Replace)
+		{
+			if($xmlWebPart.Replace.EnvVariable -eq "true")
+			{
+				Write-Host "Start Replace Env Variable"
+				$wpString = [String]$wpXml
+				$wpString = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $wpString
+				[xml]$wpXml = $wpString
+			}
 		}
 
 		Use-AP_SPProvisioning_PnP_Add-PnPWebPartToWebPartPage -ServerRelativePageUrl $ServerRelativePageUrl -XML $wpXml.OuterXml -ZoneId $xmlWebPart.ZoneID -ZoneIndex $xmlWebPart.ZoneIndex -Web $currentWeb.Web
