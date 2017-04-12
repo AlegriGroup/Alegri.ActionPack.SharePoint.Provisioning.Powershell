@@ -35,12 +35,12 @@ function Start-AP_SPProvisioning_ChangeVersionInFile
 
 				if($CurrentEnvironment.SharePointVersion -eq "15")
 				{
-					(Get-Content $file) -replace '16.0.0.0', '15.0.0.0' | Set-Content $file
+					(Get-Content $file -Encoding String) -replace '16.0.0.0', '15.0.0.0' | Set-Content $file -Encoding String
 
 				}
 				if($CurrentEnvironment.SharePointVersion -eq "16")
 				{
-					(Get-Content $file) -replace '15.0.0.0', '16.0.0.0' | Set-Content $file
+					(Get-Content $file -Encoding String) -replace '15.0.0.0', '16.0.0.0' | Set-Content $file -Encoding String
 				}
 
 				Write-Host "Change Version '$($CurrentEnvironment.SharePointVersion)' in File $file" 
