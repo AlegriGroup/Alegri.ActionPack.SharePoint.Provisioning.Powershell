@@ -31,7 +31,7 @@ function Start-AP_SPProvisioning_ChangeVersionInFile
 
 			foreach($changeVersion in $xmlActionObject)
 			{
-				$file = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath $changeVersion.FileName
+				$file = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $changeVersion.FileName
 
 				if($CurrentEnvironment.SharePointVersion -eq "15")
 				{
@@ -81,64 +81,114 @@ function Start-AP_SPProvisioning_AddWebPartToSite
 	}
 	process
 	{
-		$RemoveWebPart = $xmlActionObject.RemoveExistWebParts
 		$arrayWebPartSite = $xmlActionObject.Site
-		if($RemoveWebPart -eq "true")
-		{
-			Remove-WebParts -arrayWebPartSite $arrayWebPartSite
-		}		
 
-		foreach($site in $arrayWebPartSite.ChildNodes)
-		{
-			$pageUrl = $Global:XmlCurrentEnvironment.siteRelUrl + $Global:CurrentWebXML.Url + $site.ServerRelativePageUrl;
-        
-			Write-Host "START AddWebParts for $pageUrl"
-
-			foreach($webPart in $site.WebPart)
+			if($arrayWebPartSite.GetType().Name -eq "XmlElement")
 			{
-				$pathToWebPart = ReplaceVariable($webPart.FileWithXMLContent);
-				[xml]$wpXml = Get-Content "$($pathToWebPart)";
-            
-				if($webPart.ChangeXML)
-				{
-					Write-Host "START ChangeXML"    
-
-					foreach($param in $webPart.ChangeXML)
-					{                    
-						$clearValue = ReplaceVariable($param.Value)
-						$par = $param.Key.Split(".")
-                    
-						if($par.Length -eq 1){ 
-							$par1 = $par[0]
-							$wpXml.WebPart.$par1 = $clearValue 
-						}
-						if($par.length -eq 2){ 
-							$par1 = $par[0]
-							$par2 = $par[1]
-							$wpXml.WebPart.$par1.$par2 = $clearValue
-						}
-                    
-						Write-Host "Change Content for Param $($param.Param) with value '$clearValue'" 
-					}               
-                
-					Write-Host "END ChangeXML"    
-				}
-
-				Add-SPOWebPartToWebPartPage -ServerRelativePageUrl $pageUrl -XML $wpXml.OuterXml -ZoneId $webPart.ZoneID -ZoneIndex $webPart.ZoneIndex -Web $Global:CurrentWeb #PnP
-            
-				Write-Host "Add webpart $($webPart.FileWithXMLContent)  to $pageUrl" 
+				Add-WebPartsToSite -xmlNodeSite $arrayWebPartSite
 			}
-       
-			Write-Host "END AddWebParts for $pageUrl"
-		}
-		}
+			else 
+			{
+				foreach($site in $arrayWebPartSite)
+				{
+					Add-WebPartsToSite -xmlNodeSite -$site
+				}
+			}
+	}
 	end
 	{
 		Write-Verbose "Start-AP_SPProvisioning_AddWebPartToSite end"
 	}
 }
 
-function Remove-WebParts
+function Add-WebPartsToSite 
+{
+	[CmdletBinding()]
+	param(
+		$xmlNodeSite 
+	)
+	begin
+	{
+		Write-Verbose "Add-WebPartsToSite begin"
+	}
+	process
+	{
+		if($xmlNodeSite.RemoveExistWebParts)
+		{
+			Remove-WebPartsFromSite -ServerRelativePageUrl $xmlNodeSite.ServerRelativePageUrl
+		}
+		
+		if($xmlNodeSite.WebPart.GetType().Name -eq "XmlElement")
+		{
+			Add-WebPartToSite -ServerRelativePageUrl $xmlNodeSite.ServerRelativePageUrl -xmlWebPart $xmlNodeSite.WebPart
+		}
+		else
+		{
+			foreach($webPart in $xmlNodeSite.WebPart)
+			{
+				Add-WebPartToSite -ServerRelativePageUrl $xmlNodeSite.ServerRelativePageUrl -xmlWebPart $webPart
+			}
+		}		
+	}
+	end
+	{
+		Write-Verbose "Add-WebPartsToSite end"
+	}
+}
+
+function Add-WebPartToSite
+{
+	[CmdletBinding()]
+	param(
+		$ServerRelativePageUrl,
+		$xmlWebPart 
+	)
+	begin
+	{
+		Write-Verbose "Add-WebPartToSite begin"
+	}
+	process
+	{
+		$currentWeb = Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
+		$pathToWebPart = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $xmlWebPart.FileWithXMLContent;
+		[xml]$wpXml = Get-Content "$($pathToWebPart)";
+            
+		if($xmlWebPart.ChangeXML)
+		{
+			Write-Host "START ChangeXML"    
+
+			foreach($param in $xmlWebPart.ChangeXML)
+			{                    
+				$clearValue = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $param.Value
+				$par = $param.Key.Split(".")
+                    
+				if($par.Length -eq 1){ 
+					$par1 = $par[0]
+					$wpXml.WebPart.$par1 = $clearValue 
+				}
+				if($par.length -eq 2){ 
+					$par1 = $par[0]
+					$par2 = $par[1]
+					$wpXml.WebPart.$par1.$par2 = $clearValue
+				}
+                    
+				Write-Host "Change Content for Param $($param.Param) with value '$clearValue'" 
+			}               
+                
+			Write-Host "END ChangeXML"    
+		}
+
+		Use-AP_SPProvisioning_PnP_Add-PnPWebPartToWebPartPage -ServerRelativePageUrl $ServerRelativePageUrl -XML $wpXml.OuterXml -ZoneId $xmlWebPart.ZoneID -ZoneIndex $xmlWebPart.ZoneIndex -Web $currentWeb.Web
+            
+		Write-Host "Add webpart $($xmlWebPart.FileWithXMLContent) to $ServerRelativePageUrl"
+	}
+	end
+	{
+		Write-Verbose "Add-WebPartToSite end"
+	}
+}
+
+function Remove-WebPartsFromSite
 {    
 	<# 
 	.SYNOPSIS
@@ -150,42 +200,36 @@ function Remove-WebParts
 	#>
 	[CmdletBinding()]
 	param(
-	[Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true,Position=0)]
-	[ValidateNotNullOrEmpty()]
-    $arrayWebPartSite 
+    $ServerRelativePageUrl
 	)
 	begin
 	{
-		Write-Verbose "RemoveWebParts begin"
+		Write-Verbose "Remove-WebPartsFromSite begin"
 	}
 	process
 	{
-		foreach($site in $arrayWebPartSite.ChildNodes)
+		$currentWeb = Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
+
+		Write-Host "START RemoveWebParts for $ServerRelativePageUrl"
+        
+		$wpToRemove = Use-AP_SPProvisioning_PnP_Get-PnPWebPart -ServerRelativePageUrl $ServerRelativePageUrl -Web $currentWeb.Web
+
+		foreach($webPart in $wpToRemove)
 		{
-			$pageUrl = $Global:XmlCurrentEnvironment.siteRelUrl + $Global:CurrentWebXML.Url + $site.ServerRelativePageUrl; 
-        
-			Write-Host "START RemoveWebParts for $pageUrl"
-        
-			$wpToRemove = Get-SPOWebPart -ServerRelativePageUrl $pageUrl
-
-			foreach($webPart in $wpToRemove)
-			{
-				Remove-SPOWebPart -Title $webPart.WebPart.Title -ServerRelativePageUrl $pageUrl -Web $Global:CurrentWeb
-			}
-
-			Write-Host "Removed All webpart from $pageUrl" 
+			Use-AP_SPProvisioning_PnP_Remove-PnPWebPart -Title $webPart.WebPart.Title -ServerRelativePageUrl $ServerRelativePageUrl -Web $currentWeb.Web
+			Write-Host "Removed WebPart $($webPart.WebPart.Title) from $($ServerRelativePageUrl)"
 		}
+
+		Write-Host "Removed All webpart from $ServerRelativePageUrl" 
+			
 	}
 	end
 	{
-		Write-Verbose "RemoveWebParts end"
+		Write-Verbose "Remove-WebPartsFromSite end"
 	}
 }
 
 ##TODO Alle funktionen noch anpassen
-
-
-
 
 function Start-AddWebParts
 {

@@ -23,7 +23,7 @@ function Start-AP_SPProvisioning_RemovedListCorrectly
     }
     Process
     {	
-		$pathToXML = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.pathToProvisioningXML
+		$pathToXML = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $xmlActionObject.pathToProvisioningXML
 
 		if($xmlActionObject.ListName){
 			$lists = @()
@@ -126,7 +126,7 @@ function Start-AP_SPProvisioning_GetListContentsToCSV
     }
     Process
     {
-		  $path = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.OutputFile;
+		  $path = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $xmlActionObject.OutputFile;
 		  Get-ListContentsToCSV -columns $xmlActionObject.Column -ListName $xmlActionObject.ListName -FileName $path
 	}
     End
@@ -149,7 +149,7 @@ function Start-AP_SPProvisioning_AddListContentsFromCSV
     }
     Process
     {
-		  $path = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.PathToCsv;
+		  $path = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $xmlActionObject.PathToCsv;
 		  $content = Get-Content $path -Encoding String
 		  Add-ALG_ListContents -contentCsv $content -Listname $xmlActionObject.ListName
           #$listname = $xmlActionObject.ListName
@@ -174,7 +174,7 @@ function Start-AP_SPProvisioning_AddFieldsOnListFromProvXML
     }
     Process
     {
-			$path = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.pathToProvisioningXML;
+			$path = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $xmlActionObject.pathToProvisioningXML;
 
 			$ListInstance = Get-AP_SPProvisioning_GetListInstanceFromXML -pathToProvisioningXML $path -title $xmlActionObject.Listname
 		  

@@ -120,7 +120,7 @@ function Start-AP_SPProvisioning_SetSiteColumnDisplayName
 	}
 	process
 	{
-		$xmlFilePath = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.pathToProvisioningXML
+		$xmlFilePath = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $xmlActionObject.pathToProvisioningXML
 		$currentWeb = Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
 
 		[xml]$content = Get-Content -Path $xmlFilePath -Encoding String

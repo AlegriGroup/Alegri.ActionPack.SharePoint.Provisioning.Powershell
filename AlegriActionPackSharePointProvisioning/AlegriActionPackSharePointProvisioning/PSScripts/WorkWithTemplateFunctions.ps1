@@ -13,7 +13,7 @@ function Start-AP_SPProvisioning_CleanPnPTemplateSiteColumnByGroupName {
     }
     Process 
 	{	
-        $xmlFilePath = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.pathToProvisioningXML;
+        $xmlFilePath = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $xmlActionObject.pathToProvisioningXML;
 		$groupNames = $xmlActionObject.GroupNames.split(";");
 
         [xml]$content = Get-Content -Path $xmlFilePath -Encoding String
@@ -54,7 +54,7 @@ function Start-AP_SPProvisioning_CleanPnPTemplateContentTypeByGroupName {
     }
     Process 
 	{	
-        $xmlFilePath = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.pathToProvisioningXML;
+        $xmlFilePath = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $xmlActionObject.pathToProvisioningXML;
 		$groupNames = $xmlActionObject.GroupNames.split(";");
 
         [xml]$content = Get-Content -Path $xmlFilePath -Encoding String
@@ -215,7 +215,9 @@ function Create-AP_SPProvisioning_TemplateWithHandlers
 			$var = $content.Provisioning.Templates.ProvisioningTemplate.RemoveChild($provisioning.Providers);
 		}
 
-		$tempFilePath = $projectPath + "\Temp\TempProvisioning.xml"
+		$split = $xmlFilePath.Split("\");
+		$fileName = $split[$split.Count - 1]
+		$tempFilePath = $xmlFilePath.Replace("\" + $fileName,"") + "\temp.xml"
 
 		$xmlobj = [xml] $content.InnerXml
 		$xmlobj.Save($tempFilePath);

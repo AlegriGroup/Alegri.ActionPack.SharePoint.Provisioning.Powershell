@@ -394,14 +394,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Site" type="alg:Site" minOccurs="1" maxOccurs="unbounded"/>
-    </xs:sequence>
-    <xs:attribute name="RemoveExistWebParts" type="xs:boolean" use="optional">
-      <xs:annotation>
-        <xs:documentation>
-          Damit kann angegeben werden ob die vorhandenen WebParts entfernt werden sollen.
-        </xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
+    </xs:sequence>    
   </xs:complexType>
 
   <xs:complexType name="Site">
@@ -413,7 +406,20 @@
     <xs:sequence>
       <xs:element name="WebPart" type="alg:WebPart" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
-    <xs:attribute name="ServerRelativePageUrl" type="xs:string"/>
+    <xs:attribute name="ServerRelativePageUrl" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Die ServerRelativePageUrl zu der Datei 
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="RemoveExistWebParts" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          Damit kann angegeben werden ob die vorhandenen WebParts entfernt werden sollen.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
 
   <xs:complexType name="WebPart">

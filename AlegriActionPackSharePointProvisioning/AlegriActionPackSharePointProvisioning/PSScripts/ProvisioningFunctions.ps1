@@ -21,7 +21,7 @@ function Start-AP_SPProvisioning_PnPProvisioning {
     }
     Process 
     {	
-        $xmlFilePath = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.pathToProvisioningXML;
+        $xmlFilePath = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $xmlActionObject.pathToProvisioningXML;
 		$handlers  = "";
 		if($xmlActionObject.Handlers) { $handlers = $xmlActionObject.Handlers };
         
@@ -71,7 +71,7 @@ function Start-AP_SPProvisioning_GetProvisioningTemplate {
         Write-Verbose "Start Start-AP_SPProvisioning_GetProvisioningTemplate"
     }
     Process {	
-        $xmlFilePath = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath -path $xmlActionObject.Out;
+        $xmlFilePath = Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable $xmlActionObject.Out;
         $standard = $xmlActionObject.StandardArtefactsOutput;
 		$handlers = "";
 		if($xmlActionObject.Handlers) { $handlers = $xmlActionObject.Handlers }

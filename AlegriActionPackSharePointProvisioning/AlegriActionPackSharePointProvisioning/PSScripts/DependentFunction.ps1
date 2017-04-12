@@ -21,26 +21,26 @@ function Get-AP_SPProvisioning_SPEnvironment_CurrentWeb
 		Write-Verbose "Use_AP_SPProvisioning_SPEnvironment_CurrentWeb  End"
     }
 }
-function Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath
+function Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable
 {
 	[CmdletBinding()]
     [OutputType([int])]
     param
     (
         [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=0)]
-        $path
+        $variable
 	)
 	Begin
     {
-          Write-Verbose "Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath BEGIN"
+          Write-Verbose "Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable BEGIN"
     }
     Process
     {
-		return Check-AP_SPEnvironment_ReplaceProjectPath -path $path
+		return Check-AP_SPEnvironment_ReplaceEnvVariable -path $variable
     }
     End
     {
-		Write-Verbose "Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceProjectPath END"
+		Write-Verbose "Use-AP_SPProvisioning_SPEnvironment_Check-ReplaceEnvVariable END"
     }
 }
 function Use-AP_SPProvisioning_SPEnvironment_Get-ProjectPath 
@@ -199,7 +199,6 @@ function Use-AP_SPProvisioning_PnP_New-PnPWeb
 		Write-Verbose "Use-AP_SPProvisioning_PnP_New-PnPWeb End"
     }
 }
-
 
 ##### Fields ############
 function Use-AP_SPProvisioning_PnP_Get-PnPField
@@ -749,7 +748,29 @@ function Use-AP_SPProvisioning_PnP_Get-PnPWebPart
 		$Web,
 		[Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true,Position=1)]
 		[ValidateNotNullOrEmpty()]
-		$Path
+		$ServerRelativePageUrl
+	)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Get-PnPWebPart Begin" 
+    }
+    Process
+    {
+		return Get-PnPWebPart -ServerRelativePageUrl $ServerRelativePageUrl -Web $Web
+	}
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Get-PnPWebPart End"
+    }
+}
+function Use-AP_SPProvisioning_PnP_Remove-PnPWebPart
+{
+	[CmdletBinding()]
+    param
+    (
+		$Web,
+		$ServerRelativePageUrl,
+		$Title
 	)
     Begin
     {
@@ -757,13 +778,36 @@ function Use-AP_SPProvisioning_PnP_Get-PnPWebPart
     }
     Process
     {
-		Apply-PnPProvisioningTemplate -Path $Path -Web $Web -Parameters @{ "newWebId"=$Web.Id ;"newSourceId"=$Web.id }
+		Remove-PnPWebPart -ServerRelativePageUrl $ServerRelativePageUrl -Web $Web -Title $Title
 	}
     End
     {
 		Write-Verbose "Use-AP_SPProvisioning_PnP_Apply-PnPProvisioningTemplate End"
     }
 }
-
+function Use-AP_SPProvisioning_PnP_Add-PnPWebPartToWebPartPage
+{
+	[CmdletBinding()]
+    param
+    (
+		$Web,
+		$ServerRelativePageUrl,
+		$XML,
+		$ZoneId,
+		$ZoneIndex
+	)
+    Begin
+    {
+         Write-Verbose "Use-AP_SPProvisioning_PnP_Add-PnPWebPartToWebPartPage Begin" 
+    }
+    Process
+    {
+		Add-SPOWebPartToWebPartPage -ServerRelativePageUrl $ServerRelativePageUrl -XML $XML -ZoneId $ZoneId -ZoneIndex $ZoneIndex -Web $Web
+	}
+    End
+    {
+		Write-Verbose "Use-AP_SPProvisioning_PnP_Add-PnPWebPartToWebPartPage End"
+    }
+}
 
 
